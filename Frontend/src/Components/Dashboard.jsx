@@ -19,9 +19,6 @@ const Dashboard = () => {
                         Inventory<br />
                         Attributes
                     </div>
-                    <div>
-
-                    </div>
                 </div>
             </div>
         </div>

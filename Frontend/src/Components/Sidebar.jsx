@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
     const [openMenu1, setOpenMenu1] = useState(false);
     const [openMenu2, setOpenMenu2] = useState(false);
     const [activeButton, setActiveButton] = useState(null);
+    const navigate = useNavigate();
 
     const handleChangeMenu1 = () => {
         setOpenMenu1(!openMenu1);
@@ -14,6 +16,7 @@ const Sidebar = () => {
     }
 
     const handleButtonClick = (buttonName) => {
+        navigate(`/${buttonName}`);
         setActiveButton(buttonName === activeButton ? null : buttonName);
     };
 
@@ -49,6 +52,7 @@ const Sidebar = () => {
                 </div>
                 {openMenu2 && <div>
                     <SubMenuButton name="Master" active={activeButton === 'Master'} onClick={() => handleButtonClick('Master')} />
+                    <SubMenuButton name='Add Bulk Product' active={activeButton === 'bulkProduct'} onClick={() => handleButtonClick('bulkProduct')} />
                     <SubMenuButton name='Build New Product' active={activeButton === 'buildProduct'} onClick={() => handleButtonClick('buildProduct')} />
                     <SubMenuButton name='All Products' active={activeButton === 'allproducts'} onClick={() => handleButtonClick('allproducts')} />
                     <SubMenuButton name='Store' active={activeButton === 'store'} onClick={() => handleButtonClick('store')} />
