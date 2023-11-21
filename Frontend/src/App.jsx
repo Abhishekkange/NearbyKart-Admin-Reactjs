@@ -4,18 +4,20 @@ import './index.css'
 import './App.css'
 import Dashboard from './Components/Dashboard';
 import Sidebar from './Components/Sidebar';
+import AddBulkProduct from './Components/AddBulkProduct';
 
 function App() {
   return (
-    <div className=''>
+    <div className='flex w-full h-full flex-row'>
       <Router>
-        <div className='flex'>
+        <div>
           <Sidebar />
-          <div className='max-w-full w-full p-5'>
-            <Routes>
-              <Route path='/' element={<Dashboard />} />
-            </Routes>
-          </div>
+        </div>
+        <div className='p-5'>
+          <Routes>
+            <Route path='/' element={<Dashboard />} />
+            <Route path='/bulkProduct' element={<AddBulkProduct />} />
+          </Routes>
         </div>
       </Router>
     </div>
