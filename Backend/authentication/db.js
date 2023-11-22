@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const connectToMongoose = () => {
-  const uri = "mongodb+srv://Abhishekkange123:7211821g@nearbykart.cpuhqy4.mongodb.net/localecommerce?retryWrites=true&w=majority";
+  const uri = process.env.MONGODBURL;
 
   mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {

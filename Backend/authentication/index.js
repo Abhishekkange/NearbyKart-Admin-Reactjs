@@ -1,11 +1,13 @@
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 3000;
-const routes = './routes';
+require('dotenv').config();
+const port = process.env.PORT || 3200;
 
 
 
-app.get('/', routes);
+app.use(express.json())
+
+app.use("/api", require('./routes/routes')); // Use the router
 
 
 app.listen(port,()=> {
