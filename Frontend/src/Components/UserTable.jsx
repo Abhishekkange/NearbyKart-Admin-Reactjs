@@ -7,7 +7,7 @@ const AdminPanel = () => {
 
   useEffect(() => {
     // Fetch data from your API
-    fetch('https://dummyjson.com/products/1')
+    fetch('')
       .then(response => response.json())
       .then(data => {
         setData(data);
