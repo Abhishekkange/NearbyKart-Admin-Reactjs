@@ -5,7 +5,7 @@ import './App.css'
 import Dashboard from './Components/Dashboard';
 import Sidebar from './Components/Sidebar';
 import AddBulkProduct from './Components/AddBulkProduct';
-
+import Users from './Components/Users';
 function App() {
   return (
     <div className='flex w-screen h-screen flex-row'>
@@ -17,6 +17,9 @@ function App() {
           <Routes>
             <Route path='/' element={<Dashboard />} />
             <Route path='/bulkProduct' element={<AddBulkProduct />} />
+            <Route path='/' element={<Dashboard />} />
+            <Route path='/userProfile' element={<Users />} />
+           
           </Routes>
         </div>
       </Router>

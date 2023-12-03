@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
-    const [openMenu1, setOpenMenu1] = useState(false);
+    const [openMenu1, setOpenMenu1] = useState(true);
     const [openMenu2, setOpenMenu2] = useState(false);
+    const [openMenu3, setOpenMenu3] = useState(false);
+    const [openOtherMenu, setOpenOtherMenu] = useState(false);
     const [activeButton, setActiveButton] = useState(null);
     const navigate = useNavigate();
 
@@ -13,6 +15,20 @@ const Sidebar = () => {
 
     const handleChangeMenu2 = () => {
         setOpenMenu2(!openMenu2);
+    }
+
+    const handleChangeMenu3 = () => {
+        setOpenMenu3(!openMenu3);
+        setOpenMenu1(false);
+        setOpenMenu2(false);
+        setOpenOtherMenu(false);
+    }
+
+    const handleOtherMenu = () => {
+        setOpenOtherMenu(!openOtherMenu);
+        setOpenMenu1(false);
+        setOpenMenu2(false);
+        setOpenMenu3(false);
     }
 
     const handleButtonClick = (buttonName) => {
@@ -59,6 +75,37 @@ const Sidebar = () => {
                 </div>
                 }
             </div>
+            <div className="bg-light-dark  text-white text-lg">
+                    <div className={`p-1 ${openMenu3 && 'bg-light-green text-black'}`}>
+                        <button className="flex p-3 w-52" onClick={handleChangeMenu3}>
+                            {/* Icon and text for Menu 3 */}
+                            <span>User</span>
+                        </button>
+                    </div>
+                    {openMenu3 && (
+                        <div>
+                            <SubMenuButton name="User Profile" active={activeButton === 'userProfile'} onClick={() => handleButtonClick('userProfile')} />
+                            <SubMenuButton name="Settings" active={activeButton === 'settings'} onClick={() => handleButtonClick('settings')} />
+                            {/* Add more submenu buttons for user-related actions */}
+                        </div>
+                    )}
+                </div>
+                {/* Other Menu */}
+                <div className="bg-light-dark  text-white text-lg">
+                    <div className={`p-1 ${openOtherMenu && 'bg-light-green text-black'}`}>
+                        <button className="flex p-3 w-52" onClick={handleOtherMenu}>
+                            {/* Icon and text for Other menu */}
+                            <span>Other</span>
+                        </button>
+                    </div>
+                    {openOtherMenu && (
+                        <div>
+                            {/* SubMenuButton for Help Center */}
+                            <SubMenuButton name="Help Center" active={activeButton === 'helpCenter'} onClick={() => handleButtonClick('helpCenter')} />
+                            {/* Add more submenu buttons for Other menu */}
+                        </div>
+                    )}
+                </div>
         </div>
     </div>
 }
