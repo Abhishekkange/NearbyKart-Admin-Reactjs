@@ -31,7 +31,7 @@ const AddBulkProduct = () => {
     };
 
     return <div>
-        <div className="border-2 mt-4 p-4 border-black">
+        <div className="border-2 mt-4 p-1 border-black">
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
                 {images &&
                     images.map((image, index) => (
@@ -98,7 +98,7 @@ const ProductData = () => {
         setClickedButton((prevButton) => (prevButton === buttonName ? null : buttonName));
     }
 
-    return <div className="mt-10">
+    return <div className="mt-10 flex">
         <div className="card border-black border-2" style={{ width: '815px' }}>
             <div className="text-xl font-semibold p-3 border-b-2 border-black">
                 <span>Product Data</span>
@@ -155,6 +155,9 @@ const ProductData = () => {
                     </button>
                 </div>
             </div>
+        </div>
+        <div>
+            hello all
         </div>
     </div>
 }

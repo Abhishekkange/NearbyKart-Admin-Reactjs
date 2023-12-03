@@ -8,9 +8,9 @@ import AddBulkProduct from './Components/AddBulkProduct';
 
 function App() {
   return (
-    <div className='flex w-full h-full flex-row'>
+    <div className='flex w-screen h-screen flex-row'>
       <Router>
-        <div>
+        <div className='h-screen bg-black'>
           <Sidebar />
         </div>
         <div className='p-5'>
@@ -21,7 +21,7 @@ function App() {
         </div>
       </Router>
     </div>
-  )
+  );
 }
 
 export default App

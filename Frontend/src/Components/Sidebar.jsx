@@ -20,8 +20,8 @@ const Sidebar = () => {
         setActiveButton(buttonName === activeButton ? null : buttonName);
     };
 
-    return <div>
-        <div className="bg-black w-64 h-screen rounded-sm">
+    return <div className="h-100% bg-black">
+        <div className="w-64 rounded-sm">
             <div className="text-center text-white font-semibold text-2xl pt-5">
                 NearybyKart
             </div>
