@@ -1,25 +1,23 @@
-import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import './index.css'
-import './App.css'
+import './index.css';
+import './App.css';
 import Dashboard from './Components/Dashboard';
 import Sidebar from './Components/Sidebar';
 import AddBulkProduct from './Components/AddBulkProduct';
 import Users from './Components/Users';
+
 function App() {
   return (
-    <div className='flex w-screen h-screen flex-row'>
+    <div className='flex flex-row' style={{ minHeight: '100vh' }}>
       <Router>
-        <div className='h-screen bg-black'>
+        <div className='bg-black' style={{ flex: '0 0 auto' }}>
           <Sidebar />
         </div>
-        <div className='p-5'>
+        <div className='p-5' style={{ flex: '1', overflow: 'hidden' }}>
           <Routes>
             <Route path='/' element={<Dashboard />} />
             <Route path='/bulkProduct' element={<AddBulkProduct />} />
-            <Route path='/' element={<Dashboard />} />
             <Route path='/userProfile' element={<Users />} />
-           
           </Routes>
         </div>
       </Router>
@@ -27,4 +25,4 @@ function App() {
   );
 }
 
-export default App
+export default App;
