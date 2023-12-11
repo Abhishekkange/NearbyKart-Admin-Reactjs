@@ -1,9 +1,13 @@
-import React, { useState, useRef } from "react";
+import { useState, useRef } from "react";
 
 const AddBulkProduct = () => {
     const [images, setImages] = useState([]);
     const [selectedImageIndex, setSelectedImageIndex] = useState(null);
     const fileInputRef = useRef(null);
+
+    const handleClick = () => {
+
+    }
 
     const handleFiles = (files) => {
         Array.from(files).forEach((file) => {
@@ -61,17 +65,20 @@ const AddBulkProduct = () => {
                     <ImageInfo />
                     <ProductData />
                 </div>
-                <div className="card ml-20 mt-12 border-2 border-black w-auto">
-                    <div>
+                <div className="card ml-36 mt-8 border-2 border-black w-auto">
+                    <div className="p-2 border-b-2 border-black">
                         Product
                     </div>
-                    <div>
-                        photo
+                    <div className="m-8 border-2 boder-black">
+                        <img src="" alt="" width={250} height={250}/>
                     </div>
                     <div>
                         info
                     </div>
                 </div>
+            </div>
+            <div className="mt-10 mr-28 flex justify-end">
+                <button className="p-2 bg-light-green px-4 rounded-sm active:bg-green-400" onClick={handleClick}>Edit Image</button>
             </div>
         </div>
     );
