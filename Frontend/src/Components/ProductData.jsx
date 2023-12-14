@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 const ProductData = () => {
     const [clickedButton, setClickedButton] = useState(null);
 
+    const chnage=null;
     const handleClick = (buttonName) => {
         setClickedButton((prevButton) => (prevButton === buttonName ? null : buttonName));
     }
