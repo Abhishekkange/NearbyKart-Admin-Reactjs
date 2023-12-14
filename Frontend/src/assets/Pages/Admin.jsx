@@ -6,6 +6,7 @@ import Dashboard from '../../Components/Dashboard';
 import Sidebar from '../../Components/Sidebar';
 import AddBulkProduct from '../../Components/AddBulkProduct';
 import Users from '../../Components/Users';
+import ProductData from '../../Components/ProductData';
 
 function AdminPanel() {
   return (
@@ -16,6 +17,7 @@ function AdminPanel() {
           <Route path="/" element={<Dashboard />} />
           <Route path="/bulkProduct" element={<AddBulkProduct />} />
           <Route path="/userProfile" element={<Users />} />
+          <Route path="/productdata" element={<ProductData />} />
         </Routes>
       </div>
     </div>
