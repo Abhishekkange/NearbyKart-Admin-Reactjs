@@ -1,6 +1,6 @@
 function Login(){
     return <div>
-        <h1>Login to NearbyKart</h1>
+        <h1 className="h-40">Login to NearbyKart</h1>
     </div>
 }
 

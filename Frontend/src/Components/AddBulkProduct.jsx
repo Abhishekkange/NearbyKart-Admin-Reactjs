@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import ImageInfo from "./ImageInfo";
 import ProductData from "./ProductData";
 import ShowImage from "./ShowImage";
+import { width } from "@mui/system";
 
 const AddBulkProduct = () => {
     const [images, setImages] = useState([]);
@@ -38,7 +39,12 @@ const AddBulkProduct = () => {
     };
 
     return (
-        <div>
+
+        
+        <div className="flex">
+
+            <div>
+
             <div className="border-2 mt-4 p-4 border-black">
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
                     {images &&
@@ -63,8 +69,16 @@ const AddBulkProduct = () => {
                     onChange={handleFileInput}
                 />
             </div>
-            <ImageInfo />
+            
             <ProductData />
+
+
+            </div>
+            <div className="m-5 bg-gray-300 " style={{width:'270px',height:'85vh'}}>
+                <h1>This is product displayer</h1>
+            </div>
+           
+            
         </div>
     );
 };

@@ -6,7 +6,7 @@ const ShowImage = ({ image, isSelected, onClick }) => {
             <img
                 src={image.dataURL}
                 alt=""
-                style={{ width: "100%", height: "100%", objectFit: "cover", cursor: 'pointer' }}
+                style={{ width: "100%", height: "70px", objectFit: "contain", cursor: 'pointer' }}
                 onClick={onClick}
             />
             
