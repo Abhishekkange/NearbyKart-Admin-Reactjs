@@ -32,7 +32,7 @@ const Sidebar = () => {
     }
 
     const handleButtonClick = (buttonName) => {
-        navigate(`/${buttonName}`);
+        navigate(`admin/${buttonName}`);
         setActiveButton(buttonName === activeButton ? null : buttonName);
     };
 
