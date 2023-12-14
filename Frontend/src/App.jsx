@@ -1,30 +1,24 @@
-import { useState } from 'react';
+// App.js
+
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import './index.css'
-import './App.css'
-import Dashboard from './Components/Dashboard';
-import Sidebar from './Components/Sidebar';
-import AddBulkProduct from './Components/AddBulkProduct';
-import Users from './Components/Users';
+import './index.css';
+import './App.css';
+import AdminPanel from '../src/assets/Pages/Admin';
+import Login from './assets/Pages/Login';
+import Signup from './assets/Pages/Signup';
+
+
 function App() {
   return (
-    <div className='flex w-full h-full flex-row'>
-      <Router>
-        <div>
-          <Sidebar />
-        </div>
-        <div className='p-5'>
-          <Routes>
-            <Route path='/' element={<Dashboard />} />
-            <Route path='/bulkProduct' element={<AddBulkProduct />} />
-            <Route path='/' element={<Dashboard />} />
-            <Route path='/userProfile' element={<Users />} />
-           
-          </Routes>
-        </div>
-      </Router>
-    </div>
-  )
+    <Router>
+      <Routes>
+        <Route path="/admin/*" element={<AdminPanel />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
