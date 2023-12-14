@@ -8,6 +8,10 @@ const AddBulkProduct = () => {
     const [selectedImageIndex, setSelectedImageIndex] = useState(null);
     const fileInputRef = useRef(null);
 
+    const handleClick = () => {
+
+    }
+
     const handleFiles = (files) => {
         Array.from(files).forEach((file) => {
             const reader = new FileReader();
