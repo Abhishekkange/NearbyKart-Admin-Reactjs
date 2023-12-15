@@ -19,6 +19,27 @@ const ProductSidebar = ({ onButtonClick }) => {
                 <span>General</span>
             </button>
             <button
+                name="Color and Sizes"
+                className={`flex p-3 gap-3 w-full ${clickedButton === 'Color and Sizes' ? 'bg-blue-400 text-white' : ''} `}
+                onClick={() => handleClick('Color and Sizes')}
+            >
+                <span>Color and Sizes</span>
+            </button>
+            <button
+                name="category and subcategory"
+                className={`flex p-3 gap-3 w-full ${clickedButton === 'category and subcategory' ? 'bg-blue-400 text-white' : ''} `}
+                onClick={() => handleClick('category and subcategory')}
+            >
+                <span>Category and subcategory</span>
+            </button>
+            <button
+                name="Tags"
+                className={`flex p-3 gap-3 w-full ${clickedButton === 'Tags' ? 'bg-blue-400 text-white' : ''} `}
+                onClick={() => handleClick('Tags')}
+            >
+                <span>Tags</span>
+            </button>
+            <button
                 name="description"
                 className={`flex p-3 gap-3 w-full ${clickedButton === 'description' ? 'bg-blue-400 text-white' : ''} `}
                 onClick={() => handleClick('description')}

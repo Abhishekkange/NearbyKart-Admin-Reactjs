@@ -3,6 +3,9 @@ import ProductSidebar from './ProductSidebar';
 import GeneralComponent from './GeneralComponent'; // Import your components
 import EnterDescription from './EnterDescription';
 import EnterShortDescription from './EnterShortDescription';
+import CategorySelector from './CategoryAndSubcategory';
+import ColorSizeSelector from './ColorSizeSelector';
+import Tags from './Tags';
 
 const ProductData = () => {
     const [selectedComponent, setSelectedComponent] = useState(null);
@@ -15,6 +18,15 @@ const ProductData = () => {
             setSelectedComponent(<EnterShortDescription />);
         } else if (buttonName === 'description') {
             setSelectedComponent(<EnterDescription />);
+        }
+        else if (buttonName === 'category and subcategory') {
+            setSelectedComponent(<CategorySelector />);
+        }
+        else if (buttonName === 'Color and Sizes') {
+            setSelectedComponent(<ColorSizeSelector />);
+        }
+        else if (buttonName === 'Tags') {
+            setSelectedComponent(<Tags />);
         }
         // Add more conditions for other buttons
     };
