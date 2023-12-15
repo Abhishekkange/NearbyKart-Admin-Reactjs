@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 
 const ShowImage = ({ image, isSelected, onClick }) => {
     return (

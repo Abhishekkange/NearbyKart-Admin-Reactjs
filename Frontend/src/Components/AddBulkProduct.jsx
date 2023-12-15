@@ -3,15 +3,22 @@ import ImageInfo from "./ImageInfo";
 import ProductData from "./ProductData";
 import ShowImage from "./ShowImage";
 import { width } from "@mui/system";
+import FinishedProduct from "./FinishedProduct";
 
 const AddBulkProduct = () => {
     const [images, setImages] = useState([]);
     const [selectedImageIndex, setSelectedImageIndex] = useState(null);
     const fileInputRef = useRef(null);
 
-    const handleClick = () => {
+    const [productName,setProductName]= useState('Product Name');
+    const [productPrice,setProductPrice] = useState('Product Price');
+    const [categoryName,setCategoryName] = useState('Category');
+    const [subcategoryName,setSubcategoryName] = useState('Subcategory');
+    const [brandName,setBrandName] = useState('Brand Name');
+    const [description,setDescription] = useState('Description');
+    const [shortDescription,setShortDescription] = useState('Short Description');
 
-    }
+
 
     const handleFiles = (files) => {
         Array.from(files).forEach((file) => {
@@ -39,46 +46,39 @@ const AddBulkProduct = () => {
     };
 
     return (
-
-        
         <div className="flex">
 
-            <div>
+            <div className="m-2">
+                <div className="border-2 mt-2 p-2  rounded-lg shadow-lg">
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+                        {images &&
+                            images.map((image, index) => (
+                                <ShowImage
+                                    key={index}
+                                    image={image}
+                                    isSelected={index === selectedImageIndex}
+                                    onClick={() => onClickImage(index)}
+                                />
+                            ))}
 
-            <div className="border-2 mt-4 p-4 border-black">
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
-                    {images &&
-                        images.map((image, index) => (
-                            <ShowImage
-                                key={index}
-                                image={image}
-                                isSelected={index === selectedImageIndex}
-                                onClick={() => onClickImage(index)}
-                            />
-                        ))}
-
-                    <div className="p-2 border-2 w-40 border-black" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} onClick={() => fileInputRef.current.click()}>
-                        <span style={{ cursor: 'pointer' }}>Click to add image</span>
+                        <div className="p-2 border-2 w-40 border-black rounded-lg" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} onClick={() => fileInputRef.current.click()}>
+                            <span style={{ cursor: 'pointer' }}>Click to add image</span>
+                        </div>
                     </div>
+
+                    <input
+                        type="file"
+                        ref={fileInputRef}
+                        style={{ display: 'none' }}
+                        onChange={handleFileInput}
+                    />
                 </div>
-
-                <input
-                    type="file"
-                    ref={fileInputRef}
-                    style={{ display: 'none' }}
-                    onChange={handleFileInput}
-                />
+                <ProductData />
             </div>
-            
-            <ProductData />
 
-
+            <div className="m-5" style={{ width: '270px', height: '85vh' }}>
+                <FinishedProduct brandName={brandName} description = {description} shortDescription={shortDescription} productName = {productName} price={productPrice}  category = {categoryName} subcategory = {subcategoryName} />
             </div>
-            <div className="m-5 bg-gray-300 " style={{width:'270px',height:'85vh'}}>
-                <h1>This is product displayer</h1>
-            </div>
-           
-            
         </div>
     );
 };
