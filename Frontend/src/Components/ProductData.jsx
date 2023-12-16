@@ -34,10 +34,10 @@ const ProductData = () => {
     return (
         <div className="mt-4 bg-white rounded-lg shadow-lg p-2 ">
             <div className=" p-2 flex">
-                <div className="w-64 h-90 overflow-y-auto mr-4 bg-white">
+                <div style={{width:'230px',height:'480px'}} className="w-55 h-100 overflow-y-auto mr-4 bg-white">
                     <ProductSidebar onButtonClick={handleButtonClick} />
                 </div>
-                <div style={{ height: '420px', width: '500px' }} className="flex-1 overflow-y-auto">
+                <div style={{ height: '450px', width: '500px' }} className="flex-1 px-3 py-3 overflow-y-auto border-2 border-black">
                     {/* Render selected component */}
                     {selectedComponent}
                 </div>

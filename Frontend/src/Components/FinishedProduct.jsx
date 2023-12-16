@@ -12,7 +12,7 @@ const FinishedProduct = (props) => {
   const { productName,price,category,subcategory,brand,description,shortDescription } = productState;
 
   return (
-    <div style={{width:'300px',height:'88vh'}} className=" bg-white rounded-lg shadow-lg overflow-auto">
+    <div style={{width:'320px',height:'90vh'}} className=" bg-white rounded-lg shadow-lg overflow-auto">
       <div className="w-full h-60 objectFit='contain'">
         <img
           src={props.image}
@@ -54,7 +54,7 @@ const FinishedProduct = (props) => {
 
       </div>
 
-      <button style={{width:'250px', marginLeft:'20px'}}  className="bg-blue-500 hover:bg-blue-700  text-white font-bold py-2 px-4 mt-4 rounded focus:outline-none focus:shadow-outline">
+      <button style={{width:'280px', marginLeft:'20px'}}  className="bg-blue-500 hover:bg-blue-700  text-white font-bold py-2 px-4 mt-4 rounded focus:outline-none focus:shadow-outline">
               Build Product
             </button>
      

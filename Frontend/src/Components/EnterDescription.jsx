@@ -42,9 +42,9 @@ const EnterDescription = () => {
   };
 
   return (
-    <div style={{height:'420px'}} className="relative w-150 h-60 border border-gray-300 rounded p-4 overflow-y-auto">
+    <div style={{height:'390px'}} className="relative w-150 h-60 border border-gray-300 rounded p-4 overflow-y-auto">
       <ReactQuill
-        style={{ height: '280px' }}
+        style={{ height: '200px' }}
         theme="snow"
         value={description}
         onChange={(value) => setDescription(value)}

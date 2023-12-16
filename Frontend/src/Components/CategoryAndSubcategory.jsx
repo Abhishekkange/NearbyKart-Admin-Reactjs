@@ -51,13 +51,13 @@ const CategorySelector = () => {
     };
 
     return (
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-start">
             <div className="mb-4">
                 <label style={{width:'200px'}} htmlFor="category" className="block mb-2 text-lg">
                     Category:
                 </label>
                 <select
-                    style={{width:'350px'}}
+                    style={{width:'450px'}}
                     id="category"
                     className="p-2 border rounded-md"
                     value={selectedCategory}
@@ -78,7 +78,7 @@ const CategorySelector = () => {
                         Subcategory:
                     </label>
                     <select
-                        style={{width:'350px'}}
+                        style={{width:'450px'}}
                         id="subcategory"
                         className="p-2 border rounded-md"
                         value={selectedSubcategory}
@@ -99,7 +99,7 @@ const CategorySelector = () => {
                     Brand:
                 </label>
                 <select
-                    style={{width:'350px'}}
+                    style={{width:'450px'}}
                     id="brand"
                     className="p-2 border rounded-md"
                     value={selectedBrand}

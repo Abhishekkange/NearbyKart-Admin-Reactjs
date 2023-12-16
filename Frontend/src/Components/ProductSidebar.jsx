@@ -10,7 +10,7 @@ const ProductSidebar = ({ onButtonClick }) => {
     }
 
     return (
-        <div className="flex flex-col  w-80 bg-gray-200">
+        <div style={{height:'450px'}} className="flex flex-col  w-90 bg-gray-200">
             <button
                 name="general"
                 className={`flex p-3 gap-3 w-full ${clickedButton === 'general' ? 'bg-blue-400 text-white' : ''} `}
