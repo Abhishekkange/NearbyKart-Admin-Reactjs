@@ -1,5 +1,5 @@
 import React from 'react'
-import UserTable from './UserTable'
+import UserTable from './Bulk Add Section/UserTable'
 
 export default function Users() {
   return (

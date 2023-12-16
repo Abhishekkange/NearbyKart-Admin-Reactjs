@@ -1,9 +1,9 @@
 import React, { useState, useRef,useContext } from "react";
-import ImageInfo from "./ImageInfo";
-import ProductData from "./ProductData";
-import ShowImage from "./ShowImage";
+import ImageInfo from "./Bulk Add Section/ImageInfo";
+import ProductData from "./Bulk Add Section/ProductData";
+import ShowImage from "./Bulk Add Section/ShowImage";
 import { width } from "@mui/system";
-import FinishedProduct from "./FinishedProduct";
+import FinishedProduct from "./Bulk Add Section/FinishedProduct";
 import ProductState from "../Context/ProductState";
 
 const AddBulkProduct = () => {

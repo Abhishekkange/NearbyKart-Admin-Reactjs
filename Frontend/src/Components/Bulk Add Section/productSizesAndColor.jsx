@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
-import ProductContext from '../Context/ProductContext';
+import ProductContext from '../../Context/ProductContext';
 
 const ProductColorsTable = () => {
     const { productState } = useContext(ProductContext);

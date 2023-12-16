@@ -1,14 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import productContext from '../Context/ProductContext';
+import productContext from '../../Context/ProductContext';
 
-const EnterShortDescription = () => {
-  const [shortDescription, setShortDescription] = useState('');
-  const [sWordCount, setsWordCount] = useState(0);
-
-  const {productState ,setProductState} = useContext(productContext);
-
+const EnterDescription = () => {
+  const [description, setDescription] = useState('');
+  const [wordCount, setWordCount] = useState(0);
+  const {productState,setProductState} = useContext(productContext);
 
   const stripHTMLTags = (html) => {
     const doc = new DOMParser().parseFromString(html, 'text/html');
@@ -17,12 +15,12 @@ const EnterShortDescription = () => {
 
   const handleSaveButton = () => {
 
-    const textOnlyDescription = stripHTMLTags(shortDescription);
+    const textOnlyDescription = stripHTMLTags(description);
 
 
     const updatedProductState = {
             
-      "shortDescription":textOnlyDescription
+      "description":textOnlyDescription
    
    }
    
@@ -31,10 +29,12 @@ const EnterShortDescription = () => {
 
   }
 
+  
+
 
   useEffect(() => {
-    setsWordCount(shortDescription.trim().split(/\s+/).filter(Boolean).length);
-  }, [shortDescription]);
+    setWordCount(description.trim().split(/\s+/).filter(Boolean).length);
+  }, [description]);
 
   const handleMagicButtonClick = () => {
     // Add your magic here
@@ -46,8 +46,8 @@ const EnterShortDescription = () => {
       <ReactQuill
         style={{ height: '200px' }}
         theme="snow"
-        value={shortDescription}
-        onChange={(value) => setShortDescription(value)}
+        value={description}
+        onChange={(value) => setDescription(value)}
         modules={{
           toolbar: [
             [{ 'header': [1, 2, false] }],
@@ -57,7 +57,7 @@ const EnterShortDescription = () => {
             ['clean']
           ],
         }}
-        placeholder="Enter your short description here..."
+        placeholder="Enter your description here..."
       />
       <div className="mt-20 flex justify-between items-center text-gray-500">
         <div className="flex items-center">
@@ -75,7 +75,7 @@ const EnterShortDescription = () => {
               />
             </svg>
           </span>
-          <span>{sWordCount} words</span>
+          <span>{wordCount} words</span>
         </div>
         <div style={{width:'30px'}}>
           <button 
@@ -110,4 +110,4 @@ const EnterShortDescription = () => {
   );
 };
 
-export default EnterShortDescription;
+export default EnterDescription;

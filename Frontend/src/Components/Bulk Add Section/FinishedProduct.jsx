@@ -1,6 +1,6 @@
 import React,{useContext, useState} from 'react';
 import SizeBox from './SizeBox';
-import ProductContext from '../Context/ProductContext';
+import ProductContext from '../../Context/ProductContext';
 import ProductSizesAndColor from './productSizesAndColor'
 import axios from 'axios';
 
@@ -52,7 +52,6 @@ const FinishedProduct = (props) => {
         description:"",
         shortdescription:"",
         colorSizes:{}
-        
         //
 
 
