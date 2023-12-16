@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+
 import {
     Table,
     TableBody,
@@ -14,14 +15,39 @@ import {
     IconButton,
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
+import productContext from '../Context/ProductContext';
+
+
 
 const ColorSizeSelector = () => {
+
+
+
+    const {productState,setProductState} = useContext(productContext);
+
+    
+
     const [selectedColor, setSelectedColor] = useState('');
     const [selectedSize, setSelectedSize] = useState('');
     const [selectedColors, setSelectedColors] = useState([]);
     const [colorSizes, setColorSizes] = useState({});
 
-    const colors = ['Red', 'Blue', 'Green', 'Yellow'];
+    
+
+    const updatedProductState = {
+        ...productState,
+        colorSizes: { ...colorSizes }, // Add colorSizes to the productState
+    };
+
+    const handleSaveButton = () => {
+
+        setProductState(updatedProductState);
+        console.log(productState);
+
+    };
+
+
+    const colors = ['Red', 'Blue', 'Green','Yellow'];
     const sizes = ['S', 'M', 'L', 'XL'];
 
     const handleColorAdd = () => {
@@ -50,7 +76,8 @@ const ColorSizeSelector = () => {
     };
 
     return (
-        <Grid container justifyContent="center" alignItems="center" spacing={2}>
+        <>
+                <Grid container justifyContent="center" alignItems="center" spacing={2}>
             <Grid item xs={12} md={6}>
                 <div className="mt-2">
                     <Select
@@ -136,6 +163,14 @@ const ColorSizeSelector = () => {
                 )}
             </Grid>
         </Grid>
+        <button onClick={handleSaveButton} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-4 rounded focus:outline-none focus:shadow-outline">
+                Save and Continue
+            </button>
+        
+        </>
+
+
+        
     );
 };
 

@@ -12,9 +12,9 @@ const ProductState = (props) => {
         subcategory:"",
         brand:"",
         description:"",
-        shortdescription:""
-        
-        // Add other properties as needed
+        shortdescription:"",
+        colorSizes:{}
+
     });
 
     return (

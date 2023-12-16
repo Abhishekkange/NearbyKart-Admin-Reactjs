@@ -1,22 +1,19 @@
 import React,{useContext, useState} from 'react';
 import SizeBox from './SizeBox';
 import ProductContext from '../Context/ProductContext';
-
-
-
+import ProductSizesAndColor from './productSizesAndColor'
 
 const FinishedProduct = (props) => {
-    const [sizes, setSizes] = useState(['Small', 'Medium', 'Large', 'XL']); // Example sizes list
 
-    const { productState } = useContext(ProductContext); // Accessing productState from the context
+    const [sizes, setSizes] = useState(['Small', 'Medium', 'Large', 'XL']); 
+    const { productState } = useContext(ProductContext);
 
   // Destructure productName from productState
   const { productName,price,category,subcategory,brand,description,shortDescription } = productState;
 
   return (
-    <div style={{width:'270px',height:'88vh'}} className=" bg-white rounded-lg shadow-lg overflow-auto">
+    <div style={{width:'300px',height:'88vh'}} className=" bg-white rounded-lg shadow-lg overflow-auto">
       <div className="w-full h-60 objectFit='contain'">
-        {/* Product Image */}
         <img
           src={props.image}
           alt="Product"
@@ -52,17 +49,15 @@ const FinishedProduct = (props) => {
           
         </div>
         <div className="mt-4">
-                        <h2 className="text-lg font-semibold mb-2">Sizes</h2>
-                        <ul className='flex' >
-                            {sizes.map((size, index) => (
-                                <li  key={index} className="text-sm mx-1 my-1">
-                                    <SizeBox size={size} />
-                                </li>
-                            ))}
-                        </ul>
+        <ProductSizesAndColor />
                     </div>
 
       </div>
+
+      <button style={{width:'250px', marginLeft:'20px'}}  className="bg-blue-500 hover:bg-blue-700  text-white font-bold py-2 px-4 mt-4 rounded focus:outline-none focus:shadow-outline">
+              Build Product
+            </button>
+     
     </div>
   );
 };

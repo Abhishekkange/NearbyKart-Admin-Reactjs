@@ -30,10 +30,11 @@ const GeneralComponent = ({ onNextItemClick }) => {
     const handleSaveAndContinue = () => {
 
         const updatedProductState = {
-
-            "productName":producName,
-            "price":productPrice
-        }
+            ...productState, // Keep the previous state
+            productName: producName, // Update productName with new value
+            price: productPrice, // Update price with new value
+        };
+        
 
         setProductState(updatedProductState);
         setProductName("");
