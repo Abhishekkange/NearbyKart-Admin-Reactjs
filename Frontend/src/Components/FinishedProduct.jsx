@@ -52,6 +52,8 @@ const FinishedProduct = (props) => {
         description:"",
         shortdescription:"",
         colorSizes:{}
+        
+        //
 
 
       };
