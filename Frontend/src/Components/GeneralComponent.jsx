@@ -1,9 +1,44 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
+import productContext from '../Context/ProductContext';
+
+
 
 const GeneralComponent = ({ onNextItemClick }) => {
+
+    //state for input values
+    const [producName,setProductName] = useState('');
+    const [productPrice,setProductPrice] = useState('');
+    const {productState , setProductState} = useContext(productContext);
+
+    const handleProductNameChange = (e)=>{
+
+        setProductName(e.target.value)
+
+
+    }
+
+    const handleProductPriceChange = (e)=>{
+
+        setProductPrice(e.target.value);
+
+
+    }
+    
+
+
+
     const handleSaveAndContinue = () => {
-        // Logic for saving and continuing
-        // Call the provided function to select the next item in the sidebar
+
+        const updatedProductState = {
+
+            "productName":producName,
+            "price":productPrice
+        }
+
+        setProductState(updatedProductState);
+        
+
+
         onNextItemClick();
     };
 
@@ -15,6 +50,7 @@ const GeneralComponent = ({ onNextItemClick }) => {
                     Product Name
                 </label>
                 <input
+                    onChange={handleProductNameChange}
                     type="text"
                     id="productName"
                     className="mt-1 p-2 block w-full rounded border border-gray-300 focus:outline-none focus:border-blue-500"
@@ -28,6 +64,7 @@ const GeneralComponent = ({ onNextItemClick }) => {
                 <input
                     type="text"
                     id="productPrice"
+                    onChange={handleProductPriceChange}
                     className="mt-1 p-2 block w-full rounded border border-gray-300 focus:outline-none focus:border-blue-500"
                     placeholder="Enter Price"
                 />

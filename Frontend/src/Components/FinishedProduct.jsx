@@ -1,8 +1,17 @@
-import React,{useState} from 'react';
+import React,{useContext, useState} from 'react';
 import SizeBox from './SizeBox';
+import ProductContext from '../Context/ProductContext';
+
+
+
 
 const FinishedProduct = (props) => {
     const [sizes, setSizes] = useState(['Small', 'Medium', 'Large', 'XL']); // Example sizes list
+
+    const { productState } = useContext(ProductContext); // Accessing productState from the context
+
+  // Destructure productName from productState
+  const { productName } = productState;
 
   return (
     <div style={{width:'270px',height:'88vh'}} className=" bg-white rounded-lg shadow-lg overflow-auto">
@@ -16,7 +25,7 @@ const FinishedProduct = (props) => {
       </div>
       <div className="p-4 overflow-y-auto">
         {/* Product Name */}
-        <h1 className="text-xl font-bold mb-2">{props.productName}</h1>
+        <h1 className="text-xl font-bold mb-2">{productName}</h1>
         {/* Product Price */}
         <p className="text-lg font-bold mb-2">Rs. {props.price}</p>
         {/* Short Description */}

@@ -4,6 +4,7 @@ import ProductData from "./ProductData";
 import ShowImage from "./ShowImage";
 import { width } from "@mui/system";
 import FinishedProduct from "./FinishedProduct";
+import ProductState from "../Context/ProductState";
 
 const AddBulkProduct = () => {
     const [images, setImages] = useState([]);
@@ -46,6 +47,11 @@ const AddBulkProduct = () => {
     };
 
     return (
+
+        <ProductState>
+
+
+       
         <div className="flex">
 
             <div className="m-2">
@@ -80,6 +86,7 @@ const AddBulkProduct = () => {
                 <FinishedProduct brandName={brandName} description = {description} shortDescription={shortDescription} productName = {productName} price={productPrice}  category = {categoryName} subcategory = {subcategoryName} />
             </div>
         </div>
+        </ProductState>
     );
 };
 
