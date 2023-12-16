@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef,useContext } from "react";
 import ImageInfo from "./ImageInfo";
 import ProductData from "./ProductData";
 import ShowImage from "./ShowImage";
@@ -19,6 +19,12 @@ const AddBulkProduct = () => {
     const [description,setDescription] = useState('Description');
     const [shortDescription,setShortDescription] = useState('Short Description');
 
+    
+
+
+
+
+
 
 
     const handleFiles = (files) => {
@@ -26,10 +32,13 @@ const AddBulkProduct = () => {
             const reader = new FileReader();
 
             reader.onload = function (e) {
+
+                
                 setImages((prevImages) => [
                     ...prevImages,
                     { name: file.name, type: file.type, dataURL: e.target.result },
                 ]);
+               
             };
 
             reader.readAsDataURL(file);
@@ -83,7 +92,7 @@ const AddBulkProduct = () => {
             </div>
 
             <div className="m-5" style={{ width: '270px', height: '85vh' }}>
-                <FinishedProduct brandName={brandName} description = {description} shortDescription={shortDescription} productName = {productName} price={productPrice}  category = {categoryName} subcategory = {subcategoryName} />
+                <FinishedProduct image={images.length > 0 ? images[0].dataURL : "abc"} brandName={brandName} description = {description} shortDescription={shortDescription} productName = {productName} price={productPrice}  category = {categoryName} subcategory = {subcategoryName} />
             </div>
         </div>
         </ProductState>

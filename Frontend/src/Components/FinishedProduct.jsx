@@ -11,14 +11,14 @@ const FinishedProduct = (props) => {
     const { productState } = useContext(ProductContext); // Accessing productState from the context
 
   // Destructure productName from productState
-  const { productName } = productState;
+  const { productName,price,category,subcategory,brand,description,shortDescription } = productState;
 
   return (
     <div style={{width:'270px',height:'88vh'}} className=" bg-white rounded-lg shadow-lg overflow-auto">
       <div className="w-full h-60 objectFit='contain'">
         {/* Product Image */}
         <img
-          src=""
+          src={props.image}
           alt="Product"
           className="w-full h-full "
         />
@@ -27,27 +27,27 @@ const FinishedProduct = (props) => {
         {/* Product Name */}
         <h1 className="text-xl font-bold mb-2">{productName}</h1>
         {/* Product Price */}
-        <p className="text-lg font-bold mb-2">Rs. {props.price}</p>
+        <p className="text-lg font-bold mb-2">Rs. {price}</p>
         {/* Short Description */}
         <p className="text-sm mb-4">
-          {props.shortDescription}
+          {shortDescription}
           {/* Repeated for content overflow */}
         </p>
         {/* Long Description */}
         <p className="text-sm mb-4">
-          {props.description}
+          {description}
           {/* Repeated for content overflow */}
         </p>
         {/* Brand, Category, Subcategory, etc. */}
         <div className="flex flex-wrap items-center gap-2">
           <span className="text-xs bg-gray-200 px-2 py-1 rounded-full">
-            {props.brandName}
+            {brand}
           </span>
           <span className="text-xs bg-gray-200 px-2 py-1 rounded-full">
-            {props.category}
+            {category}
           </span>
           <span className="text-xs bg-gray-200 px-2 py-1 rounded-full">
-            {props.subcategory}
+            {subcategory}
           </span>
           
         </div>

@@ -1,10 +1,36 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import productContext from '../Context/ProductContext';
 
 const EnterDescription = () => {
   const [description, setDescription] = useState('');
   const [wordCount, setWordCount] = useState(0);
+  const {productState,setProductState} = useContext(productContext);
+
+  const stripHTMLTags = (html) => {
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    return doc.body.textContent || "";
+  };
+
+  const handleSaveButton = () => {
+
+    const textOnlyDescription = stripHTMLTags(description);
+
+
+    const updatedProductState = {
+            
+      "description":textOnlyDescription
+   
+   }
+   
+   setProductState(prevState =>({...prevState,...updatedProductState}));
+
+
+  }
+
+  
+
 
   useEffect(() => {
     setWordCount(description.trim().split(/\s+/).filter(Boolean).length);
@@ -77,6 +103,9 @@ const EnterDescription = () => {
           </button>
         </div>
       </div>
+      <button onClick={handleSaveButton} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-4 rounded focus:outline-none focus:shadow-outline">
+                Save and Continue
+            </button>
     </div>
   );
 };

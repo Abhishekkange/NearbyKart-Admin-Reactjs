@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 
 const ImageInfo = () => {
+
+    
     const [clicked, setClicked] = useState(null);
 
     const handleClick = () => {

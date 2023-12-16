@@ -1,10 +1,36 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import productContext from '../Context/ProductContext';
 
 const EnterShortDescription = () => {
   const [shortDescription, setShortDescription] = useState('');
   const [sWordCount, setsWordCount] = useState(0);
+
+  const {productState ,setProductState} = useContext(productContext);
+
+
+  const stripHTMLTags = (html) => {
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    return doc.body.textContent || "";
+  };
+
+  const handleSaveButton = () => {
+
+    const textOnlyDescription = stripHTMLTags(shortDescription);
+
+
+    const updatedProductState = {
+            
+      "shortDescription":textOnlyDescription
+   
+   }
+   
+   setProductState(prevState =>({...prevState,...updatedProductState}));
+
+
+  }
+
 
   useEffect(() => {
     setsWordCount(shortDescription.trim().split(/\s+/).filter(Boolean).length);
@@ -21,7 +47,7 @@ const EnterShortDescription = () => {
         style={{ height: '280px' }}
         theme="snow"
         value={shortDescription}
-        onChange={(value) => setShortDescriptiion(value)}
+        onChange={(value) => setShortDescription(value)}
         modules={{
           toolbar: [
             [{ 'header': [1, 2, false] }],
@@ -77,6 +103,9 @@ const EnterShortDescription = () => {
           </button>
         </div>
       </div>
+      <button onClick={handleSaveButton} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-4 rounded focus:outline-none focus:shadow-outline">
+                Save and Continue
+            </button>
     </div>
   );
 };

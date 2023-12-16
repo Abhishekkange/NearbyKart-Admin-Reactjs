@@ -36,6 +36,8 @@ const GeneralComponent = ({ onNextItemClick }) => {
         }
 
         setProductState(updatedProductState);
+        setProductName("");
+        setProductPrice("")
         
 
 
@@ -53,6 +55,7 @@ const GeneralComponent = ({ onNextItemClick }) => {
                     onChange={handleProductNameChange}
                     type="text"
                     id="productName"
+                    value={producName}
                     className="mt-1 p-2 block w-full rounded border border-gray-300 focus:outline-none focus:border-blue-500"
                     placeholder="Enter Product Name"
                 />
@@ -64,6 +67,7 @@ const GeneralComponent = ({ onNextItemClick }) => {
                 <input
                     type="text"
                     id="productPrice"
+                    value={productPrice}
                     onChange={handleProductPriceChange}
                     className="mt-1 p-2 block w-full rounded border border-gray-300 focus:outline-none focus:border-blue-500"
                     placeholder="Enter Price"

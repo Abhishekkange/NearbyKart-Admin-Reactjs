@@ -1,6 +1,26 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import productContext from '../Context/ProductContext';
 
 const CategorySelector = () => {
+
+
+    
+    const {productState , setProductState} = useContext(productContext);
+
+    const handleSaveAndContinue = () => {
+
+        const updatedProductState = {
+            
+            "category":selectedCategory,
+            "subcategory":selectedSubcategory,
+            "brand":selectedBrand
+
+        }
+
+        setProductState(prevState =>({...prevState,...updatedProductState}))
+
+    }
+
     const [selectedCategory, setSelectedCategory] = useState('');
     const [selectedSubcategory, setSelectedSubcategory] = useState('');
     const [selectedBrand, setSelectedBrand] = useState('');
@@ -93,6 +113,10 @@ const CategorySelector = () => {
                     ))}
                 </select>
             </div>
+            <button onClick={handleSaveAndContinue} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-4 rounded focus:outline-none focus:shadow-outline">
+                Save and Continue
+            </button>
+
         </div>
     );
 };

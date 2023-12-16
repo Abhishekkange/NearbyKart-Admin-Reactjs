@@ -5,8 +5,15 @@ import ProductContext from "./ProductContext";
 const ProductState = (props) => {
     // Define state variables using useState
     const [productState, setProductState] = useState({
-        productName: "This is Product Name",
-        price: "Product Price"
+        image:"image",
+        productName: "",
+        price: "",
+        category:"",
+        subcategory:"",
+        brand:"",
+        description:"",
+        shortdescription:""
+        
         // Add other properties as needed
     });
 
