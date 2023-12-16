@@ -93,14 +93,13 @@ const ColorSizeSelector = () => {
                         ))}
                     </Select>
                     <Button
-                        style={{ margin: '5px' }}
-                        className="mt-5"
-                        variant="contained"
-                        color="primary"
-                        onClick={handleColorAdd}
-                    >
-                        Add Color
-                    </Button>
+                    style={{ margin: '10px',width:'200px' }}
+                    variant="contained"
+                    onClick={handleColorAdd}
+                    className='bg-blue-500 mt-3 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-4 rounded focus:outline-none focus:shadow-outline'
+                >
+                    Add Color
+                </Button>
                 </div>
             </Grid>
             <Grid item xs={12} md={6}>
@@ -118,10 +117,10 @@ const ColorSizeSelector = () => {
                     ))}
                 </Select>
                 <Button
-                    style={{ margin: '5px' }}
+                    style={{ margin: '10px',width:'200px' }}
                     variant="contained"
-                    color="primary"
                     onClick={handleSizeAdd}
+                    className='bg-blue-500 mt-3 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-4 rounded focus:outline-none focus:shadow-outline'
                 >
                     Add Size
                 </Button>
@@ -163,7 +162,7 @@ const ColorSizeSelector = () => {
                 )}
             </Grid>
         </Grid>
-        <button onClick={handleSaveButton} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-4 rounded focus:outline-none focus:shadow-outline">
+        <button onClick={handleSaveButton} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-4 ml-2 rounded focus:outline-none focus:shadow-outline">
                 Save and Continue
             </button>
         

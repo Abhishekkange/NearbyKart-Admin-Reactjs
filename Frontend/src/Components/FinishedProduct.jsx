@@ -13,10 +13,12 @@ const FinishedProduct = (props) => {
 
   return (
     <div style={{width:'320px',height:'90vh'}} className=" bg-white rounded-lg shadow-lg overflow-auto">
-      <div className="w-full h-60 objectFit='contain'">
+      <div className="m-2 rounded-lg  w-full h-60 objectFit='contain'">
+
         <img
           src={props.image}
-          alt="Product"
+          alt=""
+          placeholder=''
           className="w-full h-full "
         />
       </div>

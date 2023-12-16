@@ -32,7 +32,7 @@ const ProductData = () => {
     };
 
     return (
-        <div className="mt-4 bg-white rounded-lg shadow-lg p-2 ">
+        <div className="mt-4 bg-white rounded-lg shadow-md p-2 ">
             <div className=" p-2 flex">
                 <div style={{width:'230px',height:'480px'}} className="w-55 h-100 overflow-y-auto mr-4 bg-white">
                     <ProductSidebar onButtonClick={handleButtonClick} />

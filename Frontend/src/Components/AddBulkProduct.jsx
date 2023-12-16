@@ -64,7 +64,7 @@ const AddBulkProduct = () => {
         <div className="flex">
 
             <div className="m-2">
-                <div className="border-2 mt-2 p-2  rounded-lg shadow-lg">
+                <div className="border-2 mt-2 p-2  rounded-lg shadow-sm">
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
                         {images &&
                             images.map((image, index) => (
@@ -76,8 +76,16 @@ const AddBulkProduct = () => {
                                 />
                             ))}
 
-                        <div className="p-2 border-2 w-40 border-black rounded-lg" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} onClick={() => fileInputRef.current.click()}>
-                            <span style={{ cursor: 'pointer' }}>Click to add image</span>
+                        <div className="p-2  w-40  rounded-lg" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} onClick={() => fileInputRef.current.click()}>
+
+                        <button
+                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                            onClick={() => fileInputRef.current.click()}
+                        >
+                            Add Image
+                        </button>
+
+
                         </div>
                     </div>
 
