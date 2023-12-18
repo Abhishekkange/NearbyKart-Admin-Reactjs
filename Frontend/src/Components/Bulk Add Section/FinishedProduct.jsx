@@ -28,6 +28,8 @@ const FinishedProduct = (props) => {
    const handleBuildProduct = async () => {
     try {
 
+      
+
 
     // Prepare the product data object to send
       const productData = {
@@ -73,6 +75,8 @@ const FinishedProduct = (props) => {
     }
   };
 
+
+ 
 
   return (
     <div style={{width:'320px',height:'90vh'}} className=" bg-white rounded-lg shadow-lg overflow-auto">

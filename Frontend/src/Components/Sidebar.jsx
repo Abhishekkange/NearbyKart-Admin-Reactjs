@@ -74,8 +74,8 @@ const Sidebar = () => {
                 </div>
                 {openMenu2 && <div>
                     <SubMenuButton name="Master" active={activeButton === 'Master'} onClick={() => handleButtonClick('Master')} />
-                    <SubMenuButton name='Add Bulk Product' active={activeButton === 'bulkProduct'} onClick={() => handleButtonClick('bulkProduct')} />
-                    <SubMenuButton name='Build New Product' active={activeButton === 'buildProduct'} onClick={() => handleButtonClick('buildProduct')} />
+                    <SubMenuButton name='Add New Product' active={activeButton === 'bulkProduct'} onClick={() => handleButtonClick('bulkProduct')} />
+                    {/* <SubMenuButton name='Build New Product' active={activeButton === 'buildProduct'} onClick={() => handleButtonClick('buildProduct')} /> */}
                     <SubMenuButton name='All Products' active={activeButton === 'allproducts'} onClick={() => handleButtonClick('allproducts')} />
                     <SubMenuButton name='Store' active={activeButton === 'store'} onClick={() => handleButtonClick('store')} />
                 </div>

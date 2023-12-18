@@ -5,19 +5,22 @@ import ShowImage from "./Bulk Add Section/ShowImage";
 import { width } from "@mui/system";
 import FinishedProduct from "./Bulk Add Section/FinishedProduct";
 import ProductState from "../Context/ProductState";
+import axios from "axios";
 
 const AddBulkProduct = () => {
     const [images, setImages] = useState([]);
-    const [selectedImageIndex, setSelectedImageIndex] = useState(null);
-    const fileInputRef = useRef(null);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(null);
+  const fileInputRef = useRef(null);
 
-    const [productName,setProductName]= useState('Product Name');
-    const [productPrice,setProductPrice] = useState('Product Price');
-    const [categoryName,setCategoryName] = useState('Category');
-    const [subcategoryName,setSubcategoryName] = useState('Subcategory');
-    const [brandName,setBrandName] = useState('Brand Name');
-    const [description,setDescription] = useState('Description');
-    const [shortDescription,setShortDescription] = useState('Short Description');
+  const [productName, setProductName] = useState('Product Name');
+  const [productPrice, setProductPrice] = useState('Product Price');
+  const [categoryName, setCategoryName] = useState('Category');
+  const [subcategoryName, setSubcategoryName] = useState('Subcategory');
+  const [brandName, setBrandName] = useState('Brand Name');
+  const [description, setDescription] = useState('Description');
+  const [shortDescription, setShortDescription] = useState('Short Description');
+  const[myFile,setMyFile] = useState(null);
+
 
     
 
@@ -47,13 +50,60 @@ const AddBulkProduct = () => {
 
     const handleFileInput = (e) => {
         const files = e.target.files;
+        setMyFile(files[0]);
         handleFiles(files);
     };
 
     const onClickImage = (index) => {
         setSelectedImageIndex(index === selectedImageIndex ? null : index);
+        UploadImageToBackblaze(); // Call the function for uploading to Backblaze
         console.log(index + ' no image clicked');
-    };
+      };
+
+    const UploadImageToBackblaze =async () => {
+        const accountId = '792609c8ddf8';
+        const applicationKey = '005792609c8ddf80000000001';
+        const bucketName = 'NearbyKart';
+      
+        
+          const file = myFile; // Get the selected file
+      
+          if (file) {
+            const authToken = btoa(`${accountId}:${applicationKey}`);
+            const headers = {
+              Authorization: `Basic ${authToken}`,
+              'Content-Type': 'application/json',
+            };
+      
+            try {
+              // Step 1: Get upload URL and authorization token
+              const getUploadUrlResponse = await axios.get(
+                `https://api.backblazeb2.com/b2api/v2/b2_get_upload_url?bucketId=${bucketName}`,
+                { headers }
+              );
+      
+              const { uploadUrl, authorizationToken } = getUploadUrlResponse.data;
+      
+              // Step 2: Upload the file using the obtained upload URL and authorization token
+              const formData = new FormData();
+              formData.append('file', file);
+      
+              const uploadFileResponse = await axios.post(uploadUrl, formData, {
+                headers: {
+                  Authorization: authorizationToken,
+                  'Content-Type': 'b2/auto',
+                },
+              });
+      
+              console.log('File uploaded:', uploadFileResponse.data);
+            } catch (error) {
+              console.error('Error uploading file:', error);
+            }
+          }
+        
+    }
+      
+    
 
     return (
 
