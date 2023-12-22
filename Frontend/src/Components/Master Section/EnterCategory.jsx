@@ -17,7 +17,8 @@ const EnterCategory = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('YOUR_API_ENDPOINT'); // Replace with your API endpoint
+      const response = await axios.get('http://localhost:3000/api/category');
+     
       setCategories(response.data); // Assuming API returns an array of categories
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -26,10 +27,11 @@ const EnterCategory = () => {
 
   const handleCreateCategory = async () => {
     try {
-      await axios.post('YOUR_API_ENDPOINT', { categoryName, categoryImage }); // Replace with your API endpoint
+      await axios.post('http://localhost:3000/api/category', { categoryName, categoryImage }); // Replace with your API endpoint
       fetchData(); // Refresh categories after adding new category
       setCategoryName('');
       setCategoryImage('');
+      console.log("category created successfully");
     } catch (error) {
       console.error('Error creating category:', error);
     }
@@ -37,12 +39,13 @@ const EnterCategory = () => {
 
   const handleDeleteCategory = async (categoryId) => {
     try {
-      await axios.delete(`YOUR_API_ENDPOINT/${categoryId}`); // Replace with your API endpoint
+      await axios.delete(`http://localhost:3000/api/category/${categoryId}`); // Replace with your API endpoint
       fetchData(); // Refresh categories after deleting a category
     } catch (error) {
       console.error('Error deleting category:', error);
     }
   };
+
 
   return (
     <div  className=" block mx-auto p-5 ">
@@ -71,26 +74,27 @@ const EnterCategory = () => {
   Create Category
 </Button>
 
-      <Grid container spacing={3}>
-        {categories.map((category) => (
-          <Grid item xs={12} sm={6} md={4} key={category.objectID}>
-            <Card>
-              <CardMedia
-                component="img"
-                height="140"
-                image={category.categoryImage} // Replace with your category image field
-                alt={category.categoryName} // Replace with your category name field
-              />
-              <CardContent>
-                <h3>{category.categoryName}</h3>
-                <IconButton onClick={() => handleDeleteCategory(category.objectID)}>
-                  <DeleteIcon />
-                </IconButton>
-              </CardContent>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
+<div className="">
+  {categories.map((category) => (
+    <div key={category._id} className="flex items-center bg-white p-4 rounded shadow-md">
+      <div className="w-16 h-16 rounded-full overflow-hidden mr-4">
+        <img
+          src={category.categoryImage} // Replace with your category image field
+          alt={category.categoryName} // Replace with your category name field
+          className="w-full h-full object-cover"
+        />
+      </div>
+     
+        <h3 className="text-lg font-semibold">{category.categoryName}</h3>
+       
+      
+      <IconButton onClick={() => handleDeleteCategory(category._id)}>
+          <DeleteIcon />
+        </IconButton>
+    </div>
+  ))}
+</div>
+
     </div>
   );
 };
