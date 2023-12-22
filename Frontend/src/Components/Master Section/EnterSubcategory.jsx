@@ -19,7 +19,7 @@ const Entersubcategory = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('YOUR_API_ENDPOINT'); // Replace with your API endpoint
+      const response = await axios.get('http://localhost:3000/api/subcategory'); // Replace with your API endpoint
       setsubcategory(response.data); // Assuming API returns an array of subcategory
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -28,7 +28,7 @@ const Entersubcategory = () => {
 
   const handleCreatesubcategory = async () => {
     try {
-      await axios.post('YOUR_API_ENDPOINT', { subcategoryName, subcategoryImage }); // Replace with your API endpoint
+      await axios.post('http://localhost:3000/api/subcategory', { subcategoryName, subcategoryImage }); // Replace with your API endpoint
       fetchData(); // Refresh subcategory after adding new subcategory
       setsubcategoryName('');
       setsubcategoryImage('');
@@ -39,7 +39,7 @@ const Entersubcategory = () => {
 
   const handleDeletesubcategory = async (subcategoryId) => {
     try {
-      await axios.delete(`YOUR_API_ENDPOINT/${subcategoryId}`); // Replace with your API endpoint
+      await axios.delete(`http://localhost:3000/api/subcategory/${subcategoryId}`); // Replace with your API endpoint
       fetchData(); // Refresh subcategory after deleting a subcategory
     } catch (error) {
       console.error('Error deleting subcategory:', error);
@@ -73,26 +73,27 @@ const Entersubcategory = () => {
   Create subcategory
 </Button>
 
-      <Grid container spacing={3}>
-        {subcategory.map((subcategory) => (
-          <Grid item xs={12} sm={6} md={4} key={subcategory.objectID}>
-            <Card>
-              <CardMedia
-                component="img"
-                height="140"
-                image={subcategory.subcategoryImage} // Replace with your subcategory image field
-                alt={subcategory.subcategoryName} // Replace with your subcategory name field
-              />
-              <CardContent>
-                <h3>{subcategory.subcategoryName}</h3>
-                <IconButton onClick={() => handleDeletesubcategory(subcategory.objectID)}>
-                  <DeleteIcon />
-                </IconButton>
-              </CardContent>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
+<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+  {subcategory.map((subcategory) => (
+    <div key={subcategory._id} className="flex items-center bg-white p-4 rounded shadow-md">
+      <div className="w-16 h-16 rounded-full overflow-hidden mr-4">
+        <img
+          src={subcategory.subcategoryImage} // Replace with your subcategory image field
+          alt={subcategory.subcategoryName} // Replace with your subcategory name field
+          className="w-full h-full object-cover"
+        />
+      </div>
+
+        <h3 className="text-lg font-semibold">{subcategory.subcategoryName}</h3>
+        
+  
+      <IconButton onClick={() => handleDeletesubcategory(subcategory._id)}>
+          <DeleteIcon />
+        </IconButton>
+    </div>
+  ))}
+</div>
+
     </div>
   );
 };
