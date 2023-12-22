@@ -13,7 +13,7 @@ const BrandsComponent = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('YOUR_BRANDS_API_ENDPOINT');
+      const response = await axios.get('http://localhost:3000/api/brand');
       setBrands(response.data);
     } catch (error) {
       console.error('Error fetching brands:', error);
@@ -22,7 +22,7 @@ const BrandsComponent = () => {
 
   const handleAddBrand = async () => {
     try {
-      await axios.post('YOUR_BRANDS_API_ENDPOINT', { brandName });
+      await axios.post('http://localhost:3000/api/brand', { brandName });
       fetchData();
       setBrandName('');
     } catch (error) {
@@ -32,7 +32,7 @@ const BrandsComponent = () => {
 
   const handleDeleteBrand = async (brandId) => {
     try {
-      await axios.delete(`YOUR_BRANDS_API_ENDPOINT/${brandId}`);
+      await axios.delete(`http://localhost:3000/api/brand/${brandId}`);
       fetchData();
     } catch (error) {
       console.error('Error deleting brand:', error);
@@ -56,10 +56,10 @@ const BrandsComponent = () => {
       </div>
       <List>
         {brands.map((brand) => (
-          <ListItem key={brand.objectID}>
+          <ListItem key={brand._id}>
             <ListItemText primary={brand.brandName} />
             <ListItemSecondaryAction>
-              <IconButton onClick={() => handleDeleteBrand(brand.objectID)}>
+              <IconButton onClick={() => handleDeleteBrand(brand._id)}>
                 <DeleteIcon />
               </IconButton>
             </ListItemSecondaryAction>
