@@ -3,12 +3,17 @@ import SizeBox from './SizeBox';
 import ProductContext from '../../Context/ProductContext';
 import ProductSizesAndColor from './productSizesAndColor'
 import axios from 'axios';
+import ProductState from '../../Context/ProductState';
+
+
 
 const FinishedProduct = (props) => {
 
   
-    const [sizes, setSizes] = useState(['Small', 'Medium', 'Large', 'XL']); 
+    const [sizes, setSizes] = useState(['Small', 'Medium', 'Large', 'XL']);
     const { productState,setProductState } = useContext(ProductContext);
+
+   
 
   // Destructure productName from productState
   const { colorSizes, productName,price,category,subcategory,brand,description,shortDescription } = productState;
@@ -28,11 +33,16 @@ const FinishedProduct = (props) => {
    const handleBuildProduct = async () => {
     try {
 
-      
+     await props.onButtonClick();
+     
+     alert(props.productImage);
+     
 
 
     // Prepare the product data object to send
       const productData = {
+         
+        "image":image,
         "name_en":productName,
         "category_en":category,
         "subcategory_en":subcategory,
@@ -45,7 +55,6 @@ const FinishedProduct = (props) => {
 
       const emptyProductState = {
 
-        image:"ima",
         productName: "",
         price: "",
         category:"",

@@ -8,10 +8,12 @@ import AddBulkProduct from '../../Components/AddBulkProduct';
 import Users from '../../Components/Users';
 import ProductData from '../../Components/Bulk Add Section/ProductData';
 import Master from '../../Components/Master';
+import ProductState from "../../Context/ProductState";
 
 function AdminPanel() {
   return (
-    <div className="flex w-full h-full flex-row">
+    <ProductState>
+   <div className="flex w-full h-full flex-row">
       <Sidebar />
       <div className="">
         <Routes>
@@ -24,6 +26,9 @@ function AdminPanel() {
         </Routes>
       </div>
     </div>
+
+    </ProductState>
+   
   );
 }
 

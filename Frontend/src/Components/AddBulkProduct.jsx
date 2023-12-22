@@ -6,12 +6,13 @@ import { width } from "@mui/system";
 import FinishedProduct from "./Bulk Add Section/FinishedProduct";
 import ProductState from "../Context/ProductState";
 import axios from "axios";
+import productContext from '../Context/ProductContext';
+
 
 const AddBulkProduct = () => {
-    const [images, setImages] = useState([]);
+const [images, setImages] = useState([]);
   const [selectedImageIndex, setSelectedImageIndex] = useState(null);
   const fileInputRef = useRef(null);
-
   const [productName, setProductName] = useState('Product Name');
   const [productPrice, setProductPrice] = useState('Product Price');
   const [categoryName, setCategoryName] = useState('Category');
@@ -19,15 +20,12 @@ const AddBulkProduct = () => {
   const [brandName, setBrandName] = useState('Brand Name');
   const [description, setDescription] = useState('Description');
   const [shortDescription, setShortDescription] = useState('Short Description');
-  const[myFile,setMyFile] = useState(null);
+   const[myFile,setMyFile] = useState(null);
+   const { productState,setProductState } = useContext(productContext);
+   const [nimage,setNImage] = useState('goof'); 
 
 
-    
-
-
-
-
-
+ 
 
 
     const handleFiles = (files) => {
@@ -51,55 +49,44 @@ const AddBulkProduct = () => {
     const handleFileInput = (e) => {
         const files = e.target.files;
         setMyFile(files[0]);
+        
         handleFiles(files);
+       
+        
+        
+
     };
 
     const onClickImage = (index) => {
         setSelectedImageIndex(index === selectedImageIndex ? null : index);
-        UploadImageToBackblaze(); // Call the function for uploading to Backblaze
+        // Call the function for uploading to google cloud
         console.log(index + ' no image clicked');
       };
 
-    const UploadImageToBackblaze =async () => {
-        const accountId = '792609c8ddf8';
-        const applicationKey = '005792609c8ddf80000000001';
-        const bucketName = 'NearbyKart';
+    const Upload2Cloud = async () => {
+
+      const formData = new FormData();
+      formData.append("image",myFile);
+
+     
+     await axios.post('http://localhost:3000/api/uploadImage2cloud', formData, {
+  headers: {
+    'Content-Type': 'multipart/form-data', // Set the content type to multipart/form-data
+  },
+})
+  .then(async response => {
+    // Handle response
+    console.log('Response:', response.data);
+    
+   
+
+  })
+  .catch(error => {
+    // Handle error
+    console.error('Error:', error);
+  });
       
         
-          const file = myFile; // Get the selected file
-      
-          if (file) {
-            const authToken = btoa(`${accountId}:${applicationKey}`);
-            const headers = {
-              Authorization: `Basic ${authToken}`,
-              'Content-Type': 'application/json',
-            };
-      
-            try {
-              // Step 1: Get upload URL and authorization token
-              const getUploadUrlResponse = await axios.get(
-                `https://api.backblazeb2.com/b2api/v2/b2_get_upload_url?bucketId=${bucketName}`,
-                { headers }
-              );
-      
-              const { uploadUrl, authorizationToken } = getUploadUrlResponse.data;
-      
-              // Step 2: Upload the file using the obtained upload URL and authorization token
-              const formData = new FormData();
-              formData.append('file', file);
-      
-              const uploadFileResponse = await axios.post(uploadUrl, formData, {
-                headers: {
-                  Authorization: authorizationToken,
-                  'Content-Type': 'b2/auto',
-                },
-              });
-      
-              console.log('File uploaded:', uploadFileResponse.data);
-            } catch (error) {
-              console.error('Error uploading file:', error);
-            }
-          }
         
     }
       
@@ -107,9 +94,7 @@ const AddBulkProduct = () => {
 
     return (
 
-        <ProductState>
-
-
+    
        
         <div className="flex">
 
@@ -150,10 +135,10 @@ const AddBulkProduct = () => {
             </div>
 
             <div className="m-5" style={{ width: '270px', height: '85vh' }}>
-                <FinishedProduct image={images.length > 0 ? images[0].dataURL : "abc"} brandName={brandName} description = {description} shortDescription={shortDescription} productName = {productName} price={productPrice}  category = {categoryName} subcategory = {subcategoryName} />
+                <FinishedProduct productImage = {nimage}  onButtonClick={Upload2Cloud} image={images.length > 0 ? images[0].dataURL : "abc"} brandName={brandName} description = {description} shortDescription={shortDescription} productName = {productName} price={productPrice}  category = {categoryName} subcategory = {subcategoryName} />
             </div>
         </div>
-        </ProductState>
+       
     );
 };
 
