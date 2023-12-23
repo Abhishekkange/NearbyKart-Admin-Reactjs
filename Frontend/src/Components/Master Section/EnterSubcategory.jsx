@@ -9,13 +9,31 @@ const Entersubcategory = () => {
   const [subcategoryName, setsubcategoryName] = useState('');
   const [subcategoryImage, setsubcategoryImage] = useState('');
   const [subcategory, setsubcategory] = useState([]);
-  const [previewImage, setPreviewImage] = useState('');
-
+  const [previewImage, setPreviewImage] = useState(''); 
+  const [myFile,setMyFile] = useState(null);
 
   // Fetch subcategory from API on component mount
   useEffect(() => {
     fetchData();
   }, []);
+
+  const handleUpload = (event)=>{
+
+    
+     //import image from local storage here
+     const file = event.target.files[0];
+     if (file) {
+       const reader = new FileReader();
+       reader.onload = (e) => {
+         setMyFile(e.target.result);
+       };
+       reader.readAsDataURL(file);
+     }
+
+    //upload to google cloud storage
+   Upload2Cloud;
+
+  }
 
   const Upload2Cloud = async () => {
 
@@ -88,7 +106,7 @@ const Entersubcategory = () => {
         />
 
       </div>
-      <Button onClick={Upload2Cloud} style={{ margin: '5px' }} className="p-2 mx-5" variant="contained" component="label">
+      <Button onClick={handleUpload} style={{ margin: '5px' }} className="p-2 mx-5" variant="contained" component="label">
         Upload Image
         <input type="file" hidden onChange={(e) => {
           setsubcategoryImage(e.target.files[0]);
