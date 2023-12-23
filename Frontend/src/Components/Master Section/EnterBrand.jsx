@@ -13,7 +13,7 @@ const BrandsComponent = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/brand');
+      const response = await axios.get('https://nearby-kart-admin-bakend.vercel.app/api/brand');
       setBrands(response.data);
     } catch (error) {
       console.error('Error fetching brands:', error);

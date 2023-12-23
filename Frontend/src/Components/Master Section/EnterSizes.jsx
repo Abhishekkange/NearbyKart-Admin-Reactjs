@@ -13,7 +13,7 @@ const SizesComponent = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/size');
+      const response = await axios.get('https://nearby-kart-admin-bakend.vercel.app/api/size');
       setSizes(response.data);
     } catch (error) {
       console.error('Error fetching sizes:', error);

@@ -43,7 +43,7 @@ const AddColorComponent = () => {
     console.log(id);
 
     try {
-      const response = await axios.delete(`http://localhost:3000/api/color`,{_id});
+      const response = await axios.delete(`https://nearby-kart-admin-bakend.vercel.app/api/color`,{_id});
       fetchData(); // Fetch updated data after deletion
     } catch (error) {
       console.error('Error deleting color:', error);

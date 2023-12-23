@@ -20,7 +20,7 @@ const FinishedProduct = (props) => {
 
   const storeProductData = async (productData) => {
     try {
-      const response = await axios.post('http://localhost:3000/api/buildProduct', productData);
+      const response = await axios.post('https://nearby-kart-admin-bakend.vercel.app/api/buildProduct', productData);
       
     } catch (error) {
       throw new Error('Error storing product data:', error);

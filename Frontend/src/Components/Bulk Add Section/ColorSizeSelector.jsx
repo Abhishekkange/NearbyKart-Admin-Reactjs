@@ -43,7 +43,7 @@ const ColorSizeSelector = () => {
 
   const fetchColorsFromApi = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/AllColors');
+      const response = await axios.get('https://nearby-kart-admin-bakend.vercel.app/api/AllColors');
       setColorsFromApi(response.data);
     } catch (error) {
       console.error('Error fetching colors:', error);
@@ -52,7 +52,7 @@ const ColorSizeSelector = () => {
 
   const fetchSizesFromApi = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/AllSizes');
+      const response = await axios.get('https://nearby-kart-admin-bakend.vercel.app/api/AllSizes');
       setSizesFromApi(response.data);
     } catch (error) {
       console.error('Error fetching sizes:', error);

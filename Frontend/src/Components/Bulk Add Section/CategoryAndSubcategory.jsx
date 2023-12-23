@@ -30,7 +30,7 @@ const CategorySelector = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/AllCategories');
+      const response = await axios.get('https://nearby-kart-admin-bakend.vercel.app/api/AllCategories');
       setCategories(response.data);
     } catch (error) {
       console.error('Error fetching categories:', error);
@@ -39,7 +39,7 @@ const CategorySelector = () => {
 
   const fetchSubcategories = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/AllSubcategories');
+      const response = await axios.get('https://nearby-kart-admin-bakend.vercel.app/api/AllSubcategories');
       setSubcategories(response.data);
     } catch (error) {
       console.error('Error fetching subcategories:', error);
@@ -48,7 +48,7 @@ const CategorySelector = () => {
 
   const fetchBrands = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/AllBrands');
+      const response = await axios.get('https://nearby-kart-admin-bakend.vercel.app/api/AllBrands');
       setBrands(response.data);
     } catch (error) {
       console.error('Error fetching brands:', error);

@@ -69,7 +69,7 @@ const [images, setImages] = useState([]);
       formData.append("image",myFile);
 
      
-     await axios.post('http://localhost:3000/api/uploadImage2cloud', formData, {
+     await axios.post('https://nearby-kart-admin-bakend.vercel.app/api/uploadImage2cloud', formData, {
   headers: {
     'Content-Type': 'multipart/form-data', // Set the content type to multipart/form-data
   },
