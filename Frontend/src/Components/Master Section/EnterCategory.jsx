@@ -15,6 +15,35 @@ const EnterCategory = () => {
     fetchData();
   }, []);
 
+  const Upload2Cloud = async () => {
+
+    const formData = new FormData();
+    formData.append("image",myFile);
+
+   
+   await axios.post('http://localhost:3000/api/uploadImage2cloud', formData, {
+headers: {
+  'Content-Type': 'multipart/form-data', // Set the content type to multipart/form-data
+},
+})
+.then(async response => {
+  // Handle response
+  console.log('Response:', response.data);
+  
+ 
+
+})
+.catch(error => {
+  // Handle error
+  console.error('Error:', error);
+});
+    
+      
+      
+  }
+
+  
+
   const fetchData = async () => {
     try {
       const response = await axios.get('http://localhost:3000/api/category');
@@ -46,6 +75,8 @@ const EnterCategory = () => {
     }
   };
 
+  
+
 
   return (
     <div  className=" block mx-auto p-5 ">
@@ -60,7 +91,7 @@ const EnterCategory = () => {
         />
        
       </div>
-      <Button style={{ margin: '5px' }} className="p-2 mx-5" variant="contained" component="label">
+      <Button onClick={Upload2Cloud} style={{ margin: '5px' }} className="p-2 mx-5" variant="contained" component="label">
   Upload Image
   <input type="file" hidden onChange={(e) => {
     setCategoryImage(e.target.files[0]);
