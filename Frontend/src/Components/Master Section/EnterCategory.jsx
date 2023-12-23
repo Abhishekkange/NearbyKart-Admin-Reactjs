@@ -63,7 +63,7 @@ headers: {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/category');
+      const response = await axios.get('https://nearby-kart-admin-bakend.vercel.app/api/category');
      
       setCategories(response.data); // Assuming API returns an array of categories
     } catch (error) {
@@ -73,7 +73,7 @@ headers: {
 
   const handleCreateCategory = async () => {
     try {
-      await axios.post('http://localhost:3000/api/category', { categoryName, categoryImage }); // Replace with your API endpoint
+      await axios.post('https://nearby-kart-admin-bakend.vercel.app/api/category', { categoryName, categoryImage }); // Replace with your API endpoint
       fetchData(); // Refresh categories after adding new category
       setCategoryName('');
       setCategoryImage('');
@@ -85,7 +85,7 @@ headers: {
 
   const handleDeleteCategory = async (categoryId) => {
     try {
-      await axios.delete(`http://localhost:3000/api/category/${categoryId}`); // Replace with your API endpoint
+      await axios.delete(`https://nearby-kart-admin-bakend.vercel.app/api/category/${categoryId}`); // Replace with your API endpoint
       fetchData(); // Refresh categories after deleting a category
     } catch (error) {
       console.error('Error deleting category:', error);

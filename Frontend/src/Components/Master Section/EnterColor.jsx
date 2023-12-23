@@ -16,7 +16,7 @@ const AddColorComponent = () => {
     
       const fetchData = async () => {
         try {
-          const response = await axios.get('http://localhost:3000/api/color');
+          const response = await axios.get('https://nearby-kart-admin-bakend.vercel.app/api/color');
           setAddedColors(response.data);
         } catch (error) {
           console.error('Error fetching brands:', error);
@@ -31,7 +31,7 @@ const AddColorComponent = () => {
   const handleAddColor = async() => {
    
     //API call here
-    const response = await axios.post('http://localhost:3000/api/color', { colorName,selectedColor }); 
+    const response = await axios.post('https://nearby-kart-admin-bakend.vercel.app/api/color', { colorName,selectedColor }); 
     console.log('color Added successfully');
     setSelectedColor('#ffff')
     setColorName('');

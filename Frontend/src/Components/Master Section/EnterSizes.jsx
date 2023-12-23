@@ -22,7 +22,7 @@ const SizesComponent = () => {
 
   const handleAddSize = async () => {
     try {
-      await axios.post('http://localhost:3000/api/size', { sizeName });
+      await axios.post('https://nearby-kart-admin-bakend.vercel.app/api/size', { sizeName });
       fetchData();
       setSizeName('');
     } catch (error) {
@@ -32,7 +32,7 @@ const SizesComponent = () => {
 
   const handleDeleteSize = async (sizeId) => {
     try {
-      await axios.delete(`http://localhost:3000/api/size/${sizeId}`);
+      await axios.delete(`https://nearby-kart-admin-bakend.vercel.app/api/size/${sizeId}`);
       fetchData();
     } catch (error) {
       console.error('Error deleting size:', error);

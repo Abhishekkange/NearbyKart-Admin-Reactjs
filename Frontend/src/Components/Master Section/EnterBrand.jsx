@@ -22,7 +22,7 @@ const BrandsComponent = () => {
 
   const handleAddBrand = async () => {
     try {
-      await axios.post('http://localhost:3000/api/brand', { brandName });
+      await axios.post('https://nearby-kart-admin-bakend.vercel.app/api/brand', { brandName });
       fetchData();
       setBrandName('');
     } catch (error) {
@@ -32,7 +32,7 @@ const BrandsComponent = () => {
 
   const handleDeleteBrand = async (brandId) => {
     try {
-      await axios.delete(`http://localhost:3000/api/brand/${brandId}`);
+      await axios.delete(`https://nearby-kart-admin-bakend.vercel.app/api/brand/${brandId}`);
       fetchData();
     } catch (error) {
       console.error('Error deleting brand:', error);
