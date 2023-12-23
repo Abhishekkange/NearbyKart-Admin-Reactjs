@@ -42,7 +42,7 @@ const GeneralComponent = ({ onNextItemClick }) => {
         
 
 
-        onNextItemClick();
+       
     };
 
     return (

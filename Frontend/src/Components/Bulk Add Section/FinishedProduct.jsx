@@ -16,12 +16,12 @@ const FinishedProduct = (props) => {
    
 
   // Destructure productName from productState
-  const { colorSizes, productName,price,category,subcategory,brand,description,shortDescription } = productState;
+  const { image,colorSizes, productName,price,category,subcategory,brand,description,shortDescription } = productState;
 
   const storeProductData = async (productData) => {
     try {
       const response = await axios.post('http://localhost:3000/api/buildProduct', productData);
-      return response.data;
+      
     } catch (error) {
       throw new Error('Error storing product data:', error);
     }
@@ -35,21 +35,19 @@ const FinishedProduct = (props) => {
 
      await props.onButtonClick();
      
-     alert(props.productImage);
-     
-
-
+    
+    
     // Prepare the product data object to send
       const productData = {
          
         "image":image,
-        "name_en":productName,
-        "category_en":category,
-        "subcategory_en":subcategory,
+        "name":productName,
+        "category":category,
+        "subcategory":subcategory,
         "price":price,
         "shopName":"Kange",
-        "shortDescription_en":shortDescription,
-        "description_en":description
+        "shortDescription":shortDescription,
+        "description":description
         
       };
 

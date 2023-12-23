@@ -40,6 +40,7 @@ const AddColorComponent = () => {
 
   };
   const handleDeleteColor = async (_id) => {
+    console.log(id);
 
     try {
       const response = await axios.delete(`http://localhost:3000/api/color`,{_id});

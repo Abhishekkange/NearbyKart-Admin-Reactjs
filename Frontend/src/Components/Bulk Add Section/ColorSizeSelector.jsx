@@ -1,4 +1,5 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState,useEffect } from 'react';
+import axios from "axios";
 
 import {
     Table,
@@ -31,6 +32,32 @@ const ColorSizeSelector = () => {
     const [selectedSize, setSelectedSize] = useState('');
     const [selectedColors, setSelectedColors] = useState([]);
     const [colorSizes, setColorSizes] = useState({});
+    const [colorsFromApi, setColorsFromApi] = useState([]);
+    const [sizesFromApi, setSizesFromApi] = useState([]);
+
+
+  useEffect(() => {
+    fetchColorsFromApi();
+    fetchSizesFromApi();
+  }, []);
+
+  const fetchColorsFromApi = async () => {
+    try {
+      const response = await axios.get('http://localhost:3000/api/AllColors');
+      setColorsFromApi(response.data);
+    } catch (error) {
+      console.error('Error fetching colors:', error);
+    }
+  };
+
+  const fetchSizesFromApi = async () => {
+    try {
+      const response = await axios.get('http://localhost:3000/api/AllSizes');
+      setSizesFromApi(response.data);
+    } catch (error) {
+      console.error('Error fetching sizes:', error);
+    }
+  };
 
     
 
@@ -49,6 +76,8 @@ const ColorSizeSelector = () => {
 
     const colors = ['Red', 'Blue', 'Green','Yellow'];
     const sizes = ['S', 'M', 'L', 'XL'];
+
+
 
     const handleColorAdd = () => {
         if (selectedColor) {
@@ -86,7 +115,7 @@ const ColorSizeSelector = () => {
                         onChange={(e) => setSelectedColor(e.target.value)}
                     >
                         <MenuItem value="">Select Color</MenuItem>
-                        {colors.map((color, index) => (
+                        {colorsFromApi.map((color, index) => (
                             <MenuItem key={index} value={color}>
                                 {color}
                             </MenuItem>
@@ -110,7 +139,7 @@ const ColorSizeSelector = () => {
                     onChange={(e) => setSelectedSize(e.target.value)}
                 >
                     <MenuItem value="">Select Size</MenuItem>
-                    {sizes.map((size, index) => (
+                    {sizesFromApi.map((size, index) => (
                         <MenuItem key={index} value={size}>
                             {size}
                         </MenuItem>

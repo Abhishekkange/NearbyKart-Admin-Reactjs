@@ -9,7 +9,7 @@ import Users from '../../Components/Users';
 import ProductData from '../../Components/Bulk Add Section/ProductData';
 import Master from '../../Components/Master';
 import ProductState from "../../Context/ProductState";
-
+import ProductDisplayGrid from '../../Components/Add to store section/ProductDisplayGrid'
 function AdminPanel() {
   return (
     <ProductState>
@@ -22,6 +22,7 @@ function AdminPanel() {
           <Route path="/userProfile" element={<Users />} />
           <Route path="/productdata" element={<ProductData />} />
           <Route path="/Master" element={<Master />} />
+          <Route path="/allproducts" element={<ProductDisplayGrid />} />
 
         </Routes>
       </div>
