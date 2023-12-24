@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { TextField, Button, IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete'
+import Compressor from 'compressorjs';
 
 const EnterCategory = () => {
   const [categoryName, setCategoryName] = useState('');
   const [categoryImage, setCategoryImage] = useState('');
   const [categories, setCategories] = useState([]);
   const [image, setImage] = useState(null);
-  const [myFile, setMyFile] = useState(null);
+  let reader = null;
 
   useEffect(() => {
     fetchData();
@@ -22,22 +23,27 @@ const EnterCategory = () => {
       console.error('Error deleting category:', error);
     }
   };
-
   const handleFileInput = (e) => {
     const file = e.target.files[0];
-  
-    
-    Upload2Cloud(file);
 
     if (file) {
-      const reader = new FileReader();
+      // Use Compressor.js to compress the image
+      new Compressor(file, {
+        quality: 0.2, // Adjust the quality as needed
+        success(compressedFile) {
+           reader = new FileReader();
 
-      reader.onload = function (e) {
-        setImage({ name: file.name, type: file.type, dataURL: e.target.result });
-      };
+          reader.onload = function (e) {
+            Upload2Cloud(compressedFile); // Pass the compressed file to the upload function
+            setImage({ name: file.name, type: file.type, dataURL: e.target.result });
+          };
 
-      reader.readAsDataURL(file);
-
+          reader.readAsDataURL(compressedFile);
+        },
+        error(err) {
+          console.error('Compression failed:', err.message);
+        },
+      });
     }
   };
 
@@ -57,6 +63,8 @@ const EnterCategory = () => {
         }
       );
       setCategoryImage(response.data);
+      console.log(response.data);
+      
       
     } catch (error) {
       console.error('Error:', error);
@@ -67,6 +75,7 @@ const EnterCategory = () => {
     try {
       const response = await axios.get('http://localhost:3000/api/category');
       setCategories(response.data);
+     
     } catch (error) {
       console.error('Error fetching data:', error);
     }

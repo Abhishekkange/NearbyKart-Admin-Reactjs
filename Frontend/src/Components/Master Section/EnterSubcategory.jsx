@@ -10,63 +10,63 @@ const Entersubcategory = () => {
   const [subcategoryImage, setsubcategoryImage] = useState('');
   const [subcategory, setsubcategory] = useState([]);
   const [previewImage, setPreviewImage] = useState(''); 
+  const [image,setImage] = useState('');
   const [myFile,setMyFile] = useState(null);
+  
 
   // Fetch subcategory from API on component mount
   useEffect(() => {
     fetchData();
   }, []);
 
-  const handleUpload = (event)=>{
+ 
 
+  const handleFileInput = (e) => {
+    const file = e.target.files[0];
+  
     
-     //import image from local storage here
-     const file = event.target.files[0];
-     if (file) {
-       const reader = new FileReader();
-       reader.onload = (e) => {
-         setMyFile(e.target.result);
-       };
-       reader.readAsDataURL(file);
-     }
+   
 
-    //upload to google cloud storage
-   Upload2Cloud;
+    if (file) {
+      const reader = new FileReader();
 
-  }
+      reader.onload = function (e) {
+        Upload2Cloud(file);
+        setImage({ name: file.name, type: file.type, dataURL: e.target.result });
+      };
 
-  const Upload2Cloud = async () => {
+      reader.readAsDataURL(file);
 
+    }
+  };
+
+  const Upload2Cloud = async (file) => {
     const formData = new FormData();
-    formData.append("image", myFile);
-
-
-    await axios.post('https://nearby-kart-admin-bakend.vercel.app/api/uploadImage2cloud', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data', // Set the content type to multipart/form-data
-      },
-    })
-      .then(async response => {
-        // Handle response
-        console.log('Response:', response.data);
-
-
-
-      })
-      .catch(error => {
-        // Handle error
-        console.error('Error:', error);
-      });
-
-
-
-  }
-
+    formData.append('image', file);
+    console.log(file);
+    
+    try {
+      const response = await axios.post(
+        'http://localhost:3000/api/uploadImage2cloud',
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
+      console.log(response.data);
+      setsubcategoryImage(response.data);
+      
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
 
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('https://nearby-kart-admin-bakend.vercel.app/api/subcategory'); // Replace with your API endpoint
+      const response = await axios.get('http://localhost:3000/api/subcategory'); // Replace with your API endpoint
       setsubcategory(response.data); // Assuming API returns an array of subcategory
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -75,7 +75,7 @@ const Entersubcategory = () => {
 
   const handleCreatesubcategory = async () => {
     try {
-      await axios.post('https://nearby-kart-admin-bakend.vercel.app/api/subcategory', { subcategoryName, subcategoryImage }); // Replace with your API endpoint
+      await axios.post('http://localhost:3000/api/subcategory', { subcategoryName, subcategoryImage }); // Replace with your API endpoint
       fetchData(); // Refresh subcategory after adding new subcategory
       setsubcategoryName('');
       setsubcategoryImage('');
@@ -86,7 +86,7 @@ const Entersubcategory = () => {
 
   const handleDeletesubcategory = async (subcategoryId) => {
     try {
-      await axios.delete(`https://nearby-kart-admin-bakend.vercel.app/api/subcategory/${subcategoryId}`); // Replace with your API endpoint
+      await axios.delete(`http://localhost:3000/api/subcategory/${subcategoryId}`); // Replace with your API endpoint
       fetchData(); // Refresh subcategory after deleting a subcategory
     } catch (error) {
       console.error('Error deleting subcategory:', error);
@@ -106,12 +106,15 @@ const Entersubcategory = () => {
         />
 
       </div>
-      <Button onClick={handleUpload} style={{ margin: '5px' }} className="p-2 mx-5" variant="contained" component="label">
+      <Button
+        onClick={() => document.getElementById('fileInput').click()}
+        style={{ margin: '5px' }}
+        className="p-2 mx-5"
+        variant="contained"
+        component="label"
+      >
         Upload Image
-        <input type="file" hidden onChange={(e) => {
-          setsubcategoryImage(e.target.files[0]);
-          setPreviewImage(URL.createObjectURL(e.target.files[0])); // Set preview image URL
-        }} />
+        <input id="fileInput" type="file" hidden onChange={handleFileInput} />
       </Button>
       {previewImage && (
         <img src={previewImage} alt="Selected" style={{ width: '100px', height: '100px', margin: '5px' }} />
