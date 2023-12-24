@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { TextField, Button, Grid, Card, CardContent, CardMedia, IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
+import Compressor from 'compressorjs';
 
+let reader = null;
 const Entersubcategory = () => {
 
 
@@ -20,23 +22,28 @@ const Entersubcategory = () => {
   }, []);
 
  
-
   const handleFileInput = (e) => {
     const file = e.target.files[0];
-  
-    
-   
 
     if (file) {
-      const reader = new FileReader();
+      // Use Compressor.js to compress the image
+      new Compressor(file, {
+        quality: 0.2, // Adjust the quality as needed
+        success(compressedFile) {
+           reader = new FileReader();
 
-      reader.onload = function (e) {
-        Upload2Cloud(file);
-        setImage({ name: file.name, type: file.type, dataURL: e.target.result });
-      };
+          reader.onload = function (e) {
+            setPreviewImage(e.target.result); 
+            Upload2Cloud(compressedFile); // Pass the compressed file to the upload function
+            setImage({ name: file.name, type: file.type, dataURL: e.target.result });
+          };
 
-      reader.readAsDataURL(file);
-
+          reader.readAsDataURL(compressedFile);
+        },
+        error(err) {
+          console.error('Compression failed:', err.message);
+        },
+      });
     }
   };
 
@@ -55,14 +62,14 @@ const Entersubcategory = () => {
           },
         }
       );
-      console.log(response.data);
       setsubcategoryImage(response.data);
+      console.log(response.data);
+      
       
     } catch (error) {
       console.error('Error:', error);
     }
   };
-
 
   const fetchData = async () => {
     try {
@@ -79,6 +86,7 @@ const Entersubcategory = () => {
       fetchData(); // Refresh subcategory after adding new subcategory
       setsubcategoryName('');
       setsubcategoryImage('');
+      setPreviewImage('');
     } catch (error) {
       console.error('Error creating subcategory:', error);
     }

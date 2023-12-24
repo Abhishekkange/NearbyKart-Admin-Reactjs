@@ -91,6 +91,7 @@ const EnterCategory = () => {
       fetchData();
       setCategoryName('');
       setCategoryImage('');
+      setImage(null);
       console.log('Category created successfully');
     } catch (error) {
       console.error('Error creating category:', error);
