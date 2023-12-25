@@ -1,72 +1,77 @@
-import React,{useContext, useState} from 'react';
+import React, { useContext, useState } from 'react';
 import SizeBox from './SizeBox';
 import ProductContext from '../../Context/ProductContext';
 import ProductSizesAndColor from './productSizesAndColor'
 import axios from 'axios';
 import ProductState from '../../Context/ProductState';
+import Compressor from 'compressorjs';
+
+
 
 
 
 const FinishedProduct = (props) => {
 
-  
-    const [sizes, setSizes] = useState(['Small', 'Medium', 'Large', 'XL']);
-    const { productState,setProductState } = useContext(ProductContext);
 
-   
+  const [sizes, setSizes] = useState(['Small', 'Medium', 'Large', 'XL']);
+  const { productState, setProductState } = useContext(ProductContext);
+  const[pImage,setPImage] = useState(null);
+  const[imageFile,setImageFile] = useState(null);
+  
+
+
+
 
   // Destructure productName from productState
-  const { image,colorSizes, productName,price,category,subcategory,brand,description,shortDescription,categoryImage,subcategoryImage } = productState;
+  const { image, colorSizes, productName, price, category, subcategory, brand, description, shortDescription, categoryImage, subcategoryImage } = productState;
 
-  const storeProductData = async (productData) => {
-    try {
+  const Upload2Cloud = async () => {
 
-      const response = await axios.post('http://localhost:3000/api/buildProduct', productData);
-      
-    } catch (error) {
-      throw new Error('Error storing product data:', error);
-    }
-  };
-
-
-
-   // Function to handle storing product data
-   const handleBuildProduct = async () => {
-    try {
-
-     await props.onButtonClick();
-     console.log(categoryImage);
-     
     
-    
-    // Prepare the product data object to send
-      const productData = {
-         
-        "image":image,
-        "name":productName,
-        "categoryName":category,
-        "categoryImage":categoryImage,
-        "subcategoryImage":subcategoryImage,
-        "subcategoryName":subcategory,
-        "price":price,
-        "shopName":"Kange",
-        "shortDescription":shortDescription,
-        "description":description
+
+    const formData = new FormData();
+    formData.append("image", props.imageFile);
+  
+
+
+    await axios.post('http://localhost:3000/api/uploadImage2cloud', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data', // Set the content type to multipart/form-data
+      },
+    })
+      .then(async response => {
+        // Handle response
+        console.log('Response:', response);
+
+
         
+
+      // Prepare the product data object to send
+      const productData = {
+
+        "image": String(response.data),
+        "name": productName,
+        "categoryName": category,
+        "categoryImage": categoryImage,
+        "subcategoryImage": subcategoryImage,
+        "subcategoryName": subcategory,
+        "price": price,
+        "shopName": "Kange",
+        "shortDescription": shortDescription,
+        "description": description
+
       };
 
       const emptyProductState = {
 
         productName: "",
         price: "",
-        category:"",
-        subcategory:"",
-        brand:"",
-        description:"",
-        shortdescription:"",
-        colorSizes:{}
-      
-
+        category: "",
+        subcategory: "",
+        brand: "",
+        description: "",
+        shortdescription: "",
+        colorSizes: {}
 
       };
 
@@ -76,10 +81,46 @@ const FinishedProduct = (props) => {
       // Handle success or response as needed
       console.log('Product created:', createdProduct);
       alert("Product Built");
-      //set All states as Empty
-      setProductState(emptyProductState)
      
-     
+
+
+
+      })
+      .catch(error => {
+        // Handle error
+        console.error('Error:', error);
+      });
+
+
+
+  }
+
+  const storeProductData = async (productData) => {
+    try {
+
+      const response = await axios.post('http://localhost:3000/api/buildProduct', productData);
+
+
+    } catch (error) {
+      throw new Error('Error storing product data:', error);
+    }
+  };
+
+
+
+  // Function to handle storing product data
+  const handleBuildProduct = async () => {
+    try {
+
+
+    
+      await Upload2Cloud();
+
+      
+    
+
+
+
     } catch (error) {
       // Handle errors
       console.error('Error creating product:', error);
@@ -87,10 +128,10 @@ const FinishedProduct = (props) => {
   };
 
 
- 
+
 
   return (
-    <div style={{width:'320px',height:'90vh'}} className=" bg-white rounded-lg shadow-lg overflow-auto">
+    <div style={{ width: '320px', height: '90vh' }} className=" bg-white rounded-lg shadow-lg overflow-auto">
       <div className="m-2 rounded-lg  w-full h-60 objectFit='contain'">
 
         <img
@@ -126,18 +167,18 @@ const FinishedProduct = (props) => {
           <span className="text-xs bg-gray-200 px-2 py-1 rounded-full">
             {subcategory}
           </span>
-          
+
         </div>
         <div className="mt-4">
-        <ProductSizesAndColor />
-                    </div>
+          <ProductSizesAndColor />
+        </div>
 
       </div>
 
-      <button onClick={handleBuildProduct} style={{width:'280px', marginLeft:'20px'}}  className="bg-blue-500 hover:bg-blue-700  text-white font-bold py-2 px-4 mt-4 rounded focus:outline-none focus:shadow-outline">
-              Build Product
-            </button>
-     
+      <button onClick={handleBuildProduct} style={{ width: '280px', marginLeft: '20px' }} className="bg-blue-500 hover:bg-blue-700  text-white font-bold py-2 px-4 mt-4 rounded focus:outline-none focus:shadow-outline">
+        Build Product
+      </button>
+
     </div>
   );
 };

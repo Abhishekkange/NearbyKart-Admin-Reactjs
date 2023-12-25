@@ -16,7 +16,9 @@ const ProductState = (props) => {
         description:"",
         shortdescription:"",
         colorSizes:{},
-        productImage:"img"
+        productImage:"img",
+        cloudImage:''
+
 
     });
 

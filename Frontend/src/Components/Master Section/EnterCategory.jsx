@@ -25,6 +25,7 @@ const EnterCategory = () => {
   };
   const handleFileInput = (e) => {
     const file = e.target.files[0];
+    console.log(file);
 
     if (file) {
       // Use Compressor.js to compress the image
@@ -34,6 +35,8 @@ const EnterCategory = () => {
            reader = new FileReader();
 
           reader.onload = function (e) {
+            
+            
             Upload2Cloud(compressedFile); // Pass the compressed file to the upload function
             setImage({ name: file.name, type: file.type, dataURL: e.target.result });
           };
@@ -50,7 +53,7 @@ const EnterCategory = () => {
   const Upload2Cloud = async (file) => {
     const formData = new FormData();
     formData.append('image', file);
-    console.log(file);
+    
     
     try {
       const response = await axios.post(

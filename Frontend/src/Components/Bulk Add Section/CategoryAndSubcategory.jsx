@@ -17,7 +17,6 @@ import axios from 'axios';
     const updatedProductState = {
       category: selectedCategory.categoryName,
       categoryImage: selectedCategory.categoryImage,
-      subcategoryImage: selectedSubcategory.categoryImage,
       subcategory: selectedSubcategory,
       subcategoryImage:selectedSubcategory.subcategoryImage,
       brand: selectedBrand,
