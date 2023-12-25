@@ -24,12 +24,21 @@ const ProductGrid = () => {
         const productName = product.name.en;
         const price = product.price;
         const description = product.description.en;
-        const shortDescription = product.description.en;
+        const shortDescription = product.shortDescription.en;
         const imageUrl = product.image;
         const brand = product.brand;
         const id = product._id;
-        // const category = product.categories.categoryName.en;
-        // const subcategories = product.subcategories.subcategoyName.en;
+        // const category = product.categories[0].categoryName.en;
+        const subcategory = product.subcategories[0];
+        const category = product.categories[0];
+        
+        
+        // product.categories.map(category => {
+
+        //   const categoryName = category.categoryName;
+        //   const categoryImage = category.categoryImage;
+        // });
+
         
 
         //creating prouduct object
@@ -41,16 +50,19 @@ const ProductGrid = () => {
             shortDescription:shortDescription,
             imageUrl:imageUrl,
             brand:brand,
-            id:id
-            // category:category,
-            // subcategory:subcategory
+            id:id,
+            category:category.categoryName.en,
+            subcategory:subcategory.subcategoryName.en
 
         }
 
         products.push(productObj);
-      })
-      console.log(products);
+        console.log(category.categoryName.en);
+      });
+     
       setProducts(products);
+
+      
     } catch (error) {
       console.error('Error fetching products:', error);
     }

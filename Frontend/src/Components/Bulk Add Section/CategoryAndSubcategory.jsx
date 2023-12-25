@@ -2,25 +2,30 @@ import React, { useContext, useState, useEffect } from 'react';
 import productContext from '../../Context/ProductContext';
 import axios from 'axios';
 
-const CategorySelector = () => {
+  const CategorySelector = () => {
+  
   const { productState, setProductState } = useContext(productContext);
-
-  const handleSaveAndContinue = () => {
-    const updatedProductState = {
-      category: selectedCategory,
-      subcategory: selectedSubcategory,
-      brand: selectedBrand,
-    };
-
-    setProductState((prevState) => ({ ...prevState, ...updatedProductState }));
-  };
-
-  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [categoryImages, setCategoryImages] = useState([]);
+  const [SubcategoryImage, setSubcategoryImage] = useState([]);
   const [selectedSubcategory, setSelectedSubcategory] = useState('');
   const [selectedBrand, setSelectedBrand] = useState('');
   const [categories, setCategories] = useState([]);
   const [subcategories, setSubcategories] = useState([]);
   const [brands, setBrands] = useState([]);
+  const handleSaveAndContinue = () => {
+    const updatedProductState = {
+      category: selectedCategory.categoryName,
+      categoryImage: selectedCategory.categoryImage,
+      subcategoryImage: selectedSubcategory.categoryImage,
+      subcategory: selectedSubcategory,
+      subcategoryImage:selectedSubcategory.subcategoryImage,
+      brand: selectedBrand,
+    };
+
+
+  setProductState((prevState) => ({ ...prevState, ...updatedProductState }));
+  };
 
   useEffect(() => {
     fetchCategories();
@@ -30,8 +35,16 @@ const CategorySelector = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get('https://nearby-kart-admin-bakend.vercel.app/api/AllCategories');
-      setCategories(response.data);
+      const response = await axios.get('http://localhost:3000/api/category');
+     
+      //use Map function to add allcategories to list
+      const categoriesData = response.data.map(category => ({
+        categoryName: category.categoryName,
+        categoryImage: category.categoryImage
+      }));
+
+      setCategories(categoriesData);
+
     } catch (error) {
       console.error('Error fetching categories:', error);
     }
@@ -39,9 +52,19 @@ const CategorySelector = () => {
 
   const fetchSubcategories = async () => {
     try {
-      const response = await axios.get('https://nearby-kart-admin-bakend.vercel.app/api/AllSubcategories');
-      setSubcategories(response.data);
-    } catch (error) {
+      const response = await axios.get('http://localhost:3000/api/subcategory');
+     //use Map function to add allcategories to list
+     const subcategoriesData = response.data.map(subcategory => ({
+
+      subcategoryName: subcategory.subcategoryName,
+      subcategoryImage: subcategory.subcategoryImage
+  
+    }));
+
+    setSubcategories(subcategoriesData);
+
+    } 
+    catch (error) {
       console.error('Error fetching subcategories:', error);
     }
   };
@@ -56,14 +79,21 @@ const CategorySelector = () => {
   };
 
   const handleCategoryChange = (e) => {
-    const category = e.target.value;
-    setSelectedCategory(category);
+
+    const categoryN = e.target.value;
+    const selectedCategoryObj = categories.find(
+      (category) => category.categoryName === categoryN
+    );
+
+    setSelectedCategory(selectedCategoryObj);
     setSelectedSubcategory('');
+
   };
 
   const handleSubcategoryChange = (e) => {
     const subcategory = e.target.value;
     setSelectedSubcategory(subcategory);
+    console.log(subcategory);
   };
 
   const handleBrandChange = (e) => {
@@ -78,19 +108,21 @@ const CategorySelector = () => {
           Category:
         </label>
         <select
-          style={{ width: '450px' }}
-          id="category"
-          className="p-2 border rounded-md"
-          value={selectedCategory}
-          onChange={handleCategoryChange}
-        >
-          <option value="">Select Category</option>
-          {categories.map((category, index) => (
-            <option key={index} value={category}>
-              {category}
-            </option>
-          ))}
-        </select>
+  style={{ width: '450px' }}
+  id="category"
+  className="p-2 border rounded-md"
+  onChange={handleCategoryChange}
+  value={selectedCategory ? selectedCategory.categoryName : 'select'}
+
+>
+  <option value="">Select Category</option>
+  {categories.map((category, index) => (
+    <option key={index} value={category.categoryName}>
+      {category.categoryName}
+    </option>
+  ))}
+</select>
+
       </div>
 
       <div className="mb-4">
@@ -106,10 +138,11 @@ const CategorySelector = () => {
         >
           <option value="">Select Subcategory</option>
           {subcategories.map((subcategory, index) => (
-            <option key={index} value={subcategory}>
-              {subcategory}
+            <option key={index} value={subcategory.subcategoryName}>
+              {subcategory.subcategoryName}
             </option>
           ))}
+
         </select>
       </div>
 

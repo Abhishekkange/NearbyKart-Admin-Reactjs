@@ -45,9 +45,9 @@ const ProductCard = ({ product }) => {
           <img className="h-48  w-full  " src={product.imageUrl} alt={product.title} />
         </div>
         <div className="p-2 flex flex-col justify-between w-full">
-          <div>
-            <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">{product.category}</div>
-            <h2 className="block mt-1 text-lg leading-tight font-medium text-black">{product.title}</h2>
+          <div className="flex">
+            <h3 className="uppercase tracking-wide text-sm text-black font-semibold">Title: &nbsp;</h3>
+            <p className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">{product.title}</p>
             
           </div>
           <div className="mt-2  items-center justify-between">
@@ -86,8 +86,32 @@ const ProductCard = ({ product }) => {
           </div>
           {isExpanded && (
             <div className="mt-4">
-              <p className="text-gray-500">{product.price}</p>
-              <p className="mt-2 text-gray-500">{product.description}</p>
+              <div className='flex'>
+              <h3 className="uppercase tracking-wide text-sm text-black font-semibold">Category : &nbsp;</h3>
+              <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">{product.category}</div>
+              </div>
+              <div className="flex">
+              <h3 className="uppercase tracking-wide text-sm text-black font-semibold">subcategory : &nbsp;</h3>
+              <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">{product.subcategory}</div>
+              </div>
+
+           
+           <div className="flex">
+           <h3 className="uppercase tracking-wide text-sm text-black font-semibold">Price : &nbsp;</h3>
+           <p className="text-gray-500">{product.price}</p>
+          
+           </div>
+
+           <div className="">
+           <h3 className="uppercase tracking-wide text-sm text-black font-semibold">Description : </h3>
+           <p className="mt-2 text-gray-500">{product.description}</p>
+           </div>
+
+           <div className="">
+           <h3 className="uppercase tracking-wide text-sm text-black font-semibold">ShortDescription :</h3>
+           <p className="mt-2 text-gray-500">{product.shortDescription}</p>
+           </div>
+        
             </div>
           )}
         </div>

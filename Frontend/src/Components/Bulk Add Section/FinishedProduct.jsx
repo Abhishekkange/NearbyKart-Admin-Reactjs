@@ -16,11 +16,12 @@ const FinishedProduct = (props) => {
    
 
   // Destructure productName from productState
-  const { image,colorSizes, productName,price,category,subcategory,brand,description,shortDescription } = productState;
+  const { image,colorSizes, productName,price,category,subcategory,brand,description,shortDescription,categoryImage,subcategoryImage } = productState;
 
   const storeProductData = async (productData) => {
     try {
-      const response = await axios.post('https://nearby-kart-admin-bakend.vercel.app/api/buildProduct', productData);
+
+      const response = await axios.post('http://localhost:3000/api/buildProduct', productData);
       
     } catch (error) {
       throw new Error('Error storing product data:', error);
@@ -34,6 +35,7 @@ const FinishedProduct = (props) => {
     try {
 
      await props.onButtonClick();
+     console.log(categoryImage);
      
     
     
@@ -42,8 +44,10 @@ const FinishedProduct = (props) => {
          
         "image":image,
         "name":productName,
-        "category":category,
-        "subcategory":subcategory,
+        "categoryName":category,
+        "categoryImage":categoryImage,
+        "subcategoryImage":subcategoryImage,
+        "subcategoryName":subcategory,
         "price":price,
         "shopName":"Kange",
         "shortDescription":shortDescription,
@@ -61,7 +65,7 @@ const FinishedProduct = (props) => {
         description:"",
         shortdescription:"",
         colorSizes:{}
-        //
+      
 
 
       };
