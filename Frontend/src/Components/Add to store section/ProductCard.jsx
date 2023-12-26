@@ -40,9 +40,7 @@ const ProductCard = ({ product,onDelete }) => {
 
     const response = await axios.delete(`http://localhost:3000/api/buildProducts/${id}`);
     setShowModal(false);
-    onDelete();
-    
-   
+    onDelete(); 
 
   };
 
