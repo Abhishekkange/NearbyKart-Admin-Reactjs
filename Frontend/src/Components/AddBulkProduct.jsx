@@ -26,6 +26,16 @@ import ShowImage from "./Bulk Add Section/ShowImage";
   const [nimage,setNImage] = useState('goof'); 
 
 
+  const refreshPage = () =>{
+
+    window.location.reload();
+    console.log('reloading...');
+
+
+
+  }
+
+
 
 
  
@@ -128,7 +138,7 @@ import ShowImage from "./Bulk Add Section/ShowImage";
             </div>
 
             <div className="m-5" style={{ width: '270px', height: '85vh' }}>
-                <FinishedProduct productImage = {nimage} imageFile = {compressedFile}   image={images.length > 0 ? images[0].dataURL : "abc"} brandName={brandName} description = {description} shortDescription={shortDescription} productName = {productName} price={productPrice}  category = {categoryName} subcategory = {subcategoryName} />
+                <FinishedProduct refreshPage={refreshPage} productImage = {nimage} imageFile = {compressedFile}   image={images.length > 0 ? images[0].dataURL : "abc"} brandName={brandName} description = {description} shortDescription={shortDescription} productName = {productName} price={productPrice}  category = {categoryName} subcategory = {subcategoryName} />
             </div>
         </div>
        

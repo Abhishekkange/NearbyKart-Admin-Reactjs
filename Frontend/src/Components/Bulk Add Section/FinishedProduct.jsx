@@ -5,6 +5,8 @@ import ProductSizesAndColor from './productSizesAndColor'
 import axios from 'axios';
 import ProductState from '../../Context/ProductState';
 import Compressor from 'compressorjs';
+import BuildProductModal from './ProductBuildingBox';
+import ProductBuilt from './ProductBuilt';
 
 
 
@@ -17,6 +19,18 @@ const FinishedProduct = (props) => {
   const { productState, setProductState } = useContext(ProductContext);
   const[pImage,setPImage] = useState(null);
   const[imageFile,setImageFile] = useState(null);
+  const[buildingProduct,setBuildingProduct] = useState(false);
+  const [isProductBuilt,setIsProductBuilt] = useState(false);
+
+
+  const handleRefresh = () => {
+
+    setIsProductBuilt(false);
+    props.refreshPage();
+
+
+
+  };
   
 
 
@@ -80,7 +94,7 @@ const FinishedProduct = (props) => {
 
       // Handle success or response as needed
       console.log('Product created:', createdProduct);
-      alert("Product Built");
+      
      
 
 
@@ -98,6 +112,7 @@ const FinishedProduct = (props) => {
   const storeProductData = async (productData) => {
     try {
 
+
       const response = await axios.post('http://localhost:3000/api/buildProduct', productData);
 
 
@@ -112,9 +127,16 @@ const FinishedProduct = (props) => {
   const handleBuildProduct = async () => {
     try {
 
+      setBuildingProduct(true);
 
     
       await Upload2Cloud();
+
+
+      setBuildingProduct(false);
+      setIsProductBuilt(true);
+      
+     
 
       
     
@@ -133,6 +155,10 @@ const FinishedProduct = (props) => {
   return (
     <div style={{ width: '320px', height: '90vh' }} className=" bg-white rounded-lg shadow-lg overflow-auto">
       <div className="m-2 rounded-lg  w-full h-60 objectFit='contain'">
+
+      <ProductBuilt isOpen={isProductBuilt} onClose={handleRefresh} />
+
+      <BuildProductModal isOpen={buildingProduct} />
 
         <img
           src={props.image}
