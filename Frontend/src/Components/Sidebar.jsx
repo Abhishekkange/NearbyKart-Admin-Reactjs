@@ -57,10 +57,10 @@ const Sidebar = () => {
                     </button>
                 </div>
                 {openMenu1 && <div>
-                    <SubMenuButton name='Manage Banners' active={activeButton === 'managebanner'} onClick={() => handleButtonClick("managebanner")} />
+                    {/* <SubMenuButton name='Manage Banners' active={activeButton === 'managebanner'} onClick={() => handleButtonClick("managebanner")} />
                     <SubMenuButton name="Create Categories" active={activeButton === 'createCategiry'} onClick={() => handleButtonClick('createCategiry')} />
                     <SubMenuButton name='Manage Categories' active={activeButton === 'manageCategiry'} onClick={() => handleButtonClick('manageCategiry')} />
-                    <SubMenuButton name='Store' active={activeButton === 'store'} onClick={() => handleButtonClick('store')} />
+                    <SubMenuButton name='Store' active={activeButton === 'store'} onClick={() => handleButtonClick('store')} /> */}
                 </div>
                 }
                 <div className={`p-1 ${openMenu2 && 'bg-blue-800 text-white'}`}>

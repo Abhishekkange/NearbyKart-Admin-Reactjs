@@ -28,8 +28,6 @@ const FinishedProduct = (props) => {
     setIsProductBuilt(false);
     props.refreshPage();
 
-
-
   };
   
 
