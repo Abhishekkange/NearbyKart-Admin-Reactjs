@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import axios from "axios";
+import DeleteConfirmationModal from './DeleteComfirmationBox';
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product,onDelete }) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
+
+ 
 
   const handleToggle = () => {
     setIsExpanded(!isExpanded);
@@ -16,8 +21,8 @@ const ProductCard = ({ product }) => {
         console.log('Product Added to store');
         //delete the product in build Products section
         handleDelete(product.id);
+        onDelete();
        
-     
         
 
     }catch(e){
@@ -34,6 +39,9 @@ const ProductCard = ({ product }) => {
 
 
     const response = await axios.delete(`http://localhost:3000/api/buildProducts/${id}`);
+    setShowModal(false);
+    onDelete();
+    
    
 
   };
@@ -42,6 +50,14 @@ const ProductCard = ({ product }) => {
     <div className="ml-4 mt-3 mx-auto bg-white rounded-xl shadow-md">
       <div className="">
         <div className="md:flex-shrink-0">
+        <DeleteConfirmationModal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        onDelete={()=>{
+
+          handleDelete(product.id);
+    }}
+      />
           <img className="h-48  w-full  " src={product.imageUrl} alt={product.title} />
         </div>
         <div className="p-2 flex flex-col justify-between w-full">
@@ -67,10 +83,8 @@ const ProductCard = ({ product }) => {
             <button
             
               style={{width:'250px'}}
-              onClick={()=>{
+              onClick={() => setShowModal(true)}
 
-                    handleDelete(product.id);
-              }}
               className="bg-red-500 mt-2 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             >
               Delete

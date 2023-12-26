@@ -49,7 +49,7 @@ const FinishedProduct = (props) => {
       // Prepare the product data object to send
       const productData = {
 
-        "image": String(response.data),
+        "image": response.data,
         "name": productName,
         "categoryName": category,
         "categoryImage": categoryImage,

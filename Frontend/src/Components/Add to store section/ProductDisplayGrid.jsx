@@ -5,6 +5,8 @@ import ProductCard from './ProductCard'; // Make sure to replace 'ProductCard' w
 const ProductGrid = () => {
   const [products, setProducts] = useState([]);
 
+  
+
 
   useEffect(() => {
     fetchData();
@@ -12,6 +14,15 @@ const ProductGrid = () => {
 
 
   }, []);
+
+  const handleUpdateGrid = async()=>{
+
+    await fetchData();
+    console.log('update grid called');
+
+
+
+  }
 
   const fetchData = async () => {
     try {
@@ -31,6 +42,9 @@ const ProductGrid = () => {
         // const category = product.categories[0].categoryName.en;
         const subcategory = product.subcategories[0];
         const category = product.categories[0];
+
+        //update the grid after deleting the product
+      
         
         
         // product.categories.map(category => {
@@ -77,7 +91,7 @@ const ProductGrid = () => {
   return (
     <div className="container mx-auto grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
+        <ProductCard key={product.id} product={product}  onDelete={handleUpdateGrid} />
       ))}
     </div>
   );
