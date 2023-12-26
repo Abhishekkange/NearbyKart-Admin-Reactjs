@@ -1,47 +1,24 @@
 import React, { useState } from 'react';
 import axios from "axios";
-import DeleteConfirmationModal from './DeleteComfirmationBox';
+import DeleteConfirmationModal from '../Add to store section/DeleteComfirmationBox';
 
 const ProductCard = ({ product,onDelete }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
-
- 
-
   const handleToggle = () => {
     setIsExpanded(!isExpanded);
   };
 
-  const handleAddToStore = async(product) => {
-
-    try{
-
-        const result = await axios.post('http://localhost:3000/api/saveProduct',product);
-        console.log('Product Added to store');
-        console.log(result);
-        handleDelete(product.id);
-        onDelete();
-       
-        
-
-    }catch(e){
-
-        console.log('error');
-    }
-   
-
-
-
-  };
 
   const handleDelete = async(id) => {
 
 
-    const response = await axios.delete(`http://localhost:3000/api/buildProducts/${id}`);
+    const response = await axios.delete(`http://localhost:3000/api/deleteProduct/${id}`);
     setShowModal(false);
     onDelete(); 
-
+   
+    
   };
 
   return (
@@ -64,30 +41,7 @@ const ProductCard = ({ product,onDelete }) => {
             <p className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">{product.name}</p>
             
           </div>
-          <div className="mt-2  items-center justify-between">
-            <button
-             style={{width:'250px'}}
-              onClick={()=>{
 
-                handleAddToStore(product);
-
-
-
-              }}
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            >
-              Add to Store
-            </button>
-            <button
-            
-              style={{width:'250px'}}
-              onClick={() => setShowModal(true)}
-
-              className="bg-red-500 mt-2 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            >
-              Delete
-            </button>
-          </div>
           <div className="mt-4">
             <button
               onClick={handleToggle}
@@ -122,6 +76,18 @@ const ProductCard = ({ product,onDelete }) => {
            <div className="">
            <h3 className="uppercase tracking-wide text-sm text-black font-semibold">ShortDescription :</h3>
            <p className="mt-2 text-gray-500">{product.shortDescription}</p>
+           <div className="mt-2  items-center justify-between">
+           
+           <button
+           
+             style={{width:'250px'}}
+             onClick={() => setShowModal(true)}
+
+             className="bg-red-500 mt-2 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+           >
+             Delete
+           </button>
+         </div>
            </div>
         
             </div>

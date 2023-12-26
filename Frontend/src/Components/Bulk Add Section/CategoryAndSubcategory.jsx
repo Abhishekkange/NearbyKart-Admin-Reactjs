@@ -8,23 +8,23 @@ import axios from 'axios';
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [categoryImages, setCategoryImages] = useState([]);
   const [SubcategoryImage, setSubcategoryImage] = useState([]);
-  const [selectedSubcategory, setSelectedSubcategory] = useState('');
+  const [selectedSubcategory, setSelectedSubcategory] = useState(null);
   const [selectedBrand, setSelectedBrand] = useState('');
   const [categories, setCategories] = useState([]);
   const [subcategories, setSubcategories] = useState([]);
   const [brands, setBrands] = useState([]);
   const handleSaveAndContinue = () => {
     const updatedProductState = {
-      category: selectedCategory.categoryName,
-      categoryImage: selectedCategory.categoryImage,
-      subcategory: selectedSubcategory,
-      subcategoryImage:selectedSubcategory.subcategoryImage,
+      category: selectedCategory ? selectedCategory.categoryName : '',
+      categoryImage: selectedCategory ? selectedCategory.categoryImage : '',
+      subcategory: selectedSubcategory ? selectedSubcategory.subcategoryName : '',
+      subcategoryImage: selectedSubcategory ? selectedSubcategory.subcategoryImage : '',
       brand: selectedBrand,
     };
-
-
-  setProductState((prevState) => ({ ...prevState, ...updatedProductState }));
+  
+    setProductState((prevState) => ({ ...prevState, ...updatedProductState }));
   };
+  
 
   useEffect(() => {
     fetchCategories();
@@ -90,9 +90,13 @@ import axios from 'axios';
   };
 
   const handleSubcategoryChange = (e) => {
-    const subcategory = e.target.value;
-    setSelectedSubcategory(subcategory);
-    console.log(subcategory);
+    const subcategoryN = e.target.value;
+    const selectedSubcategoryObj = subcategories.find(
+      (category) => category.subcategoryName === subcategoryN
+    );
+
+    setSelectedSubcategory(selectedSubcategoryObj);
+    
   };
 
   const handleBrandChange = (e) => {
@@ -132,8 +136,8 @@ import axios from 'axios';
           style={{ width: '450px' }}
           id="subcategory"
           className="p-2 border rounded-md"
-          value={selectedSubcategory}
           onChange={handleSubcategoryChange}
+  value={selectedSubcategory ? selectedSubcategory.subcategoryName : 'select'}
         >
           <option value="">Select Subcategory</option>
           {subcategories.map((subcategory, index) => (
