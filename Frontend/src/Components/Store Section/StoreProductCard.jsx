@@ -11,7 +11,7 @@ const ProductCard = ({ product,onDelete }) => {
   };
 
 
-  const handleDelete = async(id) => {
+    const handleDelete = async(id) => {
 
 
     const response = await axios.delete(`http://localhost:3000/api/deleteProduct/${id}`);

@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import axios from "axios";
 import DeleteConfirmationModal from './DeleteComfirmationBox';
+import ConfirmationPopup from './ComfirmationBox';
 
 const ProductCard = ({ product,onDelete }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [openPopup, setOpenPopup] = useState(false);
+
 
 
  
@@ -12,6 +15,30 @@ const ProductCard = ({ product,onDelete }) => {
   const handleToggle = () => {
     setIsExpanded(!isExpanded);
   };
+
+  const addToStorePopup = () => {
+
+    setOpenPopup(true);
+
+
+  }
+
+  const handleConfirmAction = (product) => {
+
+    handleAddToStore(product);
+    setOpenPopup(false);
+
+  }
+
+  const handleClosePopup = () => {
+
+    setOpenPopup(false);
+
+
+
+  }
+
+
 
   const handleAddToStore = async(product) => {
 
@@ -56,6 +83,7 @@ const ProductCard = ({ product,onDelete }) => {
           handleDelete(product.id);
     }}
       />
+       <ConfirmationPopup open={openPopup} handleClose={handleClosePopup} handleConfirm={()=>{handleConfirmAction(product)}} />
           <img className="h-48  w-full  " src={product.image} alt={product.name} />
         </div>
         <div className="p-2 flex flex-col justify-between w-full">
@@ -69,7 +97,7 @@ const ProductCard = ({ product,onDelete }) => {
              style={{width:'250px'}}
               onClick={()=>{
 
-                handleAddToStore(product);
+                addToStorePopup();
 
 
 
