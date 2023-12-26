@@ -19,7 +19,7 @@ const ProductCard = ({ product,onDelete }) => {
 
         const result = await axios.post('http://localhost:3000/api/saveProduct',product);
         console.log('Product Added to store');
-        //delete the product in build Products section
+        console.log(result);
         handleDelete(product.id);
         onDelete();
        
@@ -56,7 +56,7 @@ const ProductCard = ({ product,onDelete }) => {
           handleDelete(product.id);
     }}
       />
-          <img className="h-48  w-full  " src={product.imageUrl} alt={product.title} />
+          <img className="h-48  w-full  " src={product.image} alt={product.name} />
         </div>
         <div className="p-2 flex flex-col justify-between w-full">
           <div className="flex">

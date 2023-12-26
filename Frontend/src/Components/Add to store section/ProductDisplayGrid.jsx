@@ -11,6 +11,7 @@ const ProductGrid = () => {
   useEffect(() => {
     fetchData();
     
+    
 
 
   }, []);
@@ -18,7 +19,7 @@ const ProductGrid = () => {
   const handleUpdateGrid = async()=>{
 
     await fetchData();
-    console.log('update grid called');
+    
 
 
 
@@ -39,39 +40,31 @@ const ProductGrid = () => {
         const imageUrl = product.image;
         const brand = product.brand;
         const id = product._id;
-        // const category = product.categories[0].categoryName.en;
         const subcategory = product.subcategories[0];
         const category = product.categories[0];
 
-        //update the grid after deleting the product
-      
-        
-        
-        // product.categories.map(category => {
-
-        //   const categoryName = category.categoryName;
-        //   const categoryImage = category.categoryImage;
-        // });
-
-        
+         
 
         //creating prouduct object
         const productObj = {
 
-            title:productName,
+            name:productName,
             price:price,
             description:description,
             shortDescription:shortDescription,
-            imageUrl:imageUrl,
+            image:imageUrl,
             brand:brand,
             id:id,
+            shopName:"Kange Collection",
             category:category.categoryName.en,
+            categoryImage:category.categoryImage,
+            subcategoryImage:subcategory.subcategoryImage,
             subcategory:subcategory.subcategoryName.en
 
         }
 
         products.push(productObj);
-        console.log(category.categoryName.en);
+        
       });
      
       setProducts(products);
