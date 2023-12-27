@@ -16,7 +16,7 @@ const EnterCategory = () => {
   }, []);
   const handleDelete = async (categoryId) => {
     try {
-      await axios.delete(`http://localhost:3000/api/category/${categoryId}`);
+      await axios.delete(`https://nearby-kart-admin-bakend.vercel.app/api/category/${categoryId}`);
       fetchData(); // Refresh categories after deletion
       console.log('Category deleted successfully');
     } catch (error) {
@@ -57,7 +57,7 @@ const EnterCategory = () => {
     
     try {
       const response = await axios.post(
-        'http://localhost:3000/api/uploadImage2cloud',
+        'https://nearby-kart-admin-bakend.vercel.app/api/uploadImage2cloud',
         formData,
         {
           headers: {
@@ -76,7 +76,7 @@ const EnterCategory = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/category');
+      const response = await axios.get('https://nearby-kart-admin-bakend.vercel.app/api/category');
       setCategories(response.data);
      
     } catch (error) {
@@ -87,7 +87,7 @@ const EnterCategory = () => {
   const handleCreateCategory = async () => {
     try {
       console.log(categoryImage);
-      await axios.post('http://localhost:3000/api/category', {
+      await axios.post('https://nearby-kart-admin-bakend.vercel.app/api/category', {
         categoryName,
         categoryImage,
       });
