@@ -44,7 +44,7 @@ const ProductGrid = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/buildProducts'); // Replace with your API endpoint
+      const response = await axios.get('https://nearby-kart-admin-bakend.vercel.app/api/buildProducts'); // Replace with your API endpoint
       //create product List from reesponse object
       const products = [];
 
