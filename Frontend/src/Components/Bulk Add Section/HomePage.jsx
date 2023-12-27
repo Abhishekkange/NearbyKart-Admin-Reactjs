@@ -9,7 +9,7 @@ function HomePage() {
           src={bg}
           alt="i"
         />
-        <Link to="/admin/bulkProducts">
+        <Link to="/admin/bulkProduct">
           <button
             style={{
               marginTop: '100px',
