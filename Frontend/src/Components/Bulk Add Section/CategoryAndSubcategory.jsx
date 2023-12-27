@@ -34,7 +34,7 @@ import axios from 'axios';
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/category');
+      const response = await axios.get('https://nearby-kart-admin-bakend.vercel.app/api/category');
      
       //use Map function to add allcategories to list
       const categoriesData = response.data.map(category => ({
@@ -51,7 +51,7 @@ import axios from 'axios';
 
   const fetchSubcategories = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/subcategory');
+      const response = await axios.get('https://nearby-kart-admin-bakend.vercel.app/api/subcategory');
      //use Map function to add allcategories to list
      const subcategoriesData = response.data.map(subcategory => ({
 

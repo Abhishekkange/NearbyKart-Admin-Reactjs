@@ -14,7 +14,7 @@ const ProductCard = ({ product,onDelete }) => {
     const handleDelete = async(id) => {
 
 
-    const response = await axios.delete(`http://localhost:3000/api/deleteProduct/${id}`);
+    const response = await axios.delete(`https://nearby-kart-admin-bakend.vercel.app/api/deleteProduct/${id}`);
     setShowModal(false);
     onDelete(); 
    
