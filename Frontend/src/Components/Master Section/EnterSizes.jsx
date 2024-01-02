@@ -11,6 +11,15 @@ const SizesComponent = () => {
     fetchData();
   }, []);
 
+  const [storeId, setStoreId] = useState(''); // State to hold storeId
+  const { storeId: contextStoreId } = useContext(StoreContext); // Retrieve StoreContext using useContext hook
+
+  useEffect(() => {
+    if (contextStoreId) {
+      setStoreId(contextStoreId); // Get storeId from StoreContext
+    }
+  }, [contextStoreId]);
+
   const fetchData = async () => {
     try {
       const response = await axios.get(`https://nearby-kart-admin-bakend.vercel.app/api/${storeId}/size`);

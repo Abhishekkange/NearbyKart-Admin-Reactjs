@@ -5,6 +5,15 @@ import ProductCard from './StoreProductCard'; // Make sure to replace 'ProductCa
 const ProductGrid = () => {
   const [products, setProducts] = useState([]);
 
+  const [storeId, setStoreId] = useState(''); // State to hold storeId
+  const { storeId: contextStoreId } = useContext(StoreContext); // Retrieve StoreContext using useContext hook
+
+  useEffect(() => {
+    if (contextStoreId) {
+      setStoreId(contextStoreId); // Get storeId from StoreContext
+    }
+  }, [contextStoreId]);
+
   
 
 
@@ -43,6 +52,8 @@ const ProductGrid = () => {
         const id = product._id;
         const subcategory = product.subcategories[0];
         const category = product.categories[0];
+
+
 
          
 

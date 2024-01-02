@@ -14,6 +14,15 @@ const Entersubcategory = () => {
   const [previewImage, setPreviewImage] = useState(''); 
   const [image,setImage] = useState('');
   const [myFile,setMyFile] = useState(null);
+
+  const [storeId, setStoreId] = useState(''); // State to hold storeId
+  const { storeId: contextStoreId } = useContext(StoreContext); // Retrieve StoreContext using useContext hook
+
+  useEffect(() => {
+    if (contextStoreId) {
+      setStoreId(contextStoreId); // Get storeId from StoreContext
+    }
+  }, [contextStoreId]);
   
 
   // Fetch subcategory from API on component mount

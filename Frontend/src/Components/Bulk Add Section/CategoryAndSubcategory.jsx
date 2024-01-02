@@ -13,6 +13,19 @@ import axios from 'axios';
   const [categories, setCategories] = useState([]);
   const [subcategories, setSubcategories] = useState([]);
   const [brands, setBrands] = useState([]);
+
+  const [storeId, setStoreId] = useState(''); // State to hold storeId
+  const { storeId: contextStoreId } = useContext(StoreContext); // Retrieve StoreContext using useContext hook
+
+  useEffect(() => {
+    if (contextStoreId) {
+      setStoreId(contextStoreId); // Get storeId from StoreContext
+    }
+  }, [contextStoreId]);
+
+
+
+
   const handleSaveAndContinue = () => {
     const updatedProductState = {
       category: selectedCategory ? selectedCategory.categoryName : '',
@@ -24,6 +37,8 @@ import axios from 'axios';
   
     setProductState((prevState) => ({ ...prevState, ...updatedProductState }));
   };
+
+
   
 
   useEffect(() => {

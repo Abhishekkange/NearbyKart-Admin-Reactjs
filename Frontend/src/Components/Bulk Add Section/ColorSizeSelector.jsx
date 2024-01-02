@@ -35,6 +35,15 @@ const ColorSizeSelector = () => {
     const [colorsFromApi, setColorsFromApi] = useState([]);
     const [sizesFromApi, setSizesFromApi] = useState([]);
 
+    const [storeId, setStoreId] = useState(''); // State to hold storeId
+    const { storeId: contextStoreId } = useContext(StoreContext); // Retrieve StoreContext using useContext hook
+  
+    useEffect(() => {
+      if (contextStoreId) {
+        setStoreId(contextStoreId); // Get storeId from StoreContext
+      }
+    }, [contextStoreId]);
+
 
   useEffect(() => {
     fetchColorsFromApi();
