@@ -34,7 +34,7 @@ import axios from 'axios';
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get('https://nearby-kart-admin-bakend.vercel.app/api/category');
+      const response = await axios.get(`https://nearby-kart-admin-bakend.vercel.app/api/${storeId}/category`);
      
       //use Map function to add allcategories to list
       const categoriesData = response.data.map(category => ({
@@ -51,7 +51,7 @@ import axios from 'axios';
 
   const fetchSubcategories = async () => {
     try {
-      const response = await axios.get('https://nearby-kart-admin-bakend.vercel.app/api/subcategory');
+      const response = await axios.get(`https://nearby-kart-admin-bakend.vercel.app/api/${storeId}/subcategory`);
      //use Map function to add allcategories to list
      const subcategoriesData = response.data.map(subcategory => ({
 
@@ -70,7 +70,7 @@ import axios from 'axios';
 
   const fetchBrands = async () => {
     try {
-      const response = await axios.get('https://nearby-kart-admin-bakend.vercel.app/api/AllBrands');
+      const response = await axios.get(`https://nearby-kart-admin-bakend.vercel.app/api/${storeId}/AllBrands`);
       setBrands(response.data);
     } catch (error) {
       console.error('Error fetching brands:', error);

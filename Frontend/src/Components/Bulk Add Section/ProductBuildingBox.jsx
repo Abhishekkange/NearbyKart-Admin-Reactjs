@@ -1,7 +1,7 @@
 // BuildProductModal.js
 
 import React from 'react';
-import productBuildingAnimation from '../../../public/buildProduct.gif'; // Replace with your animated GIF
+import productBuildingAnimation from '../../../src/assets/Icons/buildProduct.gif'; // Replace with your animated GIF
 
 const BuildProductModal = ({ isOpen }) => {
   return (

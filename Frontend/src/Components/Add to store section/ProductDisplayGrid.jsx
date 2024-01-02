@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ProductCard from './ProductCard'; // Make sure to replace 'ProductCard' with the actual file path
 
-import bgImage  from '../../../public/basket.jpg';
+// import bgImage  from '../../../public/basket.jpg';
 
 const ProductGrid = () => {
   const [products, setProducts] = useState([]);
@@ -19,7 +19,7 @@ const ProductGrid = () => {
   }, []);
 
   const noProductsBackground = {
-    backgroundImage: "url(../../../public/basket.jpg)", // Replace with your image path
+    backgroundImage: "url(../../../src/assets/Icons/basket.jpg)", // Replace with your image path
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     height: '90vh',
@@ -44,7 +44,7 @@ const ProductGrid = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('https://nearby-kart-admin-bakend.vercel.app/api/buildProducts'); // Replace with your API endpoint
+      const response = await axios.get(`https://nearby-kart-admin-bakend.vercel.app/api/${storeId}/buildProducts`); // Replace with your API endpoint
       //create product List from reesponse object
       const products = [];
 

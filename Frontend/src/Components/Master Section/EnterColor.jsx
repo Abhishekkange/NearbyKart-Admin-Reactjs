@@ -16,7 +16,7 @@ const AddColorComponent = () => {
     
       const fetchData = async () => {
         try {
-          const response = await axios.get('https://nearby-kart-admin-bakend.vercel.app/api/color');
+          const response = await axios.get(`https://nearby-kart-admin-bakend.vercel.app/api/${storeId}/color`);
           setAddedColors(response.data);
         } catch (error) {
           console.error('Error fetching brands:', error);
@@ -31,7 +31,7 @@ const AddColorComponent = () => {
   const handleAddColor = async() => {
    
     //API call here
-    const response = await axios.post('https://nearby-kart-admin-bakend.vercel.app/api/color', { colorName,selectedColor }); 
+    const response = await axios.post(`https://nearby-kart-admin-bakend.vercel.app/api/${storeId}/color`, { colorName,selectedColor }); 
     console.log('color Added successfully');
     setSelectedColor('#ffff')
     setColorName('');
@@ -43,7 +43,7 @@ const AddColorComponent = () => {
     console.log(id);
 
     try {
-      const response = await axios.delete(`https://nearby-kart-admin-bakend.vercel.app/api/color`,{_id});
+      const response = await axios.delete(`https://nearby-kart-admin-bakend.vercel.app/api/${storeId}/color`,{_id});
       fetchData(); // Fetch updated data after deletion
     } catch (error) {
       console.error('Error deleting color:', error);

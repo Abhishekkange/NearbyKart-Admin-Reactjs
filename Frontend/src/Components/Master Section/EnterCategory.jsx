@@ -1,14 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useContext } from 'react';
 import axios from 'axios';
 import { TextField, Button, IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete'
 import Compressor from 'compressorjs';
+import StoreContext from '../../Context/StoreContext'
 
 const EnterCategory = () => {
   const [categoryName, setCategoryName] = useState('');
   const [categoryImage, setCategoryImage] = useState('');
   const [categories, setCategories] = useState([]);
   const [image, setImage] = useState(null);
+  
+
+  const [storeId, setStoreId] = useState(''); // State to hold storeId
+  const { storeId: contextStoreId } = useContext(StoreContext); // Retrieve StoreContext using useContext hook
+
+  useEffect(() => {
+    if (contextStoreId) {
+      setStoreId(contextStoreId); // Get storeId from StoreContext
+    }
+  }, [contextStoreId]);
+
+  console.log(storeId); // Check if storeId is properly set
+
+
+
   let reader = null;
 
   useEffect(() => {
@@ -16,7 +32,7 @@ const EnterCategory = () => {
   }, []);
   const handleDelete = async (categoryId) => {
     try {
-      await axios.delete(`https://nearby-kart-admin-bakend.vercel.app/api/category/${categoryId}`);
+      await axios.delete(`https://nearby-kart-admin-bakend.vercel.app/api/${storeId}/category/${categoryId}`);
       fetchData(); // Refresh categories after deletion
       console.log('Category deleted successfully');
     } catch (error) {
@@ -76,7 +92,7 @@ const EnterCategory = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('https://nearby-kart-admin-bakend.vercel.app/api/category');
+      const response = await axios.get(`https://nearby-kart-admin-bakend.vercel.app/api/${storeId}/category`);
       setCategories(response.data);
      
     } catch (error) {
@@ -87,7 +103,7 @@ const EnterCategory = () => {
   const handleCreateCategory = async () => {
     try {
       console.log(categoryImage);
-      await axios.post('https://nearby-kart-admin-bakend.vercel.app/api/category', {
+      await axios.post(`https://nearby-kart-admin-bakend.vercel.app/api/${storeId}/category`, {
         categoryName,
         categoryImage,
       });
@@ -107,7 +123,8 @@ const EnterCategory = () => {
         <TextField
           style={{ width: '550px' }}
           label="Category Name"
-          value={categoryName}
+          // value={categoryName}
+          value={storeId}
           onChange={(e) => setCategoryName(e.target.value)}
           variant="outlined"
           className="mr-3 w-80"

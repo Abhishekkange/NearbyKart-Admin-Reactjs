@@ -111,7 +111,7 @@ const FinishedProduct = (props) => {
     try {
 
 
-      const response = await axios.post('https://nearby-kart-admin-bakend.vercel.app/api/buildProduct', productData);
+      const response = await axios.post(`https://nearby-kart-admin-bakend.vercel.app/api/${storeId}/buildProduct`, productData);
 
 
     } catch (error) {

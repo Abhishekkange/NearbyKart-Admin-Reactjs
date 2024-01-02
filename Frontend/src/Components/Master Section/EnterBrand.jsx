@@ -13,7 +13,7 @@ const BrandsComponent = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('https://nearby-kart-admin-bakend.vercel.app/api/brand');
+      const response = await axios.get(`https://nearby-kart-admin-bakend.vercel.app/api/${storeId}/brand`);
       setBrands(response.data);
     } catch (error) {
       console.error('Error fetching brands:', error);
@@ -22,7 +22,7 @@ const BrandsComponent = () => {
 
   const handleAddBrand = async () => {
     try {
-      await axios.post('https://nearby-kart-admin-bakend.vercel.app/api/brand', { brandName });
+      await axios.post(`https://nearby-kart-admin-bakend.vercel.app/api/${storeId}/brand`, { brandName });
       fetchData();
       setBrandName('');
     } catch (error) {
@@ -32,7 +32,7 @@ const BrandsComponent = () => {
 
   const handleDeleteBrand = async (brandId) => {
     try {
-      await axios.delete(`https://nearby-kart-admin-bakend.vercel.app/api/brand/${brandId}`);
+      await axios.delete(`https://nearby-kart-admin-bakend.vercel.app/api/${storeId}/brand/${brandId}`);
       fetchData();
     } catch (error) {
       console.error('Error deleting brand:', error);

@@ -13,7 +13,7 @@ const SizesComponent = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('https://nearby-kart-admin-bakend.vercel.app/api/size');
+      const response = await axios.get(`https://nearby-kart-admin-bakend.vercel.app/api/${storeId}/size`);
       setSizes(response.data);
     } catch (error) {
       console.error('Error fetching sizes:', error);
@@ -22,7 +22,7 @@ const SizesComponent = () => {
 
   const handleAddSize = async () => {
     try {
-      await axios.post('https://nearby-kart-admin-bakend.vercel.app/api/size', { sizeName });
+      await axios.post(`https://nearby-kart-admin-bakend.vercel.app/api/${storeId}/size`, { sizeName });
       fetchData();
       setSizeName('');
     } catch (error) {

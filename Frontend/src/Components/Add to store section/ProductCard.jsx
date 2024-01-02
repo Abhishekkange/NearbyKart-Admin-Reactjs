@@ -44,7 +44,7 @@ const ProductCard = ({ product,onDelete }) => {
 
     try{
 
-        const result = await axios.post('https://nearby-kart-admin-bakend.vercel.app/api/saveProduct',product);
+        const result = await axios.post(`https://nearby-kart-admin-bakend.vercel.app/api/${storeId}/saveProduct`,product);
         console.log('Product Added to store');
         console.log(result);
         handleDelete(product.id);
@@ -65,7 +65,7 @@ const ProductCard = ({ product,onDelete }) => {
   const handleDelete = async(id) => {
 
 
-    const response = await axios.delete(`https://nearby-kart-admin-bakend.vercel.app/api/buildProducts/${id}`);
+    const response = await axios.delete(`https://nearby-kart-admin-bakend.vercel.app/api/${storeId}/buildProducts/${id}`);
     setShowModal(false);
     onDelete(); 
 
