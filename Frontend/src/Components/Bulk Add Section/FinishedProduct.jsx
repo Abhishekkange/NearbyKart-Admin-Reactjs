@@ -1,4 +1,5 @@
-import React, { useContext, useState } from 'react';
+import React, { useState, useEffect,useContext } from 'react';
+import StoreContext from '../../Context/StoreContext'
 import SizeBox from './SizeBox';
 import ProductContext from '../../Context/ProductContext';
 import ProductSizesAndColor from './productSizesAndColor'

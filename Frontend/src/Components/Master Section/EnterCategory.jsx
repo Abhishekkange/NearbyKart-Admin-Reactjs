@@ -1,9 +1,9 @@
 import React, { useState, useEffect,useContext } from 'react';
+import StoreContext from '../../Context/StoreContext'
 import axios from 'axios';
 import { TextField, Button, IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete'
 import Compressor from 'compressorjs';
-import StoreContext from '../../Context/StoreContext'
 
 const EnterCategory = () => {
   const [categoryName, setCategoryName] = useState('');
