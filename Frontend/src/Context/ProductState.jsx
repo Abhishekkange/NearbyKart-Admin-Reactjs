@@ -6,6 +6,7 @@ const ProductState = (props) => {
     // Define state variables using useState
     const [productState, setProductState] = useState({
        
+        
         productName: "",
         price: "",
         category:"",
