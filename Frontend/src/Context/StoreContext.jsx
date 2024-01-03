@@ -4,7 +4,7 @@ import React, { createContext, useState } from 'react';
 const StoreContext = createContext();
 
 export const StoreStateProvider = ({ children }) => {
-  const [storeId, setStoreId] = useState('benchod'); // Replace 'new' with your default value
+  const [storeId, setStoreId] = useState('KangeCollection'); // Replace 'new' with your default value
 
   return (
     <StoreContext.Provider value={{ storeId, setStoreId }}>
