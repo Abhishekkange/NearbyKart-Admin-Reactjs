@@ -9,7 +9,7 @@ const ProductCard = ({ product,onDelete }) => {
   const [showModal, setShowModal] = useState(false);
   const [openPopup, setOpenPopup] = useState(false);
 
-  const [storeId, setStoreId] = useState(''); // State to hold storeId
+  const [storeId, setStoreId] =useState('KangeCollection'); // State to hold storeId
   const { storeId: contextStoreId } = useContext(StoreContext); // Retrieve StoreContext using useContext hook
 
   useEffect(() => {

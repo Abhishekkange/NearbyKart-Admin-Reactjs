@@ -15,7 +15,7 @@ import axios from 'axios';
   const [subcategories, setSubcategories] = useState([]);
   const [brands, setBrands] = useState([]);
 
-  const [storeId, setStoreId] = useState(''); // State to hold storeId
+  const [storeId, setStoreId] = useState('KangeCollection'); // State to hold storeId
   const { storeId: contextStoreId } = useContext(StoreContext); // Retrieve StoreContext using useContext hook
 
   useEffect(() => {

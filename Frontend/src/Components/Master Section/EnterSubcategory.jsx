@@ -16,7 +16,7 @@ const Entersubcategory = () => {
   const [image,setImage] = useState('');
   const [myFile,setMyFile] = useState(null);
 
-  const [storeId, setStoreId] = useState(''); // State to hold storeId
+  const [storeId, setStoreId] = useState('KangeCollection'); // State to hold storeId
   const { storeId: contextStoreId } = useContext(StoreContext); // Retrieve StoreContext using useContext hook
 
   useEffect(() => {
@@ -104,7 +104,7 @@ const Entersubcategory = () => {
 
   const handleDeletesubcategory = async (subcategoryId) => {
     try {
-      await axios.delete(`https://nearby-kart-admin-bakend.vercel.app/api/${storeId}subcategory/${subcategoryId}`); // Replace with your API endpoint
+      await axios.delete(`https://nearby-kart-admin-bakend.vercel.app/api/${storeId}/subcategory/${subcategoryId}`); // Replace with your API endpoint
       fetchData(); // Refresh subcategory after deleting a subcategory
     } catch (error) {
       console.error('Error deleting subcategory:', error);

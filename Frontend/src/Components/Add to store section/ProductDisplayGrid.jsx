@@ -8,7 +8,7 @@ import ProductCard from './ProductCard'; // Make sure to replace 'ProductCard' w
 const ProductGrid = () => {
   const [products, setProducts] = useState([]);
 
-  const [storeId, setStoreId] = useState(''); // State to hold storeId
+  const [storeId, setStoreId] = useState('KangeCollection'); // State to hold storeId
   const { storeId: contextStoreId } = useContext(StoreContext); // Retrieve StoreContext using useContext hook
 
   useEffect(() => {

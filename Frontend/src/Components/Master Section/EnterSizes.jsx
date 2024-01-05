@@ -5,7 +5,7 @@ import { TextField, Button, List, ListItem, ListItemText, ListItemSecondaryActio
 import DeleteIcon from '@mui/icons-material/Delete';
 
 const SizesComponent = () => {
-  const [sizeName, setSizeName] = useState('');
+  const [sizeName, setSizeName] = useState('KangeCollection');
   const [sizes, setSizes] = useState([]);
 
   useEffect(() => {

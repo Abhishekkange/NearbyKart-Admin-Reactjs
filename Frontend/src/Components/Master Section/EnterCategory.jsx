@@ -12,24 +12,19 @@ const EnterCategory = () => {
   const [image, setImage] = useState(null);
   
 
-  const [storeId, setStoreId] = useState(''); // State to hold storeId
+  const [storeId, setStoreId] = useState('KangeCollection'); // State to hold storeId
   const { storeId: contextStoreId } = useContext(StoreContext); // Retrieve StoreContext using useContext hook
-
-  useEffect(() => {
-    if (contextStoreId) {
-      setStoreId(contextStoreId); // Get storeId from StoreContext
-    }
-  }, [contextStoreId]);
-
-  console.log(storeId); // Check if storeId is properly set
-
-
 
   let reader = null;
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+useEffect(() => {
+  if (contextStoreId) {
+    setStoreId(contextStoreId); // Get storeId from StoreContext
+  }
+  
+  fetchData();
+}, [contextStoreId]);
+
   const handleDelete = async (categoryId) => {
     try {
       await axios.delete(`https://nearby-kart-admin-bakend.vercel.app/api/${storeId}/category/${categoryId}`);
@@ -123,8 +118,8 @@ const EnterCategory = () => {
         <TextField
           style={{ width: '550px' }}
           label="Category Name"
-          // value={categoryName}
-          value={storeId}
+          value={categoryName}
+         
           onChange={(e) => setCategoryName(e.target.value)}
           variant="outlined"
           className="mr-3 w-80"
