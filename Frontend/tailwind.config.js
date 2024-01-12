@@ -10,6 +10,8 @@ export default {
         'light-dark': '#1c1c1c',
         'light-gray': '#494949',
         'light-green': '#c8f46a',
+        'darkbrown':'#1B181E',
+        'lightbrown':'#323035'
       }
     },
   },
