@@ -5,6 +5,7 @@ import EnterBrand from './Master Section/EnterBrand';
 import EnterColor from './Master Section/EnterColor';
 import EnterSizes from './Master Section/EnterSizes';
 import MasterSidebar from './Master Section/MasterSidebar';
+import EnterImages from './Bulk Add Section/AddImage'
 
 const Master = () => {
 
@@ -36,6 +37,7 @@ const Master = () => {
             setSelectedComponent(<EnterSizes />);
 
         }
+       
         
 
     }

@@ -19,6 +19,13 @@ const ProductSidebar = ({ onButtonClick }) => {
                 <span>General</span>
             </button>
             <button
+                name="images"
+                className={`flex p-3 gap-3 w-full ${clickedButton === 'images' ? 'bg-blue-400 text-white' : ''} `}
+                onClick={() => handleClick('images')}
+            >
+                <span>Media</span>
+            </button>
+            <button
                 name="Color and Sizes"
                 className={`flex p-3 gap-3 w-full ${clickedButton === 'Color and Sizes' ? 'bg-blue-400 text-white' : ''} `}
                 onClick={() => handleClick('Color and Sizes')}

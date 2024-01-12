@@ -6,6 +6,8 @@ import EnterShortDescription from './EnterShortDescription';
 import CategorySelector from './CategoryAndSubcategory';
 import ColorSizeSelector from './ColorSizeSelector';
 import Tags from './Tags';
+import EnterImages from '../Bulk Add Section/AddImage'
+
 
 const ProductData = () => {
     const [selectedComponent, setSelectedComponent] = useState(null);
@@ -27,6 +29,10 @@ const ProductData = () => {
         }
         else if (buttonName === 'Tags') {
             setSelectedComponent(<Tags />);
+        }
+        else if (buttonName ==='images')
+        {
+            setSelectedComponent(<EnterImages />);
         }
         // Add more conditions for other buttons
     };
