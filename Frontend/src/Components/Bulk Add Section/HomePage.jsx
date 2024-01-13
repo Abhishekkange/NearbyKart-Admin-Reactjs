@@ -21,6 +21,19 @@ function HomePage() {
           >
             Get Started
           </button>
+          <Link to="/Register">
+          <button
+            style={{
+              marginTop: '100px',
+              marginRight: '130px',
+              width: '150px',
+              height: '50px',
+            }}
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded absolute top-96 right-96"
+          >
+            Register
+          </button>
+        </Link>
         </Link>
       </div>
     );
