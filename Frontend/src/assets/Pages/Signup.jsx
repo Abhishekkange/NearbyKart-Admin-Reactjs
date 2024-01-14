@@ -3,10 +3,15 @@ import TextField from '@mui/material/TextField';
 import storeImg from '../../assets/Icons/organisation.png';
 import storeLogo from '../../assets/Icons/storeimg.png';
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
+import Paper from '@mui/material/Paper';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import FlashOnIcon from '@mui/icons-material/FlashOn';
+import InputAdornment from '@mui/material/InputAdornment';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import Typography from '@mui/material/Typography';
 
+import './Signup.css';
 
 
 function Signup() {
@@ -32,77 +37,133 @@ function Signup() {
 
 
       {/* Input fields stacked vertically */}
-      <div style={{ display: 'flex' }} className="mx-auto p-5 ">
+      <div style={{ display: 'flex' }} className="mx-auto p-5  ">
 
-        <div style={{ width: '400px' }} className="leftside">
+        <div style={{ width: '800px', marginRight: '70px' }} className="leftside  ">
 
-          {/* Top section with Business Logo and Store Image */}
-          <div style={{ marginBottom: '10px' }} className="flex ml-5">
+    <div className="imageinput">
+{/* Top section with Business Logo and Store Image */}
+<div style={{ marginBottom: '10px' }} className="flex ml-5">
 
-            <div className="mr-8">
-              <div className="flex justify-between">
-                <p>Business Logo</p>
-              </div>
-              <img style={{ width: '80px', margin: '5px' }} src={storeLogo} alt="Store Logo" />
-              <Button
-                variant="contained"
-                color="primary"
-                startIcon={<CameraAltIcon />}
-              >
-                Add Logo
-              </Button>
-            </div>
+<div className="mr-8">
+  <div className="flex justify-between">
+    <p>Business Logo</p>
+  </div>
+  <img style={{ width: '80px', margin: '5px' }} src={storeLogo} alt="Store Logo" />
+  <Button
 
-            <div>
-              <div className="flex justify-between">
-                <p>Store Image</p>
-              </div>
-              <img style={{ width: '80px', height: '77px', margin: '5px' }} src={storeImg} alt="Store Logo" />
-              <Button
-                variant="contained"
-                color="primary"
-                startIcon={<CameraAltIcon />}
-              >
-                Store Image
-              </Button>
-            </div>
-          </div>
+    variant="contained"
+    color="primary"
+    startIcon={<CameraAltIcon />}
+  >
+    Add Logo
+  </Button>
+</div>
+
+<div>
+  <div className="flex justify-between">
+    <p>Store Image</p>
+  </div>
+  <img style={{ width: '80px', height: '77px', margin: '5px' }} src={storeImg} alt="Store Logo" />
+  <Button
+    variant="contained"
+    color="primary"
+    startIcon={<CameraAltIcon />}
+  >
+    Store Image
+  </Button>
+</div>
+</div>
+    </div>
+          
 
           <div className="general Details p-2 mr-3 mt-6">
 
             <h1 className='ml-2'><strong>General Details</strong></h1>
 
             <TextField
-              style={{ width: '360px', margin: '5px' }}
+              style={{ width: '460px', margin: '5px' }}
               label="Business Legal Name"
               variant="outlined"
               margin="normal"
+              fullWidth
               required
             />
 
-            <TextField
-              style={{ width: '360px', margin: '5px' }}
+<div className="flex">
+
+<TextField
+              style={{ width: '460px', margin: '5px' }}
               label="Create store Name"
               variant="outlined"
               margin="normal"
+              fullWidth
               required
             />
 
+
+</div>
+           
+
             <TextField
-              style={{ width: '360px', margin: '5px' }}
+              style={{ width: '460px', margin: '5px' }}
               label="Store Owner Name"
               variant="outlined"
               margin="normal"
+              fullWidth
               required
             />
 
-            <TextField
-              style={{ width: '360px', margin: '5px' }}
-              label="Mobile Number"
-              variant="outlined"
-              type="tel"
-              required
-            />
+<TextField
+      label="Short Description"
+      variant="outlined"
+      multiline
+      rows={3}
+      fullWidth
+      style={{ width: '460px',marginLeft:'5px',marginTop:'5px' }} // Set your desired width here
+    />
+
+           
+
+
+
+          </div>
+
+
+        </div>
+
+        <div className="rightSide mt-5">
+
+          <div className="Registration">
+
+          <h1 className='ml-2'><strong>Registration Details</strong></h1>
+
+
+          <div className="flex">
+              <TextField
+                style={{ width: '360px', margin: '5px' }}
+                label="Mobile Number"
+                variant="outlined"
+                type="tel"
+                required
+              />
+              <Button
+                style={{
+                  marginTop: '15px',
+                  marginLeft: '20px',
+                  background: '#f0f0f0',
+                  width: '120px',
+                  textTransform: 'lowercase',
+                  height: '40px',
+                }}
+              >
+                <Typography style={{ color: "black",fontSize:'14px' }} variant="h6" align="center">
+                  Verify
+                </Typography>
+              </Button>
+
+            </div>
+
             <TextField
               style={{ width: '360px', margin: '5px' }}
               label="Create a Password"
@@ -114,11 +175,6 @@ function Signup() {
 
 
           </div>
-
-
-        </div>
-
-        <div className="rightSide">
 
           <div className="Address p-2 mb-3">
 
@@ -160,38 +216,39 @@ function Signup() {
           <div className="socialLinks">
             <h1 className='ml-3'><strong>Social Links</strong></h1>
 
-            <div className="">
+          
 
-              <div className='flex'>
+              <TextField
+                style={{ margin: '10px' }}
 
-
-                <TextField
-                  style={{ width: '360px', margin: '5px' }}
-                  label="Instagram "
-                  variant="outlined"
-                  margin="normal"
-                />
-                <img style={{ width: '40px', height: '40px', margin: '10px' }} src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhfehRxVQEg4XuSXxyhD5Erq5ZI0ndE-OLbYUTHlskSl_kWEQfA87OvTgOh5g9k3lBypIzmXbsqHotZQ-lQrYobQhZK3y5_Ji4O5tf-Rz2w9UkC_aLF4Z6u_0mW_lO1b8tZ4iQNz43O95dirIzyBOii2_GUraaW3iDWxmigW2tr8uejREJN95BN_8MUah0/s225/instalogo.jpg" alt="instagram icon" />
-
-              </div>
-
-
-              <div className='flex'>
+                label="Instagram "
+                variant="outlined"
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <InstagramIcon />
+                    </InputAdornment>
+                  ),
+                }}
+              />
 
 
-                <TextField
-                  style={{ width: '360px', margin: '5px' }}
-                  label="facebook "
-                  variant="outlined"
-                  margin="normal"
-                />
-                <img style={{ width: '40px', height: '40px', margin: '10px' }} src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiWQUPEQTUgMClZekuaPKYDkQ6tUYVPXR9IMo7EodZnFfLSH9o2uft2BvcHZ_JgjaqsIVhWpKylu4Pdn00NOlYj6hgfLclv28h45Z-qh12Mlwt2JqoP01eKbavjMtNTlaFbCk3mWfzss8gn3x0RvWt1YPxIMOd_QzSoQ2yzJHsmcUKtTSk69s4m5b_TqKM/s225/fblogo.png" alt="facebook icon" />
+              <TextField
+                style={{ margin: '10px' }}
+                label="facebook"
+                variant="outlined"
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <FacebookIcon />
+                    </InputAdornment>
+                  ),
+                }}
+              />
 
-              </div>
 
 
-
-            </div>
+          
 
 
 

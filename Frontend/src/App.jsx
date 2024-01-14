@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './index.css';
@@ -8,6 +6,7 @@ import AdminPanel from '../src/assets/Pages/Admin';
 import Login from './assets/Pages/Login';
 import Signup from './assets/Pages/Signup';
 import Home from './Components/Bulk Add Section/HomePage'
+
 
 
 function App() {

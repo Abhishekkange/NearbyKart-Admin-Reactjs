@@ -1,0 +1,162 @@
+/* Signup.css */
+
+/* Common Styles */
+.mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .p-2 {
+    padding: 0.5rem;
+  }
+  
+  .p-4 {
+    padding: 1rem;
+  }
+  
+  .mb-3 {
+    margin-bottom: 0.75rem;
+  }
+  
+  .mr-8 {
+    margin-right: 2rem;
+  }
+  
+  .ml-2 {
+    margin-left: 0.5rem;
+  }
+  
+  .ml-3 {
+    margin-left: 0.75rem;
+  }
+  
+  .ml-5 {
+    margin-left: 1.25rem;
+  }
+  
+  .ml-10 {
+    margin-left: 2.5rem;
+  }
+  
+  .mt-3 {
+    margin-top: 0.75rem;
+  }
+  
+  .mt-5 {
+    margin-top: 1.25rem;
+  }
+  
+  .mt-6 {
+    margin-top: 1.5rem;
+  }
+  
+  .ml-70 {
+    margin-left: 17.5rem;
+  }
+  
+  /* Desktop Layout Styles */
+  .desktop-layout {
+    display: block;
+  }
+  
+  /* Mobile Layout Styles */
+  .mobile-layout {
+    display: none;
+  }
+  
+  /* Navbar Styles */
+  .bg-gray-800 {
+    background-color: #2d3748;
+  }
+  
+  .text-white {
+    color: white;
+  }
+  
+  .hover\:underline:hover {
+    text-decoration: underline;
+  }
+  
+  .font-popins {
+    font-family: 'Popins', sans-serif;
+  }
+  
+  /* Business Logo and Store Image Styles */
+  .mb-5 {
+    margin-bottom: 1.25rem;
+  }
+  
+  /* General Details Styles */
+  .general-details {
+    margin-bottom: 1.25rem;
+  }
+  
+  /* Registration Details Styles */
+  .registration {
+    margin-bottom: 1.25rem;
+  }
+  
+  /* Address Styles */
+  .address {
+    margin-bottom: 1.25rem;
+  }
+  
+  /* Social Links Styles */
+  .social-links {
+    margin-bottom: 1.25rem;
+  }
+  
+  /* Get Started Button Styles */
+  .get-started {
+    margin-top: 1.5rem;
+  }
+  
+  /* Mobile Layout Styles */
+  @media only screen and (max-width: 768px) {
+    .desktop-layout {
+      display: none;
+    }
+  
+    .mobile-layout {
+      display: block;
+    }
+  
+    /* Navbar Styles for Mobile */
+    .mobile-nav {
+      background-color: #2d3748;
+      color: white;
+      padding: 10px;
+      text-align: center;
+    }
+  
+    /* Business Logo and Store Image Styles for Mobile */
+    .mb-5 {
+      margin-bottom: 1.5rem;
+    }
+  
+    /* General Details Styles for Mobile */
+    .general-details {
+      margin-bottom: 1.5rem;
+    }
+  
+    /* Registration Details Styles for Mobile */
+    .registration {
+      margin-bottom: 1.5rem;
+    }
+  
+    /* Address Styles for Mobile */
+    .address {
+      margin-bottom: 1.5rem;
+    }
+  
+    /* Social Links Styles for Mobile */
+    .social-links {
+      margin-bottom: 1.5rem;
+    }
+  
+    /* Get Started Button Styles for Mobile */
+    .get-started {
+      margin-top: 1.5rem;
+    }
+  }
+  
