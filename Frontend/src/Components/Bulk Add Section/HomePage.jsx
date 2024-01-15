@@ -24,7 +24,7 @@ function HomePage() {
           <Link to="/Register">
           <button
             style={{
-              marginTop: '100px',
+            
               marginRight: '130px',
               width: '150px',
               height: '50px',
