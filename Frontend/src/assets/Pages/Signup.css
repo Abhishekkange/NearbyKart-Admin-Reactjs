@@ -160,3 +160,43 @@
     }
   }
   
+  /* styles.css */
+.number {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #8c8c8c;
+  display: flex;
+  margin: 15px;
+  justify-content: center;
+  color: white;
+  align-items: center;
+  font-family: 'Popins', sans-serif;
+  font-size: 24px;
+}
+
+.text{
+
+  margin: 10px;
+}
+
+.text .title{
+
+  margin: 5px;
+  padding: 5px;
+  font-size: medium;
+  font-family: 'Popins', sans-serif;
+  color: black;
+  font-weight: 600;
+  font-family: 'poppins', sans-serif;
+ 
+  
+}
+
+.text p{
+
+  margin: 5px;
+  padding: 5px;
+  width: 500px;
+  font-family: 'Popins', sans-serif;
+}
