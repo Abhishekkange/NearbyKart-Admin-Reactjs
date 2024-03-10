@@ -1,6 +1,7 @@
 import React from 'react'
 import '../../assets/Pages/Signup.css';
 import { Link } from 'react-router-dom';
+import Abhishek from '../../assets/Icons/coat1short.png';
 
 
 
@@ -8,7 +9,7 @@ function RegisterInfo() {
   return (
     
 
-    <div>
+    <div >
         
     
     <nav className="bg-gray-800 p-4 flex justify-between items-center">
@@ -21,7 +22,12 @@ function RegisterInfo() {
         
       </nav>
 
-      <div className="container mx-auto mt-8 px-4">
+      <div className="mainbox">
+
+
+        <div className="left ">
+
+        <div className="container mx-auto mt-8 px-4">
       {/* Utilizing Tailwind CSS classes to style the heading */}
       <h1 style={{fontWeight:500}} className="text-gray-800 text-4xl font-sans font-normal">How to create Digital Store on NearbyKart ?</h1>
 
@@ -91,6 +97,20 @@ function RegisterInfo() {
           </button>
         </Link>
       </div>
+    
+
+
+        </div>
+
+        <div className="right">
+        <div>
+      <img className='myimage' src={Abhishek} alt="My Image" />
+    </div>
+
+
+        </div>
+      </div>
+
     
 
 

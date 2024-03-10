@@ -5,6 +5,25 @@
     margin-left: auto;
     margin-right: auto;
   }
+  .myimage{
+
+    width: 570px;
+    height: 570px;
+    margin-top: 20px;
+    
+  }
+
+  .mainbox{
+
+    display: flex;
+  }
+
+  .left{
+
+    margin-left: 20px;
+
+
+  }
   
   .p-2 {
     padding: 0.5rem;
