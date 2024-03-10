@@ -1,7 +1,7 @@
 import React from 'react'
 import '../../assets/Pages/Signup.css';
 import { Link } from 'react-router-dom';
-import Abhishek from '../../assets/Icons/coat1short.png';
+import Abhishek from '../../assets/Icons/abhishek.png';
 
 
 
