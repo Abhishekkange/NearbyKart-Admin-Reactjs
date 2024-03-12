@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Abhishek from '../../assets/Icons/mee.png'
 import './HomePage.css';
+import { Link } from 'react-router-dom';
 
 function HomePage() {
 
@@ -46,9 +47,13 @@ function HomePage() {
              
             />
           </div>
+          <Link to="/admin/bulkProducts">
           <button className="bg-blue-500 login-btn hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
             Login
           </button>
+     
+    </Link>
+          
           <p className="text-sm mt-4">
 
           <button className=" register-btn hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
