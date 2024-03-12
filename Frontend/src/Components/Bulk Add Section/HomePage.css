@@ -1,0 +1,66 @@
+.body{
+
+    overflow-y: hidden;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+.background{
+
+
+    background-color: #f6f6f6;
+
+   
+    
+    height: 100vh;
+}
+.login-btn{
+
+    width: 380px;
+}
+
+.register-btn{
+
+    background-color: #d8d8d8;
+    width: 380px;
+    color: black;
+    font-family: 'poppins', sans-serif;
+    font-weight: 500;
+    
+    
+}
+.nearbykart-txt{
+    color: black;
+    margin-top: 90px;
+    margin-bottom: 50px;
+    font-size: 60px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 200;
+   
+    font-style: normal;
+   
+}
+.nearbykart-txt2{
+    color: black;
+    margin-top: 90px;
+    margin-bottom: 50px;
+    font-size: 60px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+   
+    font-style: italic;
+   
+}
+
+.myImage{
+
+    max-width: 70%;
+  height: auto;
+
+}
+
+.loginBox{
+
+
+
+}
