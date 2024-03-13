@@ -1,14 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import Abhishek from '../../assets/Icons/app.png';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import './HomePage.css';
+
 
 function HomePage() {
   const [password, setPassword] = useState('');
   const [showInstallPrompt, setShowInstallPrompt] = useState(false);
   const [deferredPrompt, setDeferredPrompt] = useState(null);
+  const [email,setEmail] = useState('');
+  const [isTokenStored,setIsTokenStored] = useState(false);
+
+
+
+ 
+
 
   useEffect(() => {
+
+    //check local storage for token
+    if(localStorage.getItem("AuthToken")!=null)
+    {
+      setIsTokenStored(true);
+      setEmail("");
+      setPassword("");
+    }
     const handleBeforeInstallPrompt = (event) => {
       event.preventDefault();
       setDeferredPrompt(event);
@@ -37,6 +54,64 @@ function HomePage() {
     }
   };
 
+  const handleEmailChange = (event)=>{
+
+    setEmail(event.target.value);
+
+  }
+  const handlePasswordChange = (event)=>{
+
+    setPassword(event.target.value);
+  }
+
+  const login = ()=>{
+
+    const reqBody = {
+
+      "email":email,
+      "password":password
+
+    }
+
+    console.log("login called");
+
+    //call login API using axios
+    axios.post('https://nearby-kart-admin-bakend.vercel.app/api/login', reqBody)
+    .then((response) => {
+
+      const message = response.data.message;
+      if(message === "User not found")
+      {
+
+        alert(message);
+      }
+      else if(message === "Incorrect password")
+      {
+
+        alert(message);
+
+      }
+      else{
+
+        
+        localStorage.setItem("AuthToken",message);
+       setIsTokenStored(true);
+      
+
+      }
+
+
+    }).catch((err) => {
+
+
+      alert(err.message);
+    });
+
+
+
+
+  }
+
   return (
     <div className="flex h-screen background">
       {/* Left Content */}
@@ -57,6 +132,8 @@ function HomePage() {
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="email"
               type="email"
+              value={email}
+              onChange={handleEmailChange}
               placeholder="Email"
             />
           </div>
@@ -67,15 +144,29 @@ function HomePage() {
               type="password"
               placeholder="Password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={handlePasswordChange}
             />
           </div>
-          <button
-            className="bg-blue-500 login-btn hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="button"
-          >
-            Login
-          </button>
+
+          {!isTokenStored ? (
+      <button
+        onClick={login}
+        className="bg-blue-500 login-btn hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        type="button"
+      >
+        Login
+      </button>
+    ) : (
+      <Link to="/admin/bulkProduct" >
+        <button className="bg-blue-500 login-btn hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+
+        Continue to Admin Dashboard
+
+        </button>
+       
+      </Link>
+    )}
+         
           <p className="text-sm mt-4">
             <Link to="/register">
               <button className="register-btn hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
