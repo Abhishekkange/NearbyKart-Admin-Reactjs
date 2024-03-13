@@ -22,7 +22,7 @@ function App() {
     // Simulate loading time
     setTimeout(() => {
       setLoading(false);
-    }, 2000); // 2000 milliseconds = 2 seconds
+    }, 3500); // 2000 milliseconds = 2 seconds
   }, []);
 
   return (

@@ -3,9 +3,25 @@ import Abhishek from '../../assets/Icons/app.png'
 import './HomePage.css';
 import { Link } from 'react-router-dom';
 
+
+
 function HomePage() {
 
   const[password,setPassword] =useState();
+  
+
+  
+
+  const Login = ()=>{
+
+    // call login APi using Axio
+
+
+
+
+
+
+  }
 
 
   return (
