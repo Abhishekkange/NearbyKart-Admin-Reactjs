@@ -15,7 +15,6 @@ import ProductBuilt from './ProductBuilt';
 
 const FinishedProduct = (props) => {
 
-
   const [sizes, setSizes] = useState(['Small', 'Medium', 'Large', 'XL']);
   const { productState, setProductState } = useContext(ProductContext);
   const[pImage,setPImage] = useState(null);
@@ -23,14 +22,22 @@ const FinishedProduct = (props) => {
   const[buildingProduct,setBuildingProduct] = useState(false);
   const [isProductBuilt,setIsProductBuilt] = useState(false);
 
-  const [storeId, setStoreId] = useState('KangeCollection'); // State to hold storeId
+  const [storeId, setStoreId] = useState(localStorage.getItem('AuthToken'));
   const { storeId: contextStoreId } = useContext(StoreContext); // Retrieve StoreContext using useContext hook
 
   useEffect(() => {
-    if (contextStoreId) {
-      setStoreId(contextStoreId); // Get storeId from StoreContext
+    if (localStorage.getItem('AuthToken')) {
+      
+      setStoreId(localStorage.getItem('AuthToken'));
+
     }
-  }, [contextStoreId]);
+    else{
+
+      //redirect to browser
+      alert("Login Required");
+
+    }
+  },[localStorage.getItem('AuthToken')]);
 
   const handleRefresh = () => {
 
