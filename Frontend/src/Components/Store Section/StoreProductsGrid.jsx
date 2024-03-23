@@ -6,14 +6,14 @@ import ProductCard from './StoreProductCard'; // Make sure to replace 'ProductCa
 const ProductGrid = () => {
   const [products, setProducts] = useState([]);
 
-  const [storeId, setStoreId] = useState('KangeCollection'); // State to hold storeId
-  const { storeId: contextStoreId } = useContext(StoreContext); // Retrieve StoreContext using useContext hook
-
+ 
   useEffect(() => {
-    if (contextStoreId) {
-      setStoreId(contextStoreId); // Get storeId from StoreContext
+    const storeId = localStorage.getItem('AuthToken');
+    if (storeId) {
+
+      alert("Login Required");
     }
-  }, [contextStoreId]);
+  }, [storeId]);
 
   
 

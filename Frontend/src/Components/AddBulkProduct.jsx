@@ -9,7 +9,8 @@ import ShowImage from "./Bulk Add Section/ShowImage";
   import productContext from '../Context/ProductContext';
   import imageCompression from 'browser-image-compression';
 
-  const AddBulkProduct = () => {
+  const 
+  AddBulkProduct = () => {
   const [images, setImages] = useState([]);
   const [selectedImageIndex, setSelectedImageIndex] = useState(null);
   const fileInputRef = useRef(null);

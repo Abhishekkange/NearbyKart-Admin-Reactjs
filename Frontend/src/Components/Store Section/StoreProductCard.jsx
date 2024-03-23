@@ -7,15 +7,14 @@ const ProductCard = ({ product,onDelete }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
-  const [storeId, setStoreId] = useState('KangeCollection'); // State to hold storeId
-  const { storeId: contextStoreId } = useContext(StoreContext); // Retrieve StoreContext using useContext hook
-
+ 
   useEffect(() => {
-    if (contextStoreId) {
-      setStoreId(contextStoreId); // Get storeId from StoreContext
-    }
-  }, [contextStoreId]);
+    const storeId = localStorage.getItem('AuthToken');
+    if (storeId) {
 
+      alert("Login Required");
+    }
+  }, [storeId]);
   const handleToggle = () => {
     setIsExpanded(!isExpanded);
   };

@@ -11,9 +11,8 @@ const EnterCategory = () => {
   const [categories, setCategories] = useState([]);
   const [image, setImage] = useState(null);
   
+  const storeId = localStorage.getItem('AuthToken');
 
-  const [storeId, setStoreId] = useState('KangeCollection'); // State to hold storeId
-  const { storeId: contextStoreId } = useContext(StoreContext); // Retrieve StoreContext using useContext hook
 
   let reader = null;
 

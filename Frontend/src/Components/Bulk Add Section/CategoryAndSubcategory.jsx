@@ -15,14 +15,14 @@ import axios from 'axios';
   const [subcategories, setSubcategories] = useState([]);
   const [brands, setBrands] = useState([]);
 
-  const [storeId, setStoreId] = useState('KangeCollection'); // State to hold storeId
-  const { storeId: contextStoreId } = useContext(StoreContext); // Retrieve StoreContext using useContext hook
 
   useEffect(() => {
-    if (contextStoreId) {
-      setStoreId(contextStoreId); // Get storeId from StoreContext
+    const storeId = localStorage.getItem('AuthToken');
+
+    if (!storeId) {
+      alert("Login Required")
     }
-  }, [contextStoreId]);
+  }, [storeId]);
 
 
 

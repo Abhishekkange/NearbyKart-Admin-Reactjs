@@ -16,15 +16,14 @@ const Entersubcategory = () => {
   const [image,setImage] = useState('');
   const [myFile,setMyFile] = useState(null);
 
-  const [storeId, setStoreId] = useState('KangeCollection'); // State to hold storeId
-  const { storeId: contextStoreId } = useContext(StoreContext); // Retrieve StoreContext using useContext hook
-
+ 
   useEffect(() => {
-    if (contextStoreId) {
-      setStoreId(contextStoreId); // Get storeId from StoreContext
+    const storeId = localStorage.getItem('AuthToken');
+    if (storeId) {
+
+      alert("Login Required");
     }
-  }, [contextStoreId]);
-  
+  }, [storeId]);
 
   // Fetch subcategory from API on component mount
   useEffect(() => {

@@ -22,22 +22,21 @@ const FinishedProduct = (props) => {
   const[buildingProduct,setBuildingProduct] = useState(false);
   const [isProductBuilt,setIsProductBuilt] = useState(false);
 
-  const [storeId, setStoreId] = useState(localStorage.getItem('AuthToken'));
-  const { storeId: contextStoreId } = useContext(StoreContext); // Retrieve StoreContext using useContext hook
+  const storeId = useState(localStorage.getItem('AuthToken'));
 
-  useEffect(() => {
-    if (localStorage.getItem('AuthToken')) {
+  // useEffect(() => {
+  //   if (localStorage.getItem('AuthToken')) {
       
-      setStoreId(localStorage.getItem('AuthToken'));
+  //     setStoreId(localStorage.getItem('AuthToken'));
 
-    }
-    else{
+  //   }
+  //   else{
 
-      //redirect to browser
-      alert("Login Required");
+  //     //redirect to browser
+  //     alert("Login Required");
 
-    }
-  },[localStorage.getItem('AuthToken')]);
+  //   }
+  // },[localStorage.getItem('AuthToken')]);
 
   const handleRefresh = () => {
 
