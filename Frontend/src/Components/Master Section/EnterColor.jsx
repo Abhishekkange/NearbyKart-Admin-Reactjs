@@ -10,14 +10,8 @@ const AddColorComponent = () => {
   const [selectedColor, setSelectedColor] = useState('#000000');
   const [addedColors, setAddedColors] = useState([]);
 
+  const storeId = localStorage.getItem('AuthToken');
 
-  useEffect(() => {
-    const storeId = localStorage.getItem('AuthToken');
-    if (storeId) {
-
-      alert("Login Required");
-    }
-  }, [storeId]);
 
   useEffect(() => {
     fetchData();

@@ -10,14 +10,7 @@ const BrandsComponent = () => {
 
 
   
-  useEffect(() => {
-    const storeId = localStorage.getItem('AuthToken');
-
-    
-    if (!storeId) {
-      alert("Login Required");
-    }
-  }, [storeId]);
+  const storeId = localStorage.getItem('AuthToken');
 
   useEffect(() => {
     fetchData();

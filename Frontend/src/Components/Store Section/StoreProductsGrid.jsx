@@ -6,14 +6,8 @@ import ProductCard from './StoreProductCard'; // Make sure to replace 'ProductCa
 const ProductGrid = () => {
   const [products, setProducts] = useState([]);
 
- 
-  useEffect(() => {
-    const storeId = localStorage.getItem('AuthToken');
-    if (storeId) {
+  const storeId = localStorage.getItem('AuthToken');
 
-      alert("Login Required");
-    }
-  }, [storeId]);
 
   
 

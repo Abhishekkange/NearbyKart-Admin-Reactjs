@@ -36,16 +36,10 @@ const ColorSizeSelector = () => {
     const [colorsFromApi, setColorsFromApi] = useState([]);
     const [sizesFromApi, setSizesFromApi] = useState([]);
 
+    const storeId = localStorage.getItem('AuthToken');
 
-    useEffect(() => {
-        const storeId = localStorage.getItem('AuthToken');
 
-      if (!storeId) {
 
-            alert("Login failed");        
-
-      }
-    }, [storeId]);
 
 
   useEffect(() => {

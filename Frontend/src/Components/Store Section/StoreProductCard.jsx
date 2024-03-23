@@ -7,14 +7,8 @@ const ProductCard = ({ product,onDelete }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
- 
-  useEffect(() => {
-    const storeId = localStorage.getItem('AuthToken');
-    if (storeId) {
+  const storeId = localStorage.getItem('AuthToken');
 
-      alert("Login Required");
-    }
-  }, [storeId]);
   const handleToggle = () => {
     setIsExpanded(!isExpanded);
   };

@@ -17,13 +17,7 @@ const Entersubcategory = () => {
   const [myFile,setMyFile] = useState(null);
 
  
-  useEffect(() => {
-    const storeId = localStorage.getItem('AuthToken');
-    if (storeId) {
-
-      alert("Login Required");
-    }
-  }, [storeId]);
+  const storeId = localStorage.getItem('AuthToken');
 
   // Fetch subcategory from API on component mount
   useEffect(() => {

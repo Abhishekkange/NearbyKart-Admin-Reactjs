@@ -16,13 +16,8 @@ import axios from 'axios';
   const [brands, setBrands] = useState([]);
 
 
-  useEffect(() => {
-    const storeId = localStorage.getItem('AuthToken');
+  const storeId = localStorage.getItem('AuthToken');
 
-    if (!storeId) {
-      alert("Login Required")
-    }
-  }, [storeId]);
 
 
 

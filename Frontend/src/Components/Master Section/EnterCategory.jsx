@@ -16,13 +16,9 @@ const EnterCategory = () => {
 
   let reader = null;
 
-useEffect(() => {
-  if (contextStoreId) {
-    setStoreId(contextStoreId); // Get storeId from StoreContext
-  }
-  
+
   fetchData();
-}, [contextStoreId]);
+
 
   const handleDelete = async (categoryId) => {
     try {
