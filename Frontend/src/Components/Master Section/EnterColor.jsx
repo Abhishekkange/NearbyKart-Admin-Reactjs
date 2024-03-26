@@ -6,7 +6,7 @@ import { ChromePicker } from 'react-color';
 import axios, { Axios } from 'axios';
 
 const AddColorComponent = () => {
-  const [colorName, setColorName] = useState('KangeCollection');
+  const [colorName, setColorName] = useState('');
   const [selectedColor, setSelectedColor] = useState('#000000');
   const [addedColors, setAddedColors] = useState([]);
 

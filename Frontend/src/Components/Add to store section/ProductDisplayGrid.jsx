@@ -8,14 +8,9 @@ import ProductCard from './ProductCard'; // Make sure to replace 'ProductCard' w
 const ProductGrid = () => {
   const [products, setProducts] = useState([]);
 
-  const [storeId, setStoreId] = useState('KangeCollection'); // State to hold storeId
-  const { storeId: contextStoreId } = useContext(StoreContext); // Retrieve StoreContext using useContext hook
+  const storeId = localStorage.getItem('AuthToken');
 
-  useEffect(() => {
-    if (contextStoreId) {
-      setStoreId(contextStoreId); // Get storeId from StoreContext
-    }
-  }, [contextStoreId]);
+
 
   
 
@@ -54,7 +49,15 @@ const ProductGrid = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`https://nearby-kart-admin-bakend.vercel.app/api/${storeId}/buildProducts`); // Replace with your API endpoint
+      const headers = {
+        'x-session-token': storeId,
+        'Content-Type': 'application/json'
+      };
+  
+    const config = {
+        headers: headers,
+       };
+      const response = await axios.get(`https://nearby-kart-admin-bakend.vercel.app/api/buildProducts`,config); // Replace with your API endpoint
       //create product List from reesponse object
       const products = [];
 
@@ -96,6 +99,7 @@ const ProductGrid = () => {
       });
      
       setProducts(products);
+      console.log(products);
 
       
     } catch (error) {

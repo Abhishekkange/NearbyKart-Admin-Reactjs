@@ -126,7 +126,15 @@ const FinishedProduct = (props) => {
     try {
 
 
-      const response = await axios.post(`https://nearby-kart-admin-bakend.vercel.app/api/${storeId}/buildProduct`, productData);
+      const headers = {
+        'x-session-token': storeId,
+        'Content-Type': 'application/json'
+      };
+  
+    const config = {
+        headers: headers,
+       };
+      const response = await axios.post(`https://nearby-kart-admin-bakend.vercel.app/api/buildProduct`, productData,config);
 
 
     } catch (error) {

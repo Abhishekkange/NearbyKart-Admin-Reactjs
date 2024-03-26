@@ -84,7 +84,7 @@ const Entersubcategory = () => {
     const config = {
         headers: headers,
        };
-      const response = await axios.get(`https://nearby-kart-admin-bakend.vercel.app/api/subcategory`); // Replace with your API endpoint
+      const response = await axios.get(`https://nearby-kart-admin-bakend.vercel.app/api/subcategory`,config); // Replace with your API endpoint
       setsubcategory(response.data); // Assuming API returns an array of subcategory
     } catch (error) {
       console.error('Error fetching data:', error);

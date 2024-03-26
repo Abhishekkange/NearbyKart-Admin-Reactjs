@@ -15,6 +15,23 @@ const EnterCategory = () => {
 
 
   let reader = null;
+  const fetchData = async () => {
+    try {
+      const headers = {
+        'x-session-token': storeId,
+        'Content-Type': 'application/json'
+      };
+  
+    const config = {
+        headers: headers,
+       };
+      const response = await axios.get(`https://nearby-kart-admin-bakend.vercel.app/api/category`,config);
+      setCategories(response.data);
+     
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
 
 
   fetchData();
@@ -90,23 +107,7 @@ const EnterCategory = () => {
     }
   };
 
-  const fetchData = async () => {
-    try {
-      const headers = {
-        'x-session-token': storeId,
-        'Content-Type': 'application/json'
-      };
-  
-    const config = {
-        headers: headers,
-       };
-      const response = await axios.get(`https://nearby-kart-admin-bakend.vercel.app/api/category`,config);d
-      setCategories(response.data);
-     
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
+ 
 
   const handleCreateCategory = async () => {
     try {

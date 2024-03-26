@@ -45,7 +45,24 @@ import axios from 'axios';
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get(`https://nearby-kart-admin-bakend.vercel.app/api/${storeId}/category`);
+      const fetchData = async () => {
+        try {
+          const headers = {
+            'x-session-token': storeId,
+            'Content-Type': 'application/json'
+          };
+      
+        const config = {
+            headers: headers,
+           };
+          const response = await axios.get(`https://nearby-kart-admin-bakend.vercel.app/api/category`,config);
+          setCategories(response.data);
+         
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      };
+      const response = await axios.get(`https://nearby-kart-admin-bakend.vercel.app/api/category`);
      
       //use Map function to add allcategories to list
       const categoriesData = response.data.map(category => ({
@@ -62,7 +79,15 @@ import axios from 'axios';
 
   const fetchSubcategories = async () => {
     try {
-      const response = await axios.get(`https://nearby-kart-admin-bakend.vercel.app/api/${storeId}/subcategory`);
+      const headers = {
+        'x-session-token': storeId,
+        'Content-Type': 'application/json'
+      };
+  
+    const config = {
+        headers: headers,
+       };
+      const response = await axios.get(`https://nearby-kart-admin-bakend.vercel.app/api/subcategory`,config);
      //use Map function to add allcategories to list
      const subcategoriesData = response.data.map(subcategory => ({
 
@@ -81,7 +106,15 @@ import axios from 'axios';
 
   const fetchBrands = async () => {
     try {
-      const response = await axios.get(`https://nearby-kart-admin-bakend.vercel.app/api/${storeId}/AllBrands`);
+      const headers = {
+        'x-session-token': storeId,
+        'Content-Type': 'application/json'
+      };
+  
+    const config = {
+        headers: headers,
+       };
+      const response = await axios.get(`https://nearby-kart-admin-bakend.vercel.app/api/AllBrands`,config);
       setBrands(response.data);
     } catch (error) {
       console.error('Error fetching brands:', error);

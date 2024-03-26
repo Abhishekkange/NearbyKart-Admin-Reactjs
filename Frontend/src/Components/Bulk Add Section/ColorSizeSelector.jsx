@@ -26,20 +26,14 @@ const ColorSizeSelector = () => {
 
 
     const {productState,setProductState} = useContext(productContext);
-
-    
-
     const [selectedColor, setSelectedColor] = useState('');
     const [selectedSize, setSelectedSize] = useState('');
     const [selectedColors, setSelectedColors] = useState([]);
     const [colorSizes, setColorSizes] = useState({});
     const [colorsFromApi, setColorsFromApi] = useState([]);
     const [sizesFromApi, setSizesFromApi] = useState([]);
-
     const storeId = localStorage.getItem('AuthToken');
-
-
-
+    
 
 
   useEffect(() => {
@@ -49,7 +43,32 @@ const ColorSizeSelector = () => {
 
   const fetchColorsFromApi = async () => {
     try {
-      const response = await axios.get(`https://nearby-kart-admin-bakend.vercel.app/api/${storeId}/AllColors`);
+         const fetchData = async () => {
+    try {
+      const headers = {
+        'x-session-token': storeId,
+        'Content-Type': 'application/json'
+      };
+  
+    const config = {
+        headers: headers,
+       };
+      const response = await axios.get(`https://nearby-kart-admin-bakend.vercel.app/api/category`,config);
+      setCategories(response.data);
+     
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+  const headers = {
+    'x-session-token': storeId,
+    'Content-Type': 'application/json'
+  };
+
+const config = {
+    headers: headers,
+   };
+      const response = await axios.get(`https://nearby-kart-admin-bakend.vercel.app/api/AllColors`,config);
       setColorsFromApi(response.data);
     } catch (error) {
       console.error('Error fetching colors:', error);
@@ -58,7 +77,15 @@ const ColorSizeSelector = () => {
 
   const fetchSizesFromApi = async () => {
     try {
-      const response = await axios.get(`https://nearby-kart-admin-bakend.vercel.app/api/${storeId}/AllSizes`);
+        const headers = {
+            'x-session-token': storeId,
+            'Content-Type': 'application/json'
+          };
+      
+        const config = {
+            headers: headers,
+           };
+      const response = await axios.get(`https://nearby-kart-admin-bakend.vercel.app/api/AllSizes`,config);
       setSizesFromApi(response.data);
     } catch (error) {
       console.error('Error fetching sizes:', error);

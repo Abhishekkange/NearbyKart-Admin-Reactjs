@@ -5,7 +5,7 @@ import { TextField, Button, List, ListItem, ListItemText, ListItemSecondaryActio
 import DeleteIcon from '@mui/icons-material/Delete';
 
 const SizesComponent = () => {
-  const [sizeName, setSizeName] = useState('KangeCollection');
+  const [sizeName, setSizeName] = useState('');
   const [sizes, setSizes] = useState([]);
 
   useEffect(() => {
@@ -42,7 +42,7 @@ const SizesComponent = () => {
     const config = {
         headers: headers,
        };
-      await axios.post(`https://nearby-kart-admin-bakend.vercel.app/api/${storeId}/size`, { sizeName },config);
+      await axios.post(`https://nearby-kart-admin-bakend.vercel.app/api/size`, { sizeName },config);
       fetchData();
       setSizeName('');
     } catch (error) {

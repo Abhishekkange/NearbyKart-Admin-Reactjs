@@ -43,7 +43,15 @@ import ConfirmationPopup from './ComfirmationBox';
 
     try{
 
-        const result = await axios.post(`https://nearby-kart-admin-bakend.vercel.app/api/${storeId}/saveProduct`,product);
+      const headers = {
+        'x-session-token': storeId,
+        'Content-Type': 'application/json'
+      };
+  
+    const config = {
+        headers: headers,
+       };
+        const result = await axios.post(`https://nearby-kart-admin-bakend.vercel.app/api/saveProduct`,product,config);
         console.log('Product Added to store');
         console.log(result);
         handleDelete(product.id);
@@ -55,16 +63,22 @@ import ConfirmationPopup from './ComfirmationBox';
 
         console.log('error');
     }
-   
-
-
+  
 
   };
 
   const handleDelete = async(id) => {
 
+    const headers = {
+      'x-session-token': storeId,
+      'Content-Type': 'application/json'
+    };
 
-    const response = await axios.delete(`https://nearby-kart-admin-bakend.vercel.app/api/${storeId}/buildProducts/${id}`);
+  const config = {
+      headers: headers,
+     };
+
+    const response = await axios.delete(`https://nearby-kart-admin-bakend.vercel.app/api/buildProducts/${id}`,config);
     setShowModal(false);
     onDelete(); 
 
