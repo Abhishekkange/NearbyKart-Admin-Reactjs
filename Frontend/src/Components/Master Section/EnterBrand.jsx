@@ -18,16 +18,36 @@ const BrandsComponent = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`https://nearby-kart-admin-bakend.vercel.app/api/${storeId}/brand`);
+      const headers = {
+        'x-session-token': storeId,
+        'Content-Type': 'application/json'
+      };
+  
+    const config = {
+        headers: headers,
+       };
+
+      const response = await axios.get(`https://nearby-kart-admin-bakend.vercel.app/api/brand`,config);
       setBrands(response.data);
     } catch (error) {
       console.error('Error fetching brands:', error);
     }
   };
 
+
   const handleAddBrand = async () => {
     try {
-      await axios.post(`https://nearby-kart-admin-bakend.vercel.app/api/${storeId}/brand`, { brandName });
+
+      const headers = {
+        'x-session-token': storeId,
+        'Content-Type': 'application/json'
+      };
+  
+    const config = {
+        headers: headers,
+       };
+
+      await axios.post(`https://nearby-kart-admin-bakend.vercel.app/api/brand`, { brandName },config);
       fetchData();
       setBrandName('');
     } catch (error) {
@@ -37,7 +57,16 @@ const BrandsComponent = () => {
 
   const handleDeleteBrand = async (brandId) => {
     try {
-      await axios.delete(`https://nearby-kart-admin-bakend.vercel.app/api/${storeId}/brand/${brandId}`);
+
+      const headers = {
+        'x-session-token': storeId,
+        'Content-Type': 'application/json'
+      };
+  
+    const config = {
+        headers: headers,
+       };
+      await axios.delete(`https://nearby-kart-admin-bakend.vercel.app/api/brand/${brandId}`,config);
       fetchData();
     } catch (error) {
       console.error('Error deleting brand:', error);

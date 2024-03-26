@@ -17,7 +17,15 @@ const SizesComponent = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`https://nearby-kart-admin-bakend.vercel.app/api/${storeId}/size`);
+      const headers = {
+        'x-session-token': storeId,
+        'Content-Type': 'application/json'
+      };
+  
+    const config = {
+        headers: headers,
+       };
+      const response = await axios.get(`https://nearby-kart-admin-bakend.vercel.app/api/size`,config);
       setSizes(response.data);
     } catch (error) {
       console.error('Error fetching sizes:', error);
@@ -26,7 +34,15 @@ const SizesComponent = () => {
 
   const handleAddSize = async () => {
     try {
-      await axios.post(`https://nearby-kart-admin-bakend.vercel.app/api/${storeId}/size`, { sizeName });
+      const headers = {
+        'x-session-token': storeId,
+        'Content-Type': 'application/json'
+      };
+  
+    const config = {
+        headers: headers,
+       };
+      await axios.post(`https://nearby-kart-admin-bakend.vercel.app/api/${storeId}/size`, { sizeName },config);
       fetchData();
       setSizeName('');
     } catch (error) {
@@ -36,7 +52,15 @@ const SizesComponent = () => {
 
   const handleDeleteSize = async (sizeId) => {
     try {
-      await axios.delete(`https://nearby-kart-admin-bakend.vercel.app/api/size/${sizeId}`);
+      const headers = {
+        'x-session-token': storeId,
+        'Content-Type': 'application/json'
+      };
+  
+    const config = {
+        headers: headers,
+       };
+      await axios.delete(`https://nearby-kart-admin-bakend.vercel.app/api/size/${sizeId}`,config);
       fetchData();
     } catch (error) {
       console.error('Error deleting size:', error);

@@ -76,7 +76,15 @@ const Entersubcategory = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`https://nearby-kart-admin-bakend.vercel.app/api/${storeId}/subcategory`); // Replace with your API endpoint
+      const headers = {
+        'x-session-token': storeId,
+        'Content-Type': 'application/json'
+      };
+  
+    const config = {
+        headers: headers,
+       };
+      const response = await axios.get(`https://nearby-kart-admin-bakend.vercel.app/api/subcategory`); // Replace with your API endpoint
       setsubcategory(response.data); // Assuming API returns an array of subcategory
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -85,7 +93,15 @@ const Entersubcategory = () => {
 
   const handleCreatesubcategory = async () => {
     try {
-      await axios.post(`https://nearby-kart-admin-bakend.vercel.app/api/${storeId}/subcategory`, { subcategoryName, subcategoryImage }); // Replace with your API endpoint
+      const headers = {
+        'x-session-token': storeId,
+        'Content-Type': 'application/json'
+      };
+  
+    const config = {
+        headers: headers,
+       };
+      await axios.post(`https://nearby-kart-admin-bakend.vercel.app/api/subcategory`, { subcategoryName, subcategoryImage },config); // Replace with your API endpoint
       fetchData(); // Refresh subcategory after adding new subcategory
       setsubcategoryName('');
       setsubcategoryImage('');
@@ -97,7 +113,15 @@ const Entersubcategory = () => {
 
   const handleDeletesubcategory = async (subcategoryId) => {
     try {
-      await axios.delete(`https://nearby-kart-admin-bakend.vercel.app/api/${storeId}/subcategory/${subcategoryId}`); // Replace with your API endpoint
+      const headers = {
+        'x-session-token': storeId,
+        'Content-Type': 'application/json'
+      };
+  
+    const config = {
+        headers: headers,
+       };
+      await axios.delete(`https://nearby-kart-admin-bakend.vercel.app/api/subcategory/${subcategoryId}`,config); // Replace with your API endpoint
       fetchData(); // Refresh subcategory after deleting a subcategory
     } catch (error) {
       console.error('Error deleting subcategory:', error);

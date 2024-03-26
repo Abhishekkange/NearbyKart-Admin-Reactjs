@@ -22,7 +22,15 @@ const EnterCategory = () => {
 
   const handleDelete = async (categoryId) => {
     try {
-      await axios.delete(`https://nearby-kart-admin-bakend.vercel.app/api/${storeId}/category/${categoryId}`);
+      const headers = {
+        'x-session-token': storeId,
+        'Content-Type': 'application/json'
+      };
+  
+    const config = {
+        headers: headers,
+       };
+      await axios.delete(`https://nearby-kart-admin-bakend.vercel.app/api/category/${categoryId}`);
       fetchData(); // Refresh categories after deletion
       console.log('Category deleted successfully');
     } catch (error) {
@@ -62,6 +70,8 @@ const EnterCategory = () => {
     
     
     try {
+
+      
       const response = await axios.post(
         'https://nearby-kart-admin-bakend.vercel.app/api/uploadImage2cloud',
         formData,
@@ -82,7 +92,15 @@ const EnterCategory = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`https://nearby-kart-admin-bakend.vercel.app/api/${storeId}/category`);
+      const headers = {
+        'x-session-token': storeId,
+        'Content-Type': 'application/json'
+      };
+  
+    const config = {
+        headers: headers,
+       };
+      const response = await axios.get(`https://nearby-kart-admin-bakend.vercel.app/api/category`,config);d
       setCategories(response.data);
      
     } catch (error) {
@@ -92,11 +110,19 @@ const EnterCategory = () => {
 
   const handleCreateCategory = async () => {
     try {
-      console.log(categoryImage);
-      await axios.post(`https://nearby-kart-admin-bakend.vercel.app/api/${storeId}/category`, {
+      const headers = {
+        'x-session-token': storeId,
+        'Content-Type': 'application/json'
+      };
+  
+    const config = {
+        headers: headers,
+       };
+    
+      await axios.post(`https://nearby-kart-admin-bakend.vercel.app/api/category`, {
         categoryName,
         categoryImage,
-      });
+      },config);
       fetchData();
       setCategoryName('');
       setCategoryImage('');
