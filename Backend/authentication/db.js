@@ -12,7 +12,6 @@ const connectToMongoose = () => {
     });
 };
 
-// Invoke the function to establish the connection immediately
-connectToMongoose();
 
+connectToMongoose();
 module.exports = connectToMongoose;
