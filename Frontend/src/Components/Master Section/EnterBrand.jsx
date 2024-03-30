@@ -3,10 +3,17 @@ import StoreContext from '../../Context/StoreContext'
 import axios from 'axios';
 import { TextField, Button, List, ListItem, ListItemText, ListItemSecondaryAction, IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
+import API from '../API/masterAPI'
+
+
+
+
+
 
 const BrandsComponent = () => {
   const [brandName, setBrandName] = useState('');
   const [brands, setBrands] = useState([]);
+  const baseApi = API();
 
 
   
@@ -27,7 +34,7 @@ const BrandsComponent = () => {
         headers: headers,
        };
 
-      const response = await axios.get(`https://nearby-kart-admin-bakend.vercel.app/api/brand`,config);
+      const response = await axios.get(`${baseApi}brand`,config);
       setBrands(response.data);
     } catch (error) {
       console.error('Error fetching brands:', error);
@@ -47,7 +54,7 @@ const BrandsComponent = () => {
         headers: headers,
        };
 
-      await axios.post(`https://nearby-kart-admin-bakend.vercel.app/api/brand`, { brandName },config);
+      await axios.post(`${baseApi}brand`, { brandName },config);
       fetchData();
       setBrandName('');
     } catch (error) {
@@ -66,7 +73,7 @@ const BrandsComponent = () => {
     const config = {
         headers: headers,
        };
-      await axios.delete(`https://nearby-kart-admin-bakend.vercel.app/api/brand/${brandId}`,config);
+      await axios.delete(`${baseApi}brand/${brandId}`,config);
       fetchData();
     } catch (error) {
       console.error('Error deleting brand:', error);

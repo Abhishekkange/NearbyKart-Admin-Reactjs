@@ -4,6 +4,8 @@ import axios from 'axios';
 import { TextField, Button, Grid, Card, CardContent, CardMedia, IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Compressor from 'compressorjs';
+import API from '../API/masterAPI';
+
 
 let reader = null;
 const Entersubcategory = () => {
@@ -16,6 +18,7 @@ const Entersubcategory = () => {
   const [image,setImage] = useState('');
   const [myFile,setMyFile] = useState(null);
 
+  const baseApi = API();
  
   const storeId = localStorage.getItem('AuthToken');
 
@@ -57,7 +60,7 @@ const Entersubcategory = () => {
     
     try {
       const response = await axios.post(
-        'https://nearby-kart-admin-bakend.vercel.app/api/uploadImage2cloud',
+        `${baseApi}uploadImage2cloud`,
         formData,
         {
           headers: {
@@ -84,7 +87,7 @@ const Entersubcategory = () => {
     const config = {
         headers: headers,
        };
-      const response = await axios.get(`https://nearby-kart-admin-bakend.vercel.app/api/subcategory`,config); // Replace with your API endpoint
+      const response = await axios.get(`${baseApi}subcategory`,config); // Replace with your API endpoint
       setsubcategory(response.data); // Assuming API returns an array of subcategory
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -101,7 +104,7 @@ const Entersubcategory = () => {
     const config = {
         headers: headers,
        };
-      await axios.post(`https://nearby-kart-admin-bakend.vercel.app/api/subcategory`, { subcategoryName, subcategoryImage },config); // Replace with your API endpoint
+      await axios.post(`${baseApi}subcategory`, { subcategoryName, subcategoryImage },config); // Replace with your API endpoint
       fetchData(); // Refresh subcategory after adding new subcategory
       setsubcategoryName('');
       setsubcategoryImage('');
@@ -121,7 +124,7 @@ const Entersubcategory = () => {
     const config = {
         headers: headers,
        };
-      await axios.delete(`https://nearby-kart-admin-bakend.vercel.app/api/subcategory/${subcategoryId}`,config); // Replace with your API endpoint
+      await axios.delete(`${baseApi}subcategory/${subcategoryId}`,config); // Replace with your API endpoint
       fetchData(); // Refresh subcategory after deleting a subcategory
     } catch (error) {
       console.error('Error deleting subcategory:', error);

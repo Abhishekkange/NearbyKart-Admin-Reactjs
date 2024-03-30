@@ -2,6 +2,7 @@ import React, { useState, useEffect,useContext } from 'react';
 import StoreContext from '../../Context/StoreContext'
 import productContext from '../../Context/ProductContext';
 import axios from 'axios';
+import API from '../API/masterAPI'
 
   const CategorySelector = () => {
   
@@ -17,6 +18,8 @@ import axios from 'axios';
 
 
   const storeId = localStorage.getItem('AuthToken');
+  const baseApi = API();
+  
 
 
 
@@ -55,14 +58,14 @@ import axios from 'axios';
         const config = {
             headers: headers,
            };
-          const response = await axios.get(`https://nearby-kart-admin-bakend.vercel.app/api/category`,config);
+          const response = await axios.get(`${baseApi}category`,config);
           setCategories(response.data);
          
         } catch (error) {
           console.error('Error fetching data:', error);
         }
       };
-      const response = await axios.get(`https://nearby-kart-admin-bakend.vercel.app/api/category`);
+      const response = await axios.get(`${baseApi}api/category`);
      
       //use Map function to add allcategories to list
       const categoriesData = response.data.map(category => ({
@@ -87,7 +90,7 @@ import axios from 'axios';
     const config = {
         headers: headers,
        };
-      const response = await axios.get(`https://nearby-kart-admin-bakend.vercel.app/api/subcategory`,config);
+      const response = await axios.get(`${baseApi}api/subcategory`,config);
      //use Map function to add allcategories to list
      const subcategoriesData = response.data.map(subcategory => ({
 
@@ -114,7 +117,7 @@ import axios from 'axios';
     const config = {
         headers: headers,
        };
-      const response = await axios.get(`https://nearby-kart-admin-bakend.vercel.app/api/AllBrands`,config);
+      const response = await axios.get(`${baseApi}AllBrands`,config);
       setBrands(response.data);
     } catch (error) {
       console.error('Error fetching brands:', error);

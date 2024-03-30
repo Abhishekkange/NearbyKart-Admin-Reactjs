@@ -3,6 +3,9 @@ import StoreContext from '../../Context/StoreContext'
 import axios from "axios";
 import DeleteConfirmationModal from './DeleteComfirmationBox';
 import ConfirmationPopup from './ComfirmationBox';
+import API from '../API/masterAPI'
+
+const baseApi = API();
 
   const ProductCard = ({ product,onDelete }) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -51,8 +54,8 @@ import ConfirmationPopup from './ComfirmationBox';
     const config = {
         headers: headers,
        };
-        const result = await axios.post(`https://nearby-kart-admin-bakend.vercel.app/api/saveProduct`,product,config);
-        console.log('Product Added to store');
+     
+        const result = await axios.post(`${baseApi}saveProduct`,product,config);
         console.log(result);
         handleDelete(product.id);
         onDelete();

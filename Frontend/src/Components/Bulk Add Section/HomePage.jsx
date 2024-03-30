@@ -3,6 +3,8 @@ import Abhishek from '../../assets/Icons/app.png';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './HomePage.css';
+import API from '../API/masterAPI'
+
 
 
 function HomePage() {
@@ -11,10 +13,8 @@ function HomePage() {
   const [deferredPrompt, setDeferredPrompt] = useState(null);
   const [email,setEmail] = useState('');
   const [isTokenStored,setIsTokenStored] = useState(false);
+  const baseApi = API();
 
-
-
- 
 
 
   useEffect(() => {
@@ -76,15 +76,15 @@ function HomePage() {
     console.log("login called");
 
     //call login API using axios
-    axios.post('https://nearby-kart-admin-bakend.vercel.app/api/login', reqBody)
+    axios.post(`${baseApi}/login`, reqBody)
     .then((response) => {
 
       const message = response.data.message;
       if(message === "User not found")
       {
-
         alert(message);
       }
+
       else if(message === "Incorrect password")
       {
 
@@ -93,22 +93,17 @@ function HomePage() {
       }
       else{
 
-        
-        localStorage.setItem("AuthToken",message);
+       localStorage.setItem("AuthToken",message);
        setIsTokenStored(true);
       
-
       }
 
 
     }).catch((err) => {
 
-
       alert(err.message);
+      
     });
-
-
-
 
   }
 

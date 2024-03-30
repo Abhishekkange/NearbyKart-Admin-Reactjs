@@ -1,6 +1,7 @@
 import React, { useState, useEffect,useContext } from 'react';
 import StoreContext from '../../Context/StoreContext'
 import axios from "axios";
+import API from '../API/masterAPI';
 
 import {
     Table,
@@ -23,8 +24,6 @@ import productContext from '../../Context/ProductContext';
 
 const ColorSizeSelector = () => {
 
-
-
     const {productState,setProductState} = useContext(productContext);
     const [selectedColor, setSelectedColor] = useState('');
     const [selectedSize, setSelectedSize] = useState('');
@@ -33,6 +32,7 @@ const ColorSizeSelector = () => {
     const [colorsFromApi, setColorsFromApi] = useState([]);
     const [sizesFromApi, setSizesFromApi] = useState([]);
     const storeId = localStorage.getItem('AuthToken');
+    const baseApi = API();
     
 
 
@@ -53,7 +53,7 @@ const ColorSizeSelector = () => {
     const config = {
         headers: headers,
        };
-      const response = await axios.get(`https://nearby-kart-admin-bakend.vercel.app/api/category`,config);
+      const response = await axios.get(`${baseApi}category`,config);
       setCategories(response.data);
      
     } catch (error) {
@@ -68,7 +68,7 @@ const ColorSizeSelector = () => {
 const config = {
     headers: headers,
    };
-      const response = await axios.get(`https://nearby-kart-admin-bakend.vercel.app/api/AllColors`,config);
+      const response = await axios.get(`${baseApi}AllColors`,config);
       setColorsFromApi(response.data);
     } catch (error) {
       console.error('Error fetching colors:', error);
@@ -85,7 +85,7 @@ const config = {
         const config = {
             headers: headers,
            };
-      const response = await axios.get(`https://nearby-kart-admin-bakend.vercel.app/api/AllSizes`,config);
+      const response = await axios.get(`${baseApi}AllSizes`,config);
       setSizesFromApi(response.data);
     } catch (error) {
       console.error('Error fetching sizes:', error);

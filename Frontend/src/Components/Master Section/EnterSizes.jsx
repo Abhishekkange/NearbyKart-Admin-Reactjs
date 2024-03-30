@@ -3,10 +3,12 @@ import StoreContext from '../../Context/StoreContext'
 import axios from 'axios';
 import { TextField, Button, List, ListItem, ListItemText, ListItemSecondaryAction, IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
+import API from '../API/masterAPI';
 
 const SizesComponent = () => {
   const [sizeName, setSizeName] = useState('');
   const [sizes, setSizes] = useState([]);
+  const baseApi = API();
 
   useEffect(() => {
     fetchData();
@@ -25,7 +27,7 @@ const SizesComponent = () => {
     const config = {
         headers: headers,
        };
-      const response = await axios.get(`https://nearby-kart-admin-bakend.vercel.app/api/size`,config);
+      const response = await axios.get(`${baseApi}size`,config);
       setSizes(response.data);
     } catch (error) {
       console.error('Error fetching sizes:', error);
@@ -42,7 +44,7 @@ const SizesComponent = () => {
     const config = {
         headers: headers,
        };
-      await axios.post(`https://nearby-kart-admin-bakend.vercel.app/api/size`, { sizeName },config);
+      await axios.post(`${baseApi}size`, { sizeName },config);
       fetchData();
       setSizeName('');
     } catch (error) {
@@ -60,7 +62,7 @@ const SizesComponent = () => {
     const config = {
         headers: headers,
        };
-      await axios.delete(`https://nearby-kart-admin-bakend.vercel.app/api/size/${sizeId}`,config);
+      await axios.delete(`${baseApi}size/${sizeId}`,config);
       fetchData();
     } catch (error) {
       console.error('Error deleting size:', error);

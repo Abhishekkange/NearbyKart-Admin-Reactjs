@@ -8,6 +8,8 @@ import ProductState from '../../Context/ProductState';
 import Compressor from 'compressorjs';
 import BuildProductModal from './ProductBuildingBox';
 import ProductBuilt from './ProductBuilt';
+import API from '../API/masterAPI'
+
 
 
 
@@ -23,6 +25,7 @@ const FinishedProduct = (props) => {
   const [isProductBuilt,setIsProductBuilt] = useState(false);
 
   const storeId = useState(localStorage.getItem('AuthToken'));
+  const baseApi = API();
 
   // useEffect(() => {
   //   if (localStorage.getItem('AuthToken')) {
@@ -61,7 +64,7 @@ const FinishedProduct = (props) => {
   
 
 
-    await axios.post('https://nearby-kart-admin-bakend.vercel.app/api/uploadImage2cloud', formData, {
+    await axios.post(`${baseApi}uploadImage2cloud`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data', // Set the content type to multipart/form-data
       },
@@ -134,7 +137,7 @@ const FinishedProduct = (props) => {
     const config = {
         headers: headers,
        };
-      const response = await axios.post(`https://nearby-kart-admin-bakend.vercel.app/api/buildProduct`, productData,config);
+      const response = await axios.post(`${baseApi}buildProduct`, productData,config);
 
 
     } catch (error) {
