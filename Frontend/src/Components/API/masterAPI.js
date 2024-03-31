@@ -1,7 +1,7 @@
 
 function API (){
 
-    const ip = 'http://3.109.186.80:3000';
+    const ip = 'https://app.nearbykart.cfd';
     const version = 'v1';
     const api = `${ip}/api/${version}/`
     return api;
