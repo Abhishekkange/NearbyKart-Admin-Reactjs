@@ -44,7 +44,7 @@ const FinishedProduct = (props) => {
   const handleRefresh = () => {
 
     setIsProductBuilt(false);
-    props.refreshPage();
+    // props.refreshPage();
 
   };
   
@@ -139,6 +139,7 @@ const FinishedProduct = (props) => {
        };
       const response = await axios.post(`${baseApi}buildProduct`, productData,config);
 
+      
 
     } catch (error) {
       throw new Error('Error storing product data:', error);
