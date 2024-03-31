@@ -2,6 +2,7 @@ import React, { useState, useEffect,useContext } from 'react';
 import StoreContext from '../../Context/StoreContext'
 import axios from 'axios';
 import ProductCard from './ProductCard'; // Make sure to replace 'ProductCard' with the actual file path
+import API from '../API/masterAPI';
 
 // import bgImage  from '../../../public/basket.jpg';
 
@@ -10,6 +11,7 @@ const ProductGrid = () => {
 
   const storeId = localStorage.getItem('AuthToken');
 
+  const baseAPI = API();
 
 
   
@@ -57,7 +59,7 @@ const ProductGrid = () => {
     const config = {
         headers: headers,
        };
-      const response = await axios.get(`https://nearby-kart-admin-bakend.vercel.app/api/buildProducts`,config); // Replace with your API endpoint
+      const response = await axios.get(`${baseAPI}buildProducts`,config); // Replace with your API endpoint
       //create product List from reesponse object
       const products = [];
 

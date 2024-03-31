@@ -4,14 +4,22 @@ import axios from 'axios';
 import { TextField, Button, IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete'
 import Compressor from 'compressorjs';
+import API from '../API/masterAPI'
+
+
+
 
 const EnterCategory = () => {
   const [categoryName, setCategoryName] = useState('');
   const [categoryImage, setCategoryImage] = useState('');
   const [categories, setCategories] = useState([]);
   const [image, setImage] = useState(null);
+
+  const baseApi = API();
+
   
   const storeId = localStorage.getItem('AuthToken');
+  console.log(baseApi);
 
 
   let reader = null;
@@ -25,7 +33,7 @@ const EnterCategory = () => {
     const config = {
         headers: headers,
        };
-      const response = await axios.get(`https://nearby-kart-admin-bakend.vercel.app/api/category`,config);
+      const response = await axios.get(`${baseApi}category`,config);
       setCategories(response.data);
      
     } catch (error) {
@@ -47,7 +55,7 @@ const EnterCategory = () => {
     const config = {
         headers: headers,
        };
-      await axios.delete(`https://nearby-kart-admin-bakend.vercel.app/api/category/${categoryId}`);
+      await axios.delete(`${baseApi}category/${categoryId}`);
       fetchData(); // Refresh categories after deletion
       console.log('Category deleted successfully');
     } catch (error) {
@@ -90,7 +98,7 @@ const EnterCategory = () => {
 
       
       const response = await axios.post(
-        'https://nearby-kart-admin-bakend.vercel.app/api/uploadImage2cloud',
+        `${baseApi}uploadImage2cloud`,
         formData,
         {
           headers: {
@@ -120,7 +128,7 @@ const EnterCategory = () => {
         headers: headers,
        };
     
-      await axios.post(`https://nearby-kart-admin-bakend.vercel.app/api/category`, {
+      await axios.post(`${baseApi}category`, {
         categoryName,
         categoryImage,
       },config);

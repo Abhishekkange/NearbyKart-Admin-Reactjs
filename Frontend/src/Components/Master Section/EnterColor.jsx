@@ -4,6 +4,7 @@ import { TextField, List, ListItem, ListItemText, ListItemSecondaryAction, IconB
 import DeleteIcon from '@mui/icons-material/Delete';
 import { ChromePicker } from 'react-color';
 import axios, { Axios } from 'axios';
+import API from '../API/masterAPI';
 
 const AddColorComponent = () => {
   const [colorName, setColorName] = useState('');
@@ -11,6 +12,7 @@ const AddColorComponent = () => {
   const [addedColors, setAddedColors] = useState([]);
 
   const storeId = localStorage.getItem('AuthToken');
+  const baseApi = API();
 
 
   useEffect(() => {
@@ -29,7 +31,7 @@ const AddColorComponent = () => {
         const config = {
             headers: headers,
            };
-          const response = await axios.get(`https://nearby-kart-admin-bakend.vercel.app/api/color`,config);
+          const response = await axios.get(`${baseApi}color`,config);
           setAddedColors(response.data);
         } catch (error) {
           console.error('Error fetching brands:', error);
@@ -53,7 +55,7 @@ const AddColorComponent = () => {
       headers: headers,
      };
 
-    const response = await axios.post(`https://nearby-kart-admin-bakend.vercel.app/api/color`, { colorName,selectedColor },config); 
+    const response = await axios.post(`${baseApi}color`, { colorName,selectedColor },config); 
     console.log('color Added successfully');
     setSelectedColor('#ffff')
     setColorName('');
@@ -73,7 +75,7 @@ const AddColorComponent = () => {
      };
 
     try {
-      const response = await axios.delete(`https://nearby-kart-admin-bakend.vercel.app/api/color`,{_id},config);
+      const response = await axios.delete(`${baseApi}color`,{_id},config);
       fetchData(); // Fetch updated data after deletion
     } catch (error) {
       console.error('Error deleting color:', error);

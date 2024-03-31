@@ -2,12 +2,16 @@ import React, { useState, useEffect,useContext } from 'react';
 import StoreContext from '../../Context/StoreContext'
 import axios from "axios";
 import DeleteConfirmationModal from '../Add to store section/DeleteComfirmationBox';
+import API from '../API/masterAPI';
+
 
 const ProductCard = ({ product,onDelete }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
   const storeId = localStorage.getItem('AuthToken');
+  const baseApi = API();
+
 
   const handleToggle = () => {
     setIsExpanded(!isExpanded);
@@ -25,7 +29,7 @@ const ProductCard = ({ product,onDelete }) => {
         headers: headers,
        };
 
-    const response = await axios.delete(`https://nearby-kart-admin-bakend.vercel.app/api/deleteProduct/${id}`,config);
+    const response = await axios.delete(`${baseApi}deleteProduct/${id}`,config);
     setShowModal(false);
     onDelete(); 
    
