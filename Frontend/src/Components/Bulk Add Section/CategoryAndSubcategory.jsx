@@ -43,6 +43,7 @@ const CategorySelector = () => {
     } catch (error) {
       console.error('Error fetching categories:', error);
     }
+    
   };
 
   const fetchSubcategories = async () => {
