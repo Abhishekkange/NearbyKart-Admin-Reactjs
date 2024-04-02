@@ -15,12 +15,15 @@ const EnterCategory = () => {
   const [categories, setCategories] = useState([]);
   const [image, setImage] = useState(null);
 
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   const baseApi = API();
 
   
   const storeId = localStorage.getItem('AuthToken');
-  console.log(baseApi);
-
+  
 
   let reader = null;
   const fetchData = async () => {
@@ -35,15 +38,12 @@ const EnterCategory = () => {
        };
       const response = await axios.get(`${baseApi}category`,config);
       setCategories(response.data);
+      
      
     } catch (error) {
       console.error('Error fetching data:', error);
     }
   };
-
-
-  fetchData();
-
 
   const handleDelete = async (categoryId) => {
     try {
@@ -55,16 +55,14 @@ const EnterCategory = () => {
     const config = {
         headers: headers,
        };
-      await axios.delete(`${baseApi}category/${categoryId}`);
+      await axios.delete(`${baseApi}category/${categoryId}`,config);
       fetchData(); // Refresh categories after deletion
-      console.log('Category deleted successfully');
     } catch (error) {
       console.error('Error deleting category:', error);
     }
   };
   const handleFileInput = (e) => {
     const file = e.target.files[0];
-    console.log(file);
 
     if (file) {
       // Use Compressor.js to compress the image
@@ -107,7 +105,6 @@ const EnterCategory = () => {
         }
       );
       setCategoryImage(response.data);
-      console.log(response.data);
       
       
     } catch (error) {
@@ -136,7 +133,6 @@ const EnterCategory = () => {
       setCategoryName('');
       setCategoryImage('');
       setImage(null);
-      console.log('Category created successfully');
     } catch (error) {
       console.error('Error creating category:', error);
     }

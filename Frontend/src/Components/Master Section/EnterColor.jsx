@@ -56,7 +56,6 @@ const AddColorComponent = () => {
      };
 
     const response = await axios.post(`${baseApi}color`, { colorName,selectedColor },config); 
-    console.log('color Added successfully');
     setSelectedColor('#ffff')
     setColorName('');
     fetchData();

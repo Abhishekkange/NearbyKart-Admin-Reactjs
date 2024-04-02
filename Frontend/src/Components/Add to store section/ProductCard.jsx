@@ -81,7 +81,7 @@ const baseApi = API();
       headers: headers,
      };
 
-    const response = await axios.delete(`https://nearby-kart-admin-bakend.vercel.app/api/buildProducts/${id}`,config);
+    const response = await axios.delete(`${baseApi}buildProducts/${id}`,config);
     setShowModal(false);
     onDelete(); 
 

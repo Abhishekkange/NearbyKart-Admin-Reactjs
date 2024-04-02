@@ -39,9 +39,6 @@ const GeneralComponent = ({ onNextItemClick }) => {
         setProductState(updatedProductState);
         setProductName("");
         setProductPrice("")
-        
-
-
        
     };
 

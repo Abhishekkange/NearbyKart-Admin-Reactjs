@@ -56,7 +56,6 @@ const Entersubcategory = () => {
   const Upload2Cloud = async (file) => {
     const formData = new FormData();
     formData.append('image', file);
-    console.log(file);
     
     try {
       const response = await axios.post(
@@ -69,7 +68,6 @@ const Entersubcategory = () => {
         }
       );
       setsubcategoryImage(response.data);
-      console.log(response.data);
       
       
     } catch (error) {
@@ -88,7 +86,7 @@ const Entersubcategory = () => {
         headers: headers,
        };
       const response = await axios.get(`${baseApi}subcategory`,config); // Replace with your API endpoint
-      setsubcategory(response.data); // Assuming API returns an array of subcategory
+      setsubcategory(response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -124,7 +122,7 @@ const Entersubcategory = () => {
     const config = {
         headers: headers,
        };
-      await axios.delete(`${baseApi}subcategory/${subcategoryId}`,config); // Replace with your API endpoint
+      await axios.delete(`${baseApi}subcategory/${subcategoryId}`,config); 
       fetchData(); // Refresh subcategory after deleting a subcategory
     } catch (error) {
       console.error('Error deleting subcategory:', error);

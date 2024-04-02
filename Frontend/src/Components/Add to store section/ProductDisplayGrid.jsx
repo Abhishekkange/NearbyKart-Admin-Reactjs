@@ -3,11 +3,13 @@ import StoreContext from '../../Context/StoreContext'
 import axios from 'axios';
 import ProductCard from './ProductCard'; // Make sure to replace 'ProductCard' with the actual file path
 import API from '../API/masterAPI';
+import './loading.css'
 
 // import bgImage  from '../../../public/basket.jpg';
 
 const ProductGrid = () => {
   const [products, setProducts] = useState([]);
+  const [loading,setLoading] = useState(true);
 
   const storeId = localStorage.getItem('AuthToken');
 
@@ -59,7 +61,8 @@ const ProductGrid = () => {
     const config = {
         headers: headers,
        };
-      const response = await axios.get(`${baseAPI}buildProducts`,config); // Replace with your API endpoint
+      const response = await axios.get(`${baseAPI}buildProducts`,config);
+      setLoading(false); // Replace with your API endpoint
       //create product List from reesponse object
       const products = [];
 
@@ -119,17 +122,20 @@ const ProductGrid = () => {
 
   return (
     <div className="container mx-auto grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-    {products.length === 0 ? (
-      <div style={noProductsBackground}>
-      
-      </div>
-    ) : (
-      products.map(product => (
-        <ProductCard key={product.id} product={product} onDelete={handleUpdateGrid} />
-      ))
-    )}
-  </div>
+      {loading ? ( // Conditionally render loading bar if loading state is true
+        <div className="loading-bar"></div>
+      ) : (
+        // Render product cards when loading is false
+        products.length === 0 ? (
+          <div style={noProductsBackground}></div>
+        ) : (
+          products.map(product => (
+            <ProductCard key={product.id} product={product} onDelete={handleUpdateGrid} />
+          ))
+        )
+      )}
+    </div>
   );
-};
+          };  
 
 export default ProductGrid;
