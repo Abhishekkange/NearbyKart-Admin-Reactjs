@@ -24,7 +24,7 @@ const FinishedProduct = (props) => {
   const[buildingProduct,setBuildingProduct] = useState(false);
   const [isProductBuilt,setIsProductBuilt] = useState(false);
 
-  const storeId = useState(localStorage.getItem('AuthToken'));
+  const storeId = localStorage.getItem('AuthToken');
   const baseApi = API();
 
   // useEffect(() => {
@@ -44,7 +44,7 @@ const FinishedProduct = (props) => {
   const handleRefresh = () => {
 
     setIsProductBuilt(false);
-    props.refreshPage();
+    // props.refreshPage();
 
   };
   
@@ -57,8 +57,7 @@ const FinishedProduct = (props) => {
 
   const Upload2Cloud = async () => {
 
-    
-
+  
     const formData = new FormData();
     formData.append("image", props.imageFile);
   
@@ -106,6 +105,7 @@ const FinishedProduct = (props) => {
       };
 
       // Call the function to store product data
+      console.log(storeId);
       const createdProduct = await storeProductData(productData);
 
       // Handle success or response as needed
@@ -137,8 +137,13 @@ const FinishedProduct = (props) => {
     const config = {
         headers: headers,
        };
+       console.log(`${baseApi}buildProduct`);
+       console.log(productData);
+       console.log(config);
       const response = await axios.post(`${baseApi}buildProduct`, productData,config);
-
+      console.log("The response is :"+response);
+      return response;
+      
 
     } catch (error) {
       throw new Error('Error storing product data:', error);
