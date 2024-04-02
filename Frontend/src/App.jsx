@@ -36,7 +36,7 @@ function App() {
         <Route path="/admin/*" element={<AdminPanel />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register/*" element={<Signup />} />
-        {/* Add more routes as needed */}
+        
       </Routes>
     )}
   </Router>

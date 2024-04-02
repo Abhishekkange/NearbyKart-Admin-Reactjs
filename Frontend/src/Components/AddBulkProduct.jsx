@@ -95,8 +95,7 @@ import ShowImage from "./Bulk Add Section/ShowImage";
 
     const onClickImage = (index) => {
         setSelectedImageIndex(index === selectedImageIndex ? null : index);
-        // Call the function for uploading to google cloud
-        console.log(index + ' no image clicked');
+        
       };
    
     return (
