@@ -10,7 +10,7 @@ const LoginPage = () => {
   
 const login = async (username, password) => {
   try {
-    const response = await axios.post('YOUR_API_ENDPOINT/login', {
+    const response = await axios.post('https://nearby-kart-admin-bakend.vercel.app/api/v1/login', {
       username,
       password,
     });
