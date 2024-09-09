@@ -76,7 +76,7 @@ function HomePage() {
     console.log("login called");
 
     //call login API using axios
-    axios.post(`${baseApi}/login`, reqBody)
+    axios.post(`https://nearby-kart-admin-bakend.vercel.app/api/v1/login`, reqBody)
     .then((response) => {
 
       const message = response.data.message;
